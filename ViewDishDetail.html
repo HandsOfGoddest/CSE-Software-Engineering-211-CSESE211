@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben's Queens</title>
+    <style>
+        body {
+            width: 100%;
+            height: fit-content;
+            overflow-x: hidden;
+            background: rgb(255, 177, 65);
+            background: radial-gradient(circle, rgba(255, 177, 65, 0.8) 0%, rgba(251, 141, 23, 0.8) 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        img {
+            cursor: pointer;
+        }
+        
+        .header {
+            width: 100%;
+            height: 80px;
+            background: rgb(255, 177, 65);
+            background: radial-gradient(circle, rgba(255, 177, 65, 1) 0%, rgba(251, 141, 23, 1) 100%);
+            box-shadow: 1px 1px 4px black;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .logo {
+            margin-left: 40px;
+            margin-right: 20px;
+        }
+        
+        .search-bar {
+            height: 50px;
+            width: 250px;
+            margin-left: 0;
+            border-radius: 40px;
+            margin-right: 40%;
+        }
+        
+        .search-bar::placeholder {
+            font-size: 20px;
+            margin-left: 20px;
+        }
+        
+        .header p {
+            font-size: 30px;
+            color: #fff;
+        }
+        
+        .header p:hover {
+            text-decoration: underline;
+            transition: 2s all;
+            cursor: pointer;
+        }
+        
+        .avt {
+            background-color: #fff;
+            padding: 10px 10px;
+            border: 2px solid #000;
+            border-radius: 50px;
+            margin-right: 30px;
+        }
+        
+        .content {
+            width: 60%;
+            height: 600px;
+            margin-top: 150px;
+            margin-left: 20%;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 4px 4px 10px #000000;
+            display: flex;
+        }
+        
+        .illustration {
+            height: 500px;
+            width: 35%;
+            background-color: #ffe8bc;
+            border-radius: 10px;
+            top: 50px;
+            left: 50px;
+            background-image: url(https://lh3.googleusercontent.com/6Q1Ed-w-AH78tdv3-WZyfr0krGlixFdbamtHUb2hXIIYOgKuVBinotnaKWhxSdbrbhrIzr10JFcmD5tq0tv95xDmAzAhOSa6pukjlpi-dl-loR7Xv7PryM3ZXbNtHX_JqfoYRLaERr9qIq3OQt9Viz2DG31g9Uv7toUKRC99x9Na0rHzDymK3ajBEDxpEs7imS8-2xCpVvBvob82UQ5ghrfkvGI53eT8iUbOMi_atlNwJwDtXZqhXGytnnvIgHFdc0HgTPJ-mAkRmp9z20hPfdxe8_tXy9d3m3jPVkKznxDUHD9satp3hT7h99kD20xx3Zo7AxVbpg0qrhLaiSB5vpePsBE6WmPZzYM0T8rutDtW5QN_WwwgPAasxvdI0p0ufJcruaCi3LP1tn_jkSnHfsTXuDeBPeWVa2r-E3e2e2SDekbLJ4-PsHR12NM0EBs3nMyeZjqExCUTqOJ3FwI9FuHMN35agyHT4d8kjcqmND0TfBg1oS2yYy8IvwSCYUWUQwdsL3KSo1-6lnJVcjnv3MtXF6qRLLhwokqJWvkWPPFvjgeoi4QGS8HKnCA7Brw51aBFgTDFLjRtzVcW_qN7QY93XKQbYR1vXGb58eWqh0ALernE1kubgEze9KLWf0Q2YDLmXyuqFxLy3B8Ybxjs5-RZ2nw-UZjbPyDDqWobfjTRxqbEwMqeU0vds58MWPGs78Zjk9QFkFzi6Qbuq6pLjMCD=s924-no?authuser=0);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            flex-grow: 2;
+        }
+        
+        .info {
+            flex-grow: 3;
+        }
+        
+        .name {
+            font-size: 3em;
+            top: 140px;
+            left: 50%;
+        }
+        
+        .price {
+            font-size: 2em;
+            top: 250px;
+            left: 50%;
+        }
+        
+        .quantity {
+            top: 340px;
+            left: 50%;
+            display: flex;
+        }
+        
+        .quantity button {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            border: none;
+            font-size: 30px;
+            color: #fff;
+            background-color: rgb(255, 177, 65);
+            cursor: pointer;
+        }
+        
+        .quantity p {
+            height: 34px;
+            width: 50px;
+            text-align: center;
+            margin-top: -1px;
+            font-size: 30px;
+            border: none;
+        }
+        
+        .add-button {
+            top: 420px;
+            left: 50%;
+            height: fit-content;
+            padding: 10px 0px;
+            width: 400px;
+            background-color: rgb(255, 177, 65);
+            border-radius: 40px;
+            font-size: 20px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="https://lh3.googleusercontent.com/mKsdEFvb-WEhT7x0i3nHhTXV6YWCQppi_UNqAJ0q4gK4r_FQ-X1_CLIMHBxWpCNmbvdLwtyCYyxUbC7mqT29j6BWfvfnZrWaHDOuJoqSdlQKwfl3pzSfaYdgX_C06SfzolDpP24XrHRar1W_elaWTYvLmOLOm5ZuJz53iC1U3lBOsWZpCd7P1zOmn2EQvz2suemZc1RLF_glIH7nLwz7DXKkz8ZAYa1NrjPlDy5xGe_iDXsLueHZb8oQWqdBcq-hF6JAGUBNOBSxOkSGLQAVYuZwNystDv4aL1zCfBGJUoz7FTwqTlOkAI38NXG2rUQqOoCRy3zUJyxoFJmFsBjI3ellT94JwIiwqb5hybMy8g_VVmLUuDbJEAmwFW52AUGSkjHfCSVyD0AaIffvYduR1Jb1oFp4k8R-sfB6-lvhFyR19EePJdnKtFL-0j6RqE093DsZLfuNpM6jm2UqA9lv6JM1w6w2Yas_bwOiALQG5IE0hykNwazvX8LZXJg_Ik3fzwDeQzs741TAD7MD6-zQXHdyl1E9ElizAM5CFooI-peSGWJqweDkmV_3kEtFsgBjeS4PSiboUtoOWPU3IbpdM2n4GgLX3hhiSR_4Oh983wB6p1F1kU0NUKSgJw547AiZwZ9vBiisg77XmMooPtxnJ9ku1aVF0t4rX8Oy9s_K8_oUAtNBvbZYRM_C_7qugutywSONZ-zdJjdUY8hjTnA38rRT=w95-h62-no?authuser=0"
+            alt="" class="logo">
+        <input type="text" class="search-bar" placeholder="Search">
+        <p>Menu</p>
+        <p>Đặt bàn</p>
+        <img src="https://lh3.googleusercontent.com/e3FTwoWHQPo_PU6gBzo95QdI4ZL-IMqtnZCD5iwdqCOgCeYaxHg--kN8Wyy1n7peWn0pvcfEM96GtHeYUxcmkjE_4mLkrNPocCdQlI1JiKp7qdjvSIDYXeBi31jHXdwkWyMTcmm6a39qBBRcNTGGMaYogZmemLVYe_-MIwCcztlvlNCsvPtOWEwyc1JBork0yX8KSiJZ1iwHV_PavSpQpwAgfONOokY8eiU8ROTCNXB5NNYZPYDO5iEUwILyHwgzxUDtLxV2hYvm1pE19SyioVJImmAQM-5hyePeFUrLWpz2cDWViQpMDNddtq9ZKeoqeEkvcCCtvHGPG6Q-kwDZaIGuMiMoM9_vBQkYItVbjsO8WBlrwGMmxjO9vIAFKFa6GIgt-VbnDoG-xo4hgw-KKB1To7Y-mjgm5kj7mlTme1NxhXdlzzrSWPg1gaT-IAb-rXdO6SB_2wNC9Iqwa0xdrpUeZIJR2MA6teLasvhjv3oyNayo3y542SGo4iDDezfwNhjCy2oG_NquRXmnkBu_NtubMKCwY_B6WPVLKUsdof0oBBKM6RnA12SQHpBfSXUpisdWTeuqNn2q-lzEO7qcZG3f3Rb9uw2UpT712DUBYreCR8J0WaVLsZHaX64qqrFgl4UVC4ahEFwfeDaKQbQpeGeR4U6-ChBhQ1IdKz7mVQ2dyAAYXRE9YHJFyOI6ySdqrJf5wfegLCCkBnXGVDcL5igu=w45-h37-no?authuser=0"
+            alt="" class="cart">
+        <img src="https://lh3.googleusercontent.com/TaMDbD-c06wBdlQLqp2SbHBUZCAzX9VRHT3kK4E7BEgFxyOErMMi_HM2eh5FSMTcFyQ9UkD1vtBBhBwMowL07FFZwXf-ZAhzE0iWlT5q8Yb_W4p36n4Ns9w4CGUvt38JffVC3_RK8RUqVkoMOIcSgqbhA5gAxobQ3jm78kTN2lVHrfeM_UZJSYLJVUlfoDf9RhfkKNZ0aTGLD5yCKGU2ZUHcGiAenL7RrwmnqfYWz-MBwA5DTevcAOL9eHOMr8rkuUmRpP4awvcOcCiCwddCil-DHHkIgg8YVXtep1JPo9tpivM9t-g0xsYcn9TDQzLUPA6rpJ6IDQzr8cn-LTbaEXAvVPc6kTu97DIdcRUkfA8FR8w2cVxq8Ed_onqxeWuP6KbBfjbhmB8DiDOBRaCYI91yooIh8_H409lYV-hI1P9am1A5ewuQGRYYEaRYNGD2H4-H1YdcTREbAbrmVZi8IxQ-2P58CaCBP67Wi9g9XSZK59gICLQDWgdykdy81yhyjYpesZlNEXftfzd6enhvZghSMnxBKg6LArMNrkbhnVTe1LfvH-HDS3kbNppdGi7lTCEKXpjJ-yWpHz9obbT6MLunbUZCNszokxEqbRqHluPOfi4b7iG2CQY77RSEEUJXid9pkidWMJsmd3VHGS9_BRi_jOnz9BpzKl0E_V2No3GszbzNRT__FovOxmL2Q-bPIAo77yo79jtl5f9eDGXCDAEd=w40-h36-no?authuser=0"
+            alt="" class="avt">
+    </div>
+    <div class="content">
+        <div class="illustration">
+        </div>
+        <div class="info">
+            <h4 class="name">Trà đào cam chảnh</h4>
+            <p class="price"></p>
+            <div class="quantity">
+                <button class="minus">-</button>
+                <p class="value"></p>
+                <button class="plus">+</button>
+            </div>
+            <div class="add-button"></div>
+        </div>
+    </div>
+</body>
+<!--Hiện thông tin đơn giá-->
+<script>
+    var count = 1
+    var price = 50
+    var thanhtien = String(price) + ".000đ"
+    document.getElementsByClassName("value")[0].innerHTML = count;
+    document.getElementsByClassName("price")[0].innerHTML = String(price) + ".000đ";
+    document.getElementsByClassName("add-button")[0].innerHTML = String(price * count) + ".000đ-Thêm vào giỏ hàng";
+
+    if (count == 1) {
+        document.getElementsByClassName("minus")[0].style.backgroundColor = "rgb(167, 167, 167)";
+    }
+    document.getElementsByClassName("minus")[0].onclick = function() {
+        if (count == 1) {
+            count -= 0;
+        } else {
+            count -= 1;
+            addToCart()
+        }
+    }
+    document.getElementsByClassName("plus")[0].onclick = function() {
+        count += 1;
+        addToCart()
+    }
+    document.getElementsByClassName("add-button")[0].onclick = function() {
+        alert("Thêm thành công đơn hàng " + String(thanhtien) + " vào giỏ hàng")
+    }
+</script>
+<!--Khoi tao function-->
+<script>
+    function addToCart() {
+        document.getElementsByClassName("value")[0].innerHTML = count;
+        if (count * price >= 1000) {
+            if ((price * count) % 1000 < 100) {
+                if ((price * count) % 1000 < 10) {
+                    thanhtien = String(parseInt((price * count) / 1000)) + ".00" + String((price * count) % 1000) + ".000đ";
+                } else {
+                    thanhtien = String(parseInt((price * count) / 1000)) + ".0" + String((price * count) % 1000) + ".000đ";
+                }
+            } else {
+                thanhtien = String(parseInt((price * count) / 1000)) + "." + String((price * count) % 1000) + ".000đ";
+            }
+        } else {
+            thanhtien = String(price * count) + ".000đ";
+        }
+        document.getElementsByClassName("add-button")[0].innerHTML = thanhtien + "-Thêm vào giỏ hàng";
+    }
+</script>
+
+</html>
