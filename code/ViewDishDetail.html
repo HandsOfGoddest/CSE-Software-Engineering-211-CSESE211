@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ben's Queens</title>
     <script src="info.js"></script>
     <style>
@@ -13,8 +13,8 @@
             height: fit-content;
             overflow-x: hidden;
             background: rgb(255, 177, 65);
-            background: radial-gradient(circle, rgba(255, 177, 65, 0.8) 0%, rgba(251, 141, 23, 0.8) 100%);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: radial-gradient( circle, rgba(255, 177, 65, 0.8) 0%, rgba(251, 141, 23, 0.8) 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
         }
         
         img {
@@ -25,7 +25,7 @@
             width: 100%;
             height: 80px;
             background: rgb(255, 177, 65);
-            background: radial-gradient(circle, rgba(255, 177, 65, 1) 0%, rgba(251, 141, 23, 1) 100%);
+            background: radial-gradient( circle, rgba(255, 177, 65, 1) 0%, rgba(251, 141, 23, 1) 100%);
             box-shadow: 1px 1px 4px black;
             position: fixed;
             top: 0;
@@ -175,19 +175,15 @@
 
 <body>
     <div class="header">
-        <img src="src/logo.png"
-            alt="" class="logo">
-        <input type="text" class="search-bar" placeholder="Search">
+        <img src="src/logo.png" alt="" class="logo" />
+        <input type="text" class="search-bar" placeholder="Search" />
         <p>Menu</p>
         <p>Đặt bàn</p>
-        <img src="src/cart.png"
-            alt="" class="cart">
-        <img src="src/avt.png"
-            alt="" class="avt">
+        <img src="src/cart.png" alt="" class="cart" />
+        <img src="src/avt.png" alt="" class="avt" />
     </div>
     <div class="content">
-        <div class="illustration">
-        </div>
+        <div class="illustration"></div>
         <div class="info">
             <h4 class="name">Trà đào cam chảnh</h4>
             <div class="price-control">
@@ -204,35 +200,40 @@
 </body>
 <!--Load hình ảnh sản phẩm-->
 <script>
-    document.getElementsByClassName("illustration")[0].style.backgroundImage = "url("+ LikeInfos[0].img +")";
+    document.getElementsByClassName("illustration")[0].style.backgroundImage =
+        "url(" + LikeInfos[4].img + ")";
+    document.getElementsByClassName("name")[0].innerHTML = LikeInfos[4].name;
 </script>
 <!--Hiện thông tin đơn giá-->
 <script>
-    var count = 1
-    var price = 50
-    var thanhtien = String(price) + ".000đ"
+    var count = 1;
+    var price = 50;
+    var thanhtien = String(price) + ".000đ";
     document.getElementsByClassName("value")[0].innerHTML = count;
-    document.getElementsByClassName("price")[0].innerHTML = String(price) + ".000đ";
-    document.getElementsByClassName("add-button")[0].innerHTML = String(price * count) + ".000đ-Thêm vào giỏ hàng";
+    document.getElementsByClassName("price")[0].innerHTML =
+        String(price) + ".000đ";
+    document.getElementsByClassName("add-button")[0].innerHTML =
+        String(price * count) + ".000đ-Thêm vào giỏ hàng";
 
     if (count == 1) {
-        document.getElementsByClassName("minus")[0].style.backgroundColor = "rgb(167, 167, 167)";
+        document.getElementsByClassName("minus")[0].style.backgroundColor =
+            "rgb(167, 167, 167)";
     }
     document.getElementsByClassName("minus")[0].onclick = function() {
         if (count == 1) {
             count -= 0;
         } else {
             count -= 1;
-            addToCart()
+            addToCart();
         }
-    }
+    };
     document.getElementsByClassName("plus")[0].onclick = function() {
         count += 1;
-        addToCart()
-    }
+        addToCart();
+    };
     document.getElementsByClassName("add-button")[0].onclick = function() {
-        alert("Thêm thành công đơn hàng " + String(thanhtien) + " vào giỏ hàng")
-    }
+        alert("Thêm thành công đơn hàng " + String(thanhtien) + " vào giỏ hàng");
+    };
 </script>
 <!--Khoi tao function-->
 <script>
@@ -241,17 +242,30 @@
         if (count * price >= 1000) {
             if ((price * count) % 1000 < 100) {
                 if ((price * count) % 1000 < 10) {
-                    thanhtien = String(parseInt((price * count) / 1000)) + ".00" + String((price * count) % 1000) + ".000đ";
+                    thanhtien =
+                        String(parseInt((price * count) / 1000)) +
+                        ".00" +
+                        String((price * count) % 1000) +
+                        ".000đ";
                 } else {
-                    thanhtien = String(parseInt((price * count) / 1000)) + ".0" + String((price * count) % 1000) + ".000đ";
+                    thanhtien =
+                        String(parseInt((price * count) / 1000)) +
+                        ".0" +
+                        String((price * count) % 1000) +
+                        ".000đ";
                 }
             } else {
-                thanhtien = String(parseInt((price * count) / 1000)) + "." + String((price * count) % 1000) + ".000đ";
+                thanhtien =
+                    String(parseInt((price * count) / 1000)) +
+                    "." +
+                    String((price * count) % 1000) +
+                    ".000đ";
             }
         } else {
             thanhtien = String(price * count) + ".000đ";
         }
-        document.getElementsByClassName("add-button")[0].innerHTML = thanhtien + "-Thêm vào giỏ hàng";
+        document.getElementsByClassName("add-button")[0].innerHTML =
+            thanhtien + "-Thêm vào giỏ hàng";
     }
 </script>
 
