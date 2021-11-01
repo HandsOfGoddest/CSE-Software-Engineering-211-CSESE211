@@ -12,7 +12,9 @@ body {
     overflow-x: hidden;
     background:#ffe8bc;
 }
-
+p{
+    cursor: pointer;
+}
 img {
     cursor: pointer;
 }
@@ -63,6 +65,25 @@ img {
     text-decoration: underline;
     transition: 2s all;
     cursor: pointer;
+}
+.header p:last-child {
+    text-decoration: none;
+}
+.cart-info{
+    display: flex;
+    height:60%;
+
+}
+.cart-num{
+    /* font-size:20px !important; */
+    text-align: center;
+    align-self: center;
+    margin-top:-15px;
+    margin-left: 2px;
+    height:30px;
+    width: 30px !important;
+    border: 2px solid #fff;
+    border-radius:50%;
 }
 .avt {
     background-color: #fff;
@@ -166,16 +187,21 @@ img {
 }
 
 .select-prefer-foods p {
+    margin-top: 10px;
     font-size: 20px;
     margin-bottom: 50px;
 }
 .select-prefer-food{
     cursor: pointer;
 }
-.select-prefer-foods p:after {
-    text-decoration: underline;
+.select-prefer-food:hover{
+    color:#fca23f; 
+    text-decoration: underline !important;
 }
-
+/* .select-prefer-food:active{
+    color:#fca23f; 
+    text-decoration: underline;
+} */ 
 .brand {
     width: 60%;
     height: fit-content;
@@ -265,10 +291,9 @@ img {
 #food-list div{
     width: 12.6%;
     height:fit-content;
-    margin: 40px 2%;
+    margin: 20px 2%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .product-image{
     border-radius: 20px;
@@ -280,8 +305,48 @@ img {
 .product-name{
     font-size:120%;
     color:#fca23f;
-    margin-top: 10px !important;
+    margin-top: 20px !important;
     margin-bottom: 0px !important;
     width:100% !important;
+    height:40px !important;
     cursor: pointer;
+}
+.Price-Add{
+    width: 100% !important;
+    height: 0px !important;
+    flex-direction: row !important;
+    margin-top: 5px !important;
+    justify-content: space-between;
+
+}
+
+.product-add{
+    color:#fff;
+    text-align: center;
+    margin-top:0px;
+    background-color: #fca23f; 
+    border-radius:50%;
+    font-size: 20px;
+    height: 20px;
+    width: 26px;
+
+}
+.product-price{
+    font-size:120%;
+    color:#fca23f;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    width:100% !important;
+    height:40px !important;
+    cursor: pointer;
+    align-self: start !important;
+}
+.product-rate{
+    width: 50px !important;
+    align-self: start;
+    background-color: #fca23f;
+}
+.product-rate img{
+    height: 20px !important;
+    align-self: start;
 }

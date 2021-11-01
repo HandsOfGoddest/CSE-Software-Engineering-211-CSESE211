@@ -15,12 +15,17 @@
 
 <body>
     <div class="header">
-        <img src="src/logo.png" alt="" class="logo">
+        <img src="src/logo.png" alt="" class="logo" OnClick="window.scrollTo(0, 0);">
         <input type="text" class="search-bar" placeholder="Search">
         <p>Menu</p>
         <p>Đặt bàn</p>
-        <img src="src/cart.png" alt="" class="cart">
-        <img src="src/avt.png" alt="" class="avt">
+        <div class="cart-info">
+            <img src="src/cart.png"
+            alt="" class="cart">
+            <p class="cart-num"></p>
+        </div>
+        <img src="src/avt.png"
+            alt="" class="avt">
     </div>
     <div class="best-sale">
         <div class="best-sale-container">
@@ -106,7 +111,9 @@
 <script>
     document.getElementsByClassName("best-sale")[0].style.display = "block";
     document.getElementsByClassName("content")[0].style.display = "block";
+    document.getElementsByClassName("cart-num")[0].innerHTML = CartNum;
 </script>
+<!--Khoi tao ham-->
 <script> 
     function Fb(){
         window.open(AdminInfo.fb);
@@ -114,54 +121,36 @@
     function Ig(){
         window.open(AdminInfo.ig)
     }
+    function ViewDetail(){
+        return(
+        window.location = "ViewDishDetail.html"
+        )
+    }
+    function NoUnderLine(index){
+        for(let i=0;i<document.getElementsByClassName("select-prefer-food").length;i++){
+            if(i != index){
+                document.getElementsByClassName("select-prefer-food")[i].style.color = "#fca23f";
+                document.getElementsByClassName("select-prefer-food")[i].style.textDecoration = "none";
+            }
+        }
+        document.getElementsByClassName("select-prefer-food")[index].style.color = "#fca23f";
+        document.getElementsByClassName("select-prefer-food")[index].style.textDecoration = "underline";
+    }
 </script>
 <script type="text/babel">
-    function ReturnLikeList(){
+    function ReturnFoodList({FoodInfos}){
         return(
             <React.Fragment>
-                    {LikeInfos.map((FoodInfo,index)=>
+                    {FoodInfos.map((FoodInfo,index)=>
                         <div key = {index}>
-                            <img className="product-image"  key = {index+100} src = {FoodInfo.img}/>
-                            <div className="product-name">{FoodInfo.name}</div>
-                        </div>
-
-                    )}
-            </React.Fragment>
-        )
-    }
-    function ReturnCoffeeList(){
-        return(
-            <React.Fragment>
-                    {CoffeeInfos.map((FoodInfo,index)=>
-                        <div key = {index}>
-                            <img className="product-image"  key = {index+100} src = {FoodInfo.img}/>
-                            <div className="product-name">{FoodInfo.name}</div>
-                        </div>
-
-                    )}
-            </React.Fragment>
-        )
-    }
-    function ReturnTeaList(){
-        return(
-            <React.Fragment>
-                    {TeaInfos.map((FoodInfo,index)=>
-                        <div key = {index}>
-                            <img className="product-image"  key = {index+100} src = {FoodInfo.img}/>
-                            <div className="product-name">{FoodInfo.name}</div>
-                        </div>
-
-                    )}
-            </React.Fragment>
-        )
-    }
-    function ReturnIceList(){
-        return(
-            <React.Fragment>
-                    {IceInfos.map((FoodInfo,index)=>
-                        <div key = {index}>
-                            <img className="product-image"  key = {index+100} src = {FoodInfo.img}/>
-                            <div className="product-name">{FoodInfo.name}</div>
+                            <img onClick={ViewDetail}  className="product-image"  key = {index+100} src = {FoodInfo.img}/>
+                            <div onClick={ViewDetail}  className="product-name">{FoodInfo.name}</div>
+                            
+                            <div className="Price-Add">
+                                <div onClick={ViewDetail} className="product-price">{FoodInfo.price}</div>
+                                <p className="product-add">+</p>
+                            </div>
+                            <div class="product-rate"><img src="src/rate.png" alt=""/></div>
                         </div>
 
                     )}
@@ -170,19 +159,24 @@
     }
 </script>
 <script type="text/babel">
-    ReactDOM.render(<ReturnLikeList/>, document.getElementById("food-list"))  
-    document.getElementsByClassName("select-prefer-food")[1].onclick = function(){
-        ReactDOM.render(<ReturnCoffeeList/>, document.getElementById("food-list"))
-    }
-    document.getElementsByClassName("select-prefer-food")[2].onclick = function(){
-        ReactDOM.render(<ReturnTeaList/>, document.getElementById("food-list"))
-    }
-    document.getElementsByClassName("select-prefer-food")[3].onclick = function(){
-        ReactDOM.render(<ReturnIceList/>, document.getElementById("food-list"))
-    }
-    document.getElementsByClassName("select-prefer-food")[0].onclick = function(){
-        ReactDOM.render(<ReturnLikeList/>, document.getElementById("food-list")) 
+     
+</script>
+<script type="text/babel">
+    ReactDOM.render(<ReturnFoodList FoodInfos = {Info[0]}/>, document.getElementById("food-list")) 
+    NoUnderLine(0)
+    for(let i = 0;i< document.getElementsByClassName("select-prefer-food").length; i++)
+    {
+            document.getElementsByClassName("select-prefer-food")[i].onclick = function(){
+            NoUnderLine(i)
+            ReactDOM.render(<ReturnFoodList FoodInfos = {Info[i]}/>, document.getElementById("food-list")) 
+        }
     }
 </script>
-
+<script>
+    for(let i = 0;i<document.getElementsByClassName("product-add").length;i++) {
+        document.getElementsByClassName("product-add")[i].onclick = function(){
+            alert(i)
+        }
+    }
+</script>
 </html>

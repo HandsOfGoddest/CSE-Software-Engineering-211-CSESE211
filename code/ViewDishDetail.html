@@ -2,188 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ben's Queens</title>
     <script src="info.js"></script>
-    <style>
-        body {
-            width: 100%;
-            height: fit-content;
-            overflow-x: hidden;
-            background: rgb(255, 177, 65);
-            background: radial-gradient( circle, rgba(255, 177, 65, 0.8) 0%, rgba(251, 141, 23, 0.8) 100%);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-        }
-        
-        img {
-            cursor: pointer;
-        }
-        
-        .header {
-            width: 100%;
-            height: 80px;
-            background: rgb(255, 177, 65);
-            background: radial-gradient( circle, rgba(255, 177, 65, 1) 0%, rgba(251, 141, 23, 1) 100%);
-            box-shadow: 1px 1px 4px black;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            z-index: 10;
-        }
-        
-        .logo {
-            margin-left: 40px;
-            margin-right: 20px;
-        }
-        
-        .search-bar {
-            height: 50px;
-            width: 250px;
-            margin-left: 0;
-            border-radius: 40px;
-            margin-right: 40%;
-        }
-        
-        .search-bar::placeholder {
-            font-size: 20px;
-            margin-left: 20px;
-        }
-        
-        .header p {
-            font-size: 30px;
-            color: #fff;
-        }
-        
-        .header p:hover {
-            text-decoration: underline;
-            transition: 2s all;
-            cursor: pointer;
-        }
-        
-        .avt {
-            background-color: #fff;
-            padding: 10px 10px;
-            border: 2px solid #000;
-            border-radius: 50px;
-            margin-right: 30px;
-        }
-        
-        .content {
-            width: 60%;
-            height: 600px;
-            margin-top: 150px;
-            margin-left: 20%;
-            background-color: #ffffff;
-            border-radius: 20px;
-            box-shadow: 4px 4px 10px #000000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .illustration {
-            height: 500px;
-            width: 30%;
-            margin-left: 5%;
-            background-color: #ffe8bc;
-            border-radius: 10px;
-            top: 50px;
-            left: 50px;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            flex-grow: 2;
-        }
-        
-        .info {
-            flex-grow: 3;
-            width: 40%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .name {
-            font-size: 300%;
-            margin: 0px 0px;
-            margin-top: 50px;
-        }
-        
-        .price-control {
-            display: flex;
-            width: 100%;
-            margin-left: 20%;
-            flex-direction: column;
-            align-items: left;
-            margin-top: 30px;
-        }
-        
-        .price {
-            font-size: 2em;
-            margin: 0px 0px;
-            margin-bottom: 20px;
-        }
-        
-        .quantity {
-            top: 340px;
-            left: 50%;
-            display: flex;
-        }
-        
-        .quantity button {
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
-            border: none;
-            font-size: 30px;
-            color: #fff;
-            background-color: rgb(255, 177, 65);
-            cursor: pointer;
-        }
-        
-        .quantity p {
-            height: 34px;
-            width: 50px;
-            text-align: center;
-            margin-top: -1px;
-            font-size: 30px;
-            border: none;
-        }
-        
-        .add-button {
-            height: fit-content;
-            padding: 10px 0px;
-            width: 60%;
-            background-color: rgb(255, 177, 65);
-            border-radius: 40px;
-            font-size: 20px;
-            text-align: center;
-            color: #fff;
-            cursor: pointer;
-            margin-top: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="ViewDishDetailStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 </head>
 
 <body>
     <div class="header">
-        <img src="src/logo.png" alt="" class="logo" />
-        <input type="text" class="search-bar" placeholder="Search" />
+        <img src="src/logo.png"
+            alt="" class="logo" OnClick="ViewHomePage()">
+        <input type="text" class="search-bar" placeholder="Search">
         <p>Menu</p>
         <p>Đặt bàn</p>
-        <img src="src/cart.png" alt="" class="cart" />
-        <img src="src/avt.png" alt="" class="avt" />
+        <div class="cart-info">
+            <img src="src/cart.png"
+            alt="" class="cart">
+            <p class="cart-num"></p>
+        </div>
+        <img src="src/avt.png"
+            alt="" class="avt">
     </div>
     <div class="content">
-        <div class="illustration"></div>
+        <div class="illustration">
+        </div>
         <div class="info">
             <h4 class="name">Trà đào cam chảnh</h4>
             <div class="price-control">
@@ -194,79 +39,85 @@
                     <button class="plus">+</button>
                 </div>
             </div>
-            <div class="add-button"></div>
+            <!-- <div class="add-button"></div> -->
+            <button class="cart-button">
+                <span class="add-to-cart">Add to cart</span>
+                <span class="added">Added</span>
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-box"></i>
+            </button>
         </div>
     </div>
 </body>
 <!--Load hình ảnh sản phẩm-->
 <script>
-    document.getElementsByClassName("illustration")[0].style.backgroundImage =
-        "url(" + LikeInfos[4].img + ")";
+    document.getElementsByClassName("illustration")[0].style.backgroundImage = "url("+ LikeInfos[4].img +")";
     document.getElementsByClassName("name")[0].innerHTML = LikeInfos[4].name;
 </script>
 <!--Hiện thông tin đơn giá-->
 <script>
-    var count = 1;
-    var price = 50;
-    var thanhtien = String(price) + ".000đ";
+    var count = 1
+    var price = 50
+    var thanhtien = String(price) + ".000đ"
     document.getElementsByClassName("value")[0].innerHTML = count;
-    document.getElementsByClassName("price")[0].innerHTML =
-        String(price) + ".000đ";
-    document.getElementsByClassName("add-button")[0].innerHTML =
-        String(price * count) + ".000đ-Thêm vào giỏ hàng";
+    document.getElementsByClassName("price")[0].innerHTML = String(price) + ".000đ";
+    // document.getElementsByClassName("add-button")[0].innerHTML = String(price * count) + ".000đ-Thêm vào giỏ hàng";
 
     if (count == 1) {
-        document.getElementsByClassName("minus")[0].style.backgroundColor =
-            "rgb(167, 167, 167)";
+        document.getElementsByClassName("minus")[0].style.backgroundColor = "rgb(167, 167, 167)";
     }
     document.getElementsByClassName("minus")[0].onclick = function() {
         if (count == 1) {
             count -= 0;
         } else {
             count -= 1;
-            addToCart();
+            addToCart()
         }
-    };
+    }
     document.getElementsByClassName("plus")[0].onclick = function() {
         count += 1;
-        addToCart();
-    };
-    document.getElementsByClassName("add-button")[0].onclick = function() {
-        alert("Thêm thành công đơn hàng " + String(thanhtien) + " vào giỏ hàng");
-    };
+        addToCart()
+    }
+    // document.getElementsByClassName("add-button")[0].onclick = function() {
+    //     alert("Thêm thành công đơn hàng " + String(thanhtien) + " vào giỏ hàng")
+    // }
 </script>
 <!--Khoi tao function-->
 <script>
     function addToCart() {
         document.getElementsByClassName("value")[0].innerHTML = count;
-        if (count * price >= 1000) {
-            if ((price * count) % 1000 < 100) {
-                if ((price * count) % 1000 < 10) {
-                    thanhtien =
-                        String(parseInt((price * count) / 1000)) +
-                        ".00" +
-                        String((price * count) % 1000) +
-                        ".000đ";
-                } else {
-                    thanhtien =
-                        String(parseInt((price * count) / 1000)) +
-                        ".0" +
-                        String((price * count) % 1000) +
-                        ".000đ";
-                }
-            } else {
-                thanhtien =
-                    String(parseInt((price * count) / 1000)) +
-                    "." +
-                    String((price * count) % 1000) +
-                    ".000đ";
-            }
-        } else {
-            thanhtien = String(price * count) + ".000đ";
-        }
-        document.getElementsByClassName("add-button")[0].innerHTML =
-            thanhtien + "-Thêm vào giỏ hàng";
+    }
+    function ViewHomePage(){
+        return(
+        window.location = "homepage.html"
+        )
     }
 </script>
+<!--Tạo animation cho nút add-->
+<script>
+    const cartButtons = document.querySelectorAll('.cart-button');
 
+    cartButtons.forEach(button => {
+        button.addEventListener('click', cartClick);
+    });
+    cartButtons.forEach(button => {
+        button.addEventListener('mouseout', Click);
+    });
+    function cartClick() {
+        let button = this;
+        button.classList.add('clicked');
+    }
+    function Click() {
+        let button1 = this;
+        button1.classList.add('click');
+    }
+</script>
+<!--Tăng số lượng giỏ hàng-->
+<script>
+document.getElementsByClassName("cart-num")[0].innerHTML = CartNum;
+document.getElementsByClassName("cart-button")[0].onclick = function() {
+    CartNum +=count
+    document.getElementsByClassName("cart-num")[0].innerHTML = CartNum;
+}
+</script>
 </html>
