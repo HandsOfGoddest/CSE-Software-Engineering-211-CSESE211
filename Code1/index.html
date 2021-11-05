@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HomePageStyle.css">
+    <title>Ben's Queens</title>
+    <link rel="icon" href="src/icon.png">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="info.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<script type="text/babel">
+    function Header() {
+        return (
+            <div className="header">
+                <img src="src/logo.png" alt="" className="logo" />
+                <input type="text" className="search-bar" placeholder="Search" />
+                <p>Menu</p>
+                <p>Đặt bàn</p>
+                <div className="cart-info">
+                    <img src="src/cart.png" alt="" className="cart" />
+                    <p className="cart-num">{CartNum}</p>
+                </div>
+                <img src={UserInfo.avt} alt="" className="avt" />
+            </div>
+        )
+    }
+    function Brand({Vars}) {
+        return (
+            <div class="brand">
+                <p>Thương hiệu</p>
+                <div class="brands-logo">
+                    {Vars.map((BVar, index) =>
+                            <div key={index} style={{ backgroundImage: BVar.src }} className="brand-logo" onClick={showMainPage}></div>
+                    )}
+                </div>
+            </div>
+        )
+    }
+    function RenderPage() {
+        return (
+            <div>
+                <Header />
+                <Brand  Vars={Brands} />
+            </div>
+        )
+    }
+
+</script>
+<script type="text/babel">
+    ReactDOM.render(<RenderPage />, document.getElementById("root"))
+</script>
+<script>
+    function showMainPage() {
+        window.location = "homepage.html"
+    }
+</script>
+
+</html>
