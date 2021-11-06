@@ -26,7 +26,7 @@
                 <p>Menu</p>
                 <p>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" />
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
@@ -72,12 +72,12 @@
             <div id="food-list">
                 {FoodInfos.map((FoodInfo, index) =>
                     <div  id = {index}  key={index}>
-                        <img  onClick={ViewDetail} className="product-image" key={index + 100} src={FoodInfo.img} />
-                        <div onClick={ViewDetail} className="product-name">{FoodInfo.name}</div>
+                        <img  onClick={()=>ViewDetail(FoodInfo.name)} className="product-image" key={index + 100} src={FoodInfo.img} />
+                        <div onClick={()=>ViewDetail(FoodInfo.name)} className="product-name">{FoodInfo.name}</div>
 
                         <div className="Price-Add">
-                            <div onClick={ViewDetail} className="product-price">{FoodInfo.price}</div>
-                            <p key={index} className="product-add" onClick={()=>showindex(FoodInfo,index)}>+</p>
+                            <div onClick={()=>ViewDetail(FoodInfo.name)} className="product-price">{FoodInfo.price}.000đ</div>
+                            <p key={index} className="product-add" onClick={()=>AddToCart(FoodInfo)}>+</p>
                         </div>
                         <div className="product-rate"><img src="src/rate.png" alt="" /></div>
                     </div>
@@ -111,6 +111,7 @@
 </script>
 <script type="text/babel">
     ReactDOM.render(<RenderPage Food={Info[0]} />, document.getElementById("root"))
+    document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
     NoUnderLine(0)
     for (let i = 0; i < document.getElementsByClassName("select-prefer-food").length; i++) {
         document.getElementsByClassName("select-prefer-food")[i].onclick = function () {
@@ -148,14 +149,21 @@
 </script>
 <!--Khoi tao ham-->
 <script>
+    
     function Fb() {
         window.open(AdminInfo.fb);
     }
     function Ig() {
         window.open(AdminInfo.ig)
     }
-    function ViewDetail() {
-            window.location = "ViewDishDetail.html"
+    function ViewDetail(add) {
+        console.log(String(add))
+        const jsonName = JSON.stringify(String(add));
+        localStorage.setItem('name',jsonName)
+        window.location = "ViewDishDetail.html"
+    }
+    function ViewCart(){
+        window.location = "ViewCart.html"
     }
     function NoUnderLine(index) {
         for (let i = 0; i < document.getElementsByClassName("select-prefer-food").length; i++) {
@@ -167,15 +175,38 @@
         document.getElementsByClassName("select-prefer-food")[index].style.color = "#fca23f";
         document.getElementsByClassName("select-prefer-food")[index].style.textDecoration = "underline";
     }
-    function showindex(Food,index) {
-        CartNum +=1;
-        document.getElementsByClassName("cart-num")[0].innerHTML = CartNum ;
-        // document.getElementById(index).style.animationName = "addtocart" ;
-        // document.getElementById(index).style.animationDuration = "2s" ;
-        // document.getElementById(index).style.animationFimingFunction = "ease-out" ;
+    function AddToCart(FoodInfo) {
+        var addNum = JSON.parse(localStorage.getItem('cartnum')) 
+        addNum +=1
+        localStorage.setItem('cartnum',addNum)
+        document.getElementsByClassName("cart-num")[0].innerHTML = addNum ;
+        AddToCartItem(FoodInfo,1)
     }
-    function addToCart(){
+    function AddToCartItem(FoodInfo,count){
+        var CartItem =JSON.parse(localStorage.getItem('cart-item'))
+        console.log(CartItem)
+        if(CartItem.length == 0){
+            CartItem.push({img:FoodInfo.img,name: FoodInfo.name,price:FoodInfo.price,count:count})
+            localStorage.setItem('cart-item',JSON.stringify(CartItem))
+        }
+        else{
+            let check = -1;
+            for(let i=0;i<CartItem.length;i++){
+                if(CartItem[i].name == FoodInfo.name){
+                    check = i;
+                }
+            }
+                if(check != -1){
+                    CartItem[check].count++;
+                    localStorage.setItem('cart-item',JSON.stringify(CartItem))
+                }
+                else{
+                    CartItem.push({img:FoodInfo.img,name: FoodInfo.name,price:FoodInfo.price,count:count})
+                    localStorage.setItem('cart-item',JSON.stringify(CartItem))
+                }
 
+        }
+        console.log("add completed")
     }
 </script>
 

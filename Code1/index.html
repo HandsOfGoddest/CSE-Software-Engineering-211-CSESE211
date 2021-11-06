@@ -36,11 +36,14 @@
     }
     function Brand({Vars}) {
         return (
-            <div class="brand">
+            <div className="brand">
                 <p>Thương hiệu</p>
-                <div class="brands-logo">
+                <div className="brands-logo">
                     {Vars.map((BVar, index) =>
-                            <div key={index} style={{ backgroundImage: BVar.src }} className="brand-logo" onClick={showMainPage}></div>
+                        <React.Fragment>
+                            <div key={index} style={{ backgroundImage: BVar.src }} className="brand-logo" onClick={showMainPage}><p className="brand-name">{BVar.name}</p></div>
+                            
+                        </React.Fragment>
                     )}
                 </div>
             </div>
@@ -58,11 +61,18 @@
 </script>
 <script type="text/babel">
     ReactDOM.render(<RenderPage />, document.getElementById("root"))
+    document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
 </script>
 <script>
+    if(localStorage.getItem('cartnum') == null)
+        {
+        localStorage.setItem('cartnum',JSON.stringify(CartNum));
+        localStorage.setItem('cart-item',JSON.stringify(CartList));
+    }
     function showMainPage() {
         window.location = "homepage.html"
     }
+    
 </script>
 
 </html>

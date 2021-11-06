@@ -203,11 +203,11 @@ img {
     text-decoration: underline;
 } */ 
 .brand {
-    width: 60%;
-    height: fit-content;
+    width: 70%;
+    height: 540px;
     background-color: #ffe8bc;
-    margin-left: 20%;
-    margin-top: 150px;
+    margin-left: 15%;
+    margin-top: 140px;
     border-radius: 20px;
 }
 
@@ -227,7 +227,7 @@ img {
 }
 
 .brand-logo {
-    height: 150px;
+    height: 160px;
     width: 15%;
     background-color: #fff;
     color: #fff;
@@ -236,7 +236,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 75px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
@@ -247,7 +247,8 @@ img {
 .brand-logo p {
     margin-top: 150px;
     text-align: center;
-    font-size: 25px;
+    font-size:18px !important;
+    text-decoration: none !important;
 }
 .footer{
     width: 101%;

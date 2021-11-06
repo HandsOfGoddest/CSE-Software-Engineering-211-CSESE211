@@ -19,16 +19,16 @@
     <div id="root"></div>
 </body>
 <script type="text/babel">
-    function Header({num}) {
+    function Header() {
         return (
             <div className="header">
-                <img src="src/logo.png" alt="" className="logo" />
+                <img src="src/logo.png" alt="" className="logo"  onClick={showMainPage}/>
                 <input type="text" className="search-bar" placeholder="Search" />
                 <p>Menu</p>
                 <p>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" />
-                    <p className="cart-num">{num}</p>
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
+                    <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
             </div>
@@ -42,7 +42,7 @@
                 <div className="info">
                     <h4 className="name">{Food.name}</h4>
                     <div className="price-control">
-                        <p className="price">{Food.price}</p>
+                        <p className="price">{Food.price}.000đ</p>
                         <div className="quantity">
                             <button className="minus">-</button>
                             <p className="value"></p>
@@ -60,17 +60,29 @@
             </div>
         )
     }
+
     function RenderPage() {
         return (
             <div>
-                <Header num={CartNum} />
-                <Content Food = {LikeInfos[2]} />
+                <Header />
+                <Content Food = {Info[valueX][valueY]} />
             </div>
         )
     }
 </script>
 <script type="text/babel">
+    var valueX;
+    var valueY;
+    for(let i = 0; i < Info.length; i++) {
+        for(let j = 0; j < Info[i].length; j++) {
+            if (Info[i][j].name == JSON.parse(localStorage.getItem('name'))) {
+                valueX = i;
+                valueY = j;
+            }
+        }
+    }
     ReactDOM.render(<RenderPage/>, document.getElementById("root"))
+    document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
 </script>
 
 <!--Hiện thông tin đơn giá-->
@@ -85,23 +97,51 @@
             count -= 0;
         } else {
             count -= 1;
-            addToCart()
+            UpValue()
         }
     }
     document.getElementsByClassName("plus")[0].onclick = function () {
         count += 1;
-        addToCart()
+        UpValue()
     }
 </script>
 <!--Khoi tao function-->
 <script>
-    function addToCart() {
+    
+    function UpValue() {
         document.getElementsByClassName("value")[0].innerHTML = count;
     }
-    function ViewHomePage() {
-        return (
-            window.location = "homepage.html"
-        )
+    function showMainPage() {
+        window.location = "homepage.html"
+    }
+    function ViewCart(){
+        window.location = "ViewCart.html"
+    }
+    function AddToCartItem(FoodInfo,count){
+        var CartItem =JSON.parse(localStorage.getItem('cart-item'))
+        console.log(CartItem)
+        if(CartItem.length == 0){
+            CartItem.push({img:FoodInfo.img,name: FoodInfo.name,price:FoodInfo.price,count:count})
+            localStorage.setItem('cart-item',JSON.stringify(CartItem))
+        }
+        else{
+            let check = -1;
+            for(let i=0;i<CartItem.length;i++){
+                if(CartItem[i].name == FoodInfo.name){
+                    check = i;
+                }
+            }
+                if(check != -1){
+                    CartItem[check].count+=count;
+                    localStorage.setItem('cart-item',JSON.stringify(CartItem))
+                }
+                else{
+                    CartItem.push({img:FoodInfo.img,name: FoodInfo.name,price:FoodInfo.price,count:count})
+                    localStorage.setItem('cart-item',JSON.stringify(CartItem))
+                }
+
+        }
+        console.log("add completed")
     }
 </script>
 <!--Tạo animation cho nút add-->
@@ -125,10 +165,12 @@
 </script>
 <!--Tăng số lượng giỏ hàng-->
 <script  type="text/babel">
-    document.getElementsByClassName("cart-num")[0].innerHTML = CartNum;
     document.getElementsByClassName("cart-button")[0].onclick = function () {
-        CartNum += count
-        document.getElementsByClassName("cart-num")[0].innerHTML = CartNum;
+        var addNum = JSON.parse(localStorage.getItem('cartnum')) 
+        addNum +=count
+        localStorage.setItem('cartnum',addNum)
+        document.getElementsByClassName("cart-num")[0].innerHTML = addNum ;
+        AddToCartItem(Info[valueX][valueY],count)
         setTimeout(() => {
             window.location.reload();
         }, 2000);
