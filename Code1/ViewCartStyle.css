@@ -57,7 +57,12 @@ p {
     font-size: 30px;
     color: #fff;
 }
-
+.bar{
+    height:50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: none;
+}
 .header p:hover {
     text-decoration: underline;
     transition: 2s all;
@@ -116,7 +121,7 @@ p {
     border-radius: 20px;
     flex-direction: row;
     align-items: center;
-    justify-content:space-around;
+    justify-content:space-between;
 }
 .check{
     height: 18px;
@@ -248,3 +253,344 @@ p {
     flex-grow: 2;
 }
 
+@media (max-width: 46.188em)
+{
+    .logo{
+        height:50px;
+        margin-left: 20px;
+    }
+    .search-bar{
+        margin-right: 1%;
+        height:50px;
+    }
+    .cart-info{
+        display: none;
+    
+    }
+    .cart-num{
+        /* font-size:20px !important; */
+        display: none;
+    }
+    .avt {
+        display: none;
+    }
+    .header p{
+        display: none;
+    }
+    .bar{
+        display: block;
+        height: 40px;
+    }
+    .list{
+        width: 96%;
+        margin-left: 0%;
+    }
+    .anh{
+        margin-right: 2px;
+        margin-left: 10px;
+        height:40px;
+        border-radius:10px;
+        width: 40px;
+    }
+    .item-info p{
+        font-size:12px !important;
+    }
+    .item-info{
+        height: 60px;
+    }
+    .ten{
+        width: 260px;
+        margin-left: 5px !important;
+
+    }
+    .gia{
+        width:max-content;
+    }
+    .thanhtoan{
+        width: 90%;
+    }
+    .thanhtoan p{
+        padding-top:10px;
+        height:40%;
+        font-size:12px;
+        text-align: center;
+        margin: 10px 10px;
+    }
+    .soluong{
+        width: 80px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    .giam{
+        height:15px;
+        width: 15px;
+    }
+    .count{
+        font-size:20px !important;
+    }
+    .tang{
+        height:15px;
+        width: 15px;
+    }
+    .thanhtien{
+        margin: 30px 0px !important;
+        width: 80px;
+    }
+    .thungrac{
+        height:15px;
+        width: 15px;
+        margin-right: 2px;
+    }
+    .hinh-anh{
+        margin: 0 0 !important;
+        margin-right: 2px;
+        margin-left: 10px;
+        height:40px;
+        border-radius:10px;
+        width: 60px;
+    }
+    .item-title p{
+        font-size:12px !important;
+    }
+    .item-title{
+        height: 60px;
+    }
+    .ten-sp{
+        width: 180px;
+        margin-left: 5px !important;
+
+    }
+    .don-gia{
+        width:50px !important;
+    }
+    .thanhtoan{
+        width: 90%;
+    }
+    .thanhtoan p{
+        padding-top:10px;
+        height:40%;
+        font-size:12px;
+        text-align: center;
+        margin: 10px 10px;
+    }
+    .so-luong{
+        width: 70px;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    .thanh-tien{
+        margin: 30px 0px !important;
+        width: 80px;
+    }
+    .xoa{
+        height:15px;
+        width: 0px;
+        margin-right: 2px;
+    }
+}
+@media (min-width: 46.188em) and (max-width:48em )
+{
+    .logo{
+        height:50px;
+        margin-left: 20px;
+    }
+    .search-bar{
+        margin-right:0;
+        height:50px;
+    }
+    .cart-info{
+        height:40px;
+    }
+    .cart-num{
+        font-size:20px !important;
+        height:22px !important;
+        width: 20px !important;
+    }
+    .avt {
+        height: 35px;
+    }
+    .cart-num{
+        font-size: 15px !important;
+        width: 15px;
+    }
+
+    .list{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .anh{
+        margin-right: 2px;
+        margin-left: 10px;
+        height:60px;
+        width: 60px;
+    }
+    .ten{
+        font-size:20px !important;
+        width: 260px;
+
+    }
+    .gia{
+        width:max-content;
+        font-size:20px !important;
+    }
+    .thanhtoan{
+        width: 85%;
+    }
+    .thanhtoan p{
+        padding-top:20px;
+        height:40%;
+        font-size:18px;
+        margin: 10px 10px;
+    }
+    .soluong{
+        width: 80px;
+        margin-right: 10px;
+    }
+    .giam{
+        height:25px;
+        width: 25px;
+        font-size:17px !important;
+    }
+    .count{
+        font-size:20px !important;
+    }
+    .tang{
+        height:25px;
+        width: 25px;
+        font-size:17px !important;
+    }
+    .thanhtien{
+        margin: 30px 0px !important;
+        width: 80px;
+        font-size: 20px !important;
+    }
+    .item-title p{
+        font-size:17px !important;
+    }
+    .item-title{
+        justify-content:space-between;
+        height: 60px;
+    }
+    .hinh-anh{
+        margin: 0 0 !important;
+        margin-left: 20px !important;
+        width: 60px;
+        height: 60px;
+    }
+    .ten-sp{
+        width: 260px;
+    }
+    .don-gia{
+        width: 70.03px;
+    }
+    .so-luong{
+        width: 80px;
+    }
+    .thanh-tien{
+        width: 80px;
+    }
+    .xoa{
+        width: 30px;
+    }
+}
+
+@media (min-width: 48.1em) and (max-width:64em )
+{
+    .logo{
+        height:50px;
+        margin-left: 20px;
+    }
+    .search-bar{
+        margin-right:0;
+        height:50px;
+    }
+    .cart-info{
+    height:40px;
+    }
+    .cart-num{
+        font-size:20px !important;
+        height:30px !important;
+        width: 28px !important;
+    }
+    .avt {
+        height: 35px;
+    }
+    .list{
+        width: 90%;
+        margin-left: 5%;
+    }
+    .anh{
+        margin-right: 2px;
+        margin-left: 10px;
+        height:60px;
+        width: 60px;
+    }
+    .ten{
+        font-size:20px !important;
+        width: 260px;
+
+    }
+    .gia{
+        width:max-content;
+        font-size:20px !important;
+    }
+    .thanhtoan{
+        width: 85%;
+    }
+    .thanhtoan p{
+        padding-top:20px;
+        height:40%;
+        font-size:18px;
+        margin: 10px 10px;
+    }
+    .soluong{
+        width: 80px;
+        margin-right: 10px;
+    }
+    .giam{
+        height:25px;
+        width: 25px;
+        font-size:17px !important;
+    }
+    .count{
+        font-size:20px !important;
+    }
+    .tang{
+        height:25px;
+        width: 25px;
+        font-size:17px !important;
+    }
+    .thanhtien{
+        margin: 30px 0px !important;
+        width: 80px;
+        font-size: 20px !important;
+    }
+    .item-title p{
+        font-size:17px !important;
+    }
+    .item-title{
+        justify-content:space-between;
+        height: 60px;
+    }
+    .hinh-anh{
+        margin: 0 0 !important;
+        margin-left: 20px !important;
+        width: 60px;
+        height: 60px;
+    }
+    .ten-sp{
+        width: 260px;
+    }
+    .don-gia{
+        width: 70.03px;
+    }
+    .so-luong{
+        width: 80px;
+    }
+    .thanh-tien{
+        width: 80px;
+    }
+    .xoa{
+        width: 30px;
+    }
+}

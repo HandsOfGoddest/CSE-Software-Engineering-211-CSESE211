@@ -31,13 +31,14 @@
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
+                <img className="bar" src="src/bar.png" alt=""/>
             </div>
         )
     }
     function Brand({Vars}) {
         return (
             <div className="brand">
-                <p>Thương hiệu</p>
+                <p className="text">Thương hiệu</p>
                 <div className="brands-logo">
                     {Vars.map((BVar, index) =>
                         <React.Fragment>

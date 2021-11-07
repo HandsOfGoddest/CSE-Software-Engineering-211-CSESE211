@@ -36,7 +36,7 @@ const Brands = [
     },
     {
         src: 'url(brand/brand7.png)',
-        name:'Cường Chảnh Chọe'
+        name:'Cường Chảnh'
     },
     {
         src: 'url(brand/brand8.png)',
