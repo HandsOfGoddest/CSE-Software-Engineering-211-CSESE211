@@ -24,10 +24,10 @@
             <div className="header">
                 <img src="src/logo.png" alt="" className="logo" onClick={showMainPage}/>
                 <input type="text" className="search-bar" placeholder="Search" />
-                <p>Menu</p>
+                <p  onClick={showBrand}>Menu</p>
                 <p>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" />
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
@@ -110,7 +110,12 @@
     document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
 </script>
 <script>
-    
+    function ViewCart(){
+        window.location = "ViewCart.html"
+    }
+    function showBrand(){
+        window.location = "index.html"
+    }
     function showMainPage() {
         window.location = "homepage.html"
     }
@@ -162,6 +167,7 @@
         }
         localStorage.setItem('cart-item',JSON.stringify(ItemChange))
         document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
+        window.location.reload()
     }
     function CaculateToTal(){
         let sum = 0;
@@ -188,6 +194,7 @@
         document.getElementsByClassName("bill")[0].innerHTML = "Tổng: "+sum+".000đ";
     }
     function DelItem(Item,index){
+        ChangeCountItem(Item,index,-Item.count)
         Item.count = 0;
         document.getElementById(index).style.display="none";
         CaculateToTal()

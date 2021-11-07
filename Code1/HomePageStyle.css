@@ -8,7 +8,7 @@ body {
     top: 0;
     bottom: 0;
     width: 101%;
-    height: fit-content;
+    height: max-content;
     overflow-x: hidden;
     background:#ffe8bc;
 }
@@ -44,7 +44,7 @@ img {
 .search-bar {
     height: 50px;
     width: 250px !important;
-    width: fit-content;
+    width: max-content;
     margin-left: 0;
     border-radius: 40px;
     margin-right: 45%;
@@ -58,7 +58,7 @@ img {
 .header p {
     font-size: 150%;
     color: #fff;
-    width: fit-content;
+    width: max-content;
 }
 
 .header p:hover {
@@ -144,7 +144,7 @@ img {
 
 .content {
     width: 101%;
-    height: fit-content;
+    height: max-content;
     background-color: #ffe8bc;
     position: relative;
     left: -8px;
@@ -153,7 +153,7 @@ img {
 
 .prefer {
     width: 50%;
-    height: fit-content;
+    height: max-content;
     background-color: #fff;
     margin-left: 25%;
     border: 0px solid #000;
@@ -183,7 +183,7 @@ img {
 }
 .select-prefer-foods img {
     height: 80px;
-    width: fit-content;
+    width: max-content;
 }
 
 .select-prefer-foods p {
@@ -252,7 +252,7 @@ img {
 }
 .footer{
     width: 101%;
-    height: fit-content;
+    height: max-content;
     background-image: url(src/footer-desktop.727f3a2.png);
     background-size: cover;
     margin-left: -8px;
@@ -282,7 +282,7 @@ img {
 #food-list{
     width: 80%;
     margin-left:10%;
-    height:fit-content;
+    height:max-content;
     background-color: #fff;
     border-radius: 20px;
     margin-top: 80px;
@@ -291,7 +291,7 @@ img {
 }
 #food-list div{
     width: 12.6%;
-    height:fit-content;
+    height:max-content;
     margin: 20px 2%;
     display: flex;
     flex-direction: column;

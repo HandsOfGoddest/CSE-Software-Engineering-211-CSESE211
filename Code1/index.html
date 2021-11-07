@@ -22,12 +22,12 @@
     function Header() {
         return (
             <div className="header">
-                <img src="src/logo.png" alt="" className="logo" />
+                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage}/>
                 <input type="text" className="search-bar" placeholder="Search" />
-                <p>Menu</p>
+                <p  onClick={showBrand}>Menu</p>
                 <p>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" />
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
@@ -69,10 +69,15 @@
         localStorage.setItem('cartnum',JSON.stringify(CartNum));
         localStorage.setItem('cart-item',JSON.stringify(CartList));
     }
+    function ViewCart(){
+        window.location = "ViewCart.html"
+    }
+    function showBrand(){
+        window.location = "index.html"
+    }
     function showMainPage() {
         window.location = "homepage.html"
     }
-    
 </script>
 
 </html>

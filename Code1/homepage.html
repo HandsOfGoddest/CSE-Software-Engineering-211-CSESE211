@@ -21,9 +21,9 @@
     function Header() {
         return (
             <div className="header">
-                <img src="src/logo.png" alt="" className="logo" />
+                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage}/>
                 <input type="text" className="search-bar" placeholder="Search" />
-                <p>Menu</p>
+                <p  onClick={showBrand}>Menu</p>
                 <p>Đặt bàn</p>
                 <div className="cart-info">
                     <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
@@ -149,7 +149,6 @@
 </script>
 <!--Khoi tao ham-->
 <script>
-    
     function Fb() {
         window.open(AdminInfo.fb);
     }
@@ -164,6 +163,12 @@
     }
     function ViewCart(){
         window.location = "ViewCart.html"
+    }
+    function showBrand(){
+        window.location = "index.html"
+    }
+    function showMainPage() {
+        window.location = "homepage.html"
     }
     function NoUnderLine(index) {
         for (let i = 0; i < document.getElementsByClassName("select-prefer-food").length; i++) {
@@ -206,7 +211,6 @@
                 }
 
         }
-        console.log("add completed")
     }
 </script>
 
