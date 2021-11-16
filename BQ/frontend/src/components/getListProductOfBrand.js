@@ -5,7 +5,7 @@ import { listProductsOfBrand } from '../actions/brandActions'
 function Hello({match}) {
     const dispatch = useDispatch()
     const productListOfBrand = useSelector(state => state.productListOfBrand)
-    const { loading, error, listProductOfBrand } = productListOfBrand
+    const { loading, error, listProductOfBrand } = productListOfBrand     //Now list is in listProductOfBrand
     useEffect(() => {
         dispatch(listProductsOfBrand(match.params.id))
     }, [dispatch])

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BRAND_LIST_FAIL, BRAND_LIST_PRODUCTS_FAIL, BRAND_LIST_PRODUCTS_REQUEST, BRAND_LIST_PRODUCTS_SUCCESS, BRAND_LIST_REQUEST, BRAND_LIST_SUCCESS } from "../constants/brandConstants";
+import { BRAND_LIST_FAIL, BRAND_LIST_PRODUCTS_FAIL, BRAND_LIST_PRODUCTS_REQUEST, BRAND_LIST_PRODUCTS_SUCCESS, BRAND_LIST_REQUEST, BRAND_LIST_SUCCESS, CATEGORY_PRODUCTS_FAIL, CATEGORY_PRODUCTS_REQUEST, CATEGORY_PRODUCTS_SUCCESS } from "../constants/brandConstants";
 
 
 
@@ -26,10 +26,14 @@ export const listProductsOfBrand = (pathName) => async (dispatch) => {
     try {
         dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST })
         const { data } = await axios.get(`/api/brands/${pathName}`)
-        let temp
+        const temp_id = data.hasProducts
+        let ans = []
+        for (let i=0; i<temp_id.length; i++) {
+          ans.push((await axios.get(`/api/products/${temp_id[i]}`)).data)
+        }
         dispatch({
             type: BRAND_LIST_PRODUCTS_SUCCESS,
-            payload: data
+            payload: ans
         })
     }
     catch (error) {

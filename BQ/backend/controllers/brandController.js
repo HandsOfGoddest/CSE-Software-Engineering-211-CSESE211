@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler'
 import Brand from '../models/brandModel.js'
-import Product from '../models/productModel.js'
 
 
 // @desc    Fetch all brands
@@ -16,8 +15,7 @@ const getBrand = asyncHandler(async(req, res) => {
 const getBrandByPathName = asyncHandler(async(req, res) => {
     const brand = await Brand.findOne({pathName: `${req.params.id}`})
     if (brand) {
-        const productsID = brand.hasProducts
-        res.json(productsID)
+        res.json(brand)
     }
     else {
         res.status(404)

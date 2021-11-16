@@ -5,7 +5,7 @@ const products = [
     description:
       "Cà phê đen đá - ai đen thì bị đá",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 45000,
     countInStock: 20,
     rating: 1.5,
@@ -17,7 +17,7 @@ const products = [
     description:
       "......",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 60000,
     countInStock: 0,
     rating: 1.5,
@@ -29,7 +29,7 @@ const products = [
     description:
       "....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 65000,
     countInStock: 20,
     rating: 1.5,
@@ -42,7 +42,7 @@ const products = [
     description:
       "....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 45000,
     countInStock: 20,
     rating: 2.5,
@@ -55,7 +55,7 @@ const products = [
     description:
       ".....",
     brandName: "Chicken",
-    category: "Chicken",
+    category: "chicken",
     price: 50000,
     countInStock: 20,
     rating: 2.5,
@@ -93,7 +93,7 @@ const products = [
     description:
       ".....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
@@ -106,7 +106,7 @@ const products = [
     description:
       ".....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,
@@ -119,7 +119,7 @@ const products = [
     description:
      ".....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,
@@ -132,7 +132,7 @@ const products = [
     description:
       ".....",
     brandName: "Drink",
-    category: "Cà phê",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,

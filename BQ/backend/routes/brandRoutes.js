@@ -8,5 +8,4 @@ router.route('/').get(getBrand)
 
 router.route('/:id').get(getBrandByPathName)
 
-
 export default router

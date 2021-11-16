@@ -1,5 +1,5 @@
 import { BRAND_LIST_FAIL, BRAND_LIST_PRODUCTS_FAIL, BRAND_LIST_PRODUCTS_REQUEST, BRAND_LIST_PRODUCTS_SUCCESS, 
-    BRAND_LIST_REQUEST, BRAND_LIST_SUCCESS } from "../constants/brandConstants";
+    BRAND_LIST_REQUEST, BRAND_LIST_SUCCESS} from "../constants/brandConstants";
 
 
 export const brandListReducers = (state = { brands: [] }, action) => {
