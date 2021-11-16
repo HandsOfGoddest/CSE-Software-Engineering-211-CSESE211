@@ -1,7 +1,7 @@
 const products = [
   {
     name: "Cà phê đen đá",
-    image: "/coffee/1.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "Cà phê đen đá - ai đen thì bị đá",
     brandName: "Drink",
@@ -13,7 +13,7 @@ const products = [
   },
   {
     name: "Latte đá",
-    image: "/coffee/2.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "......",
     brandName: "Drink",
@@ -25,7 +25,7 @@ const products = [
   },
   {
     name: "Caramel Machiato",
-    image: "/coffee/3.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "....",
     brandName: "Drink",
@@ -38,7 +38,7 @@ const products = [
   {
 
     name: "Cà phê đen nóng",
-    image: "/coffee/4.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "....",
     brandName: "Drink",
@@ -51,7 +51,7 @@ const products = [
   {
 
     name: "Gà rán",
-    image: "/coffee/5.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Chicken",
@@ -64,7 +64,7 @@ const products = [
   {
 
     name: "Gà luộc",
-    image: "/coffee/6.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Chicken",
@@ -77,7 +77,7 @@ const products = [
   {
 
     name: "Gạo",
-    image: "/coffee/7.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Rice",
@@ -88,9 +88,8 @@ const products = [
     numReviews: 12,
   },
   {
-
     name: "Bạc sỉu nóng",
-    image: "/coffee/8.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Drink",
@@ -103,7 +102,7 @@ const products = [
    {
 
     name: "Latte nóng",
-    image: "/coffee/9.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Drink",
@@ -116,7 +115,7 @@ const products = [
     {
 
     name: "Bạc sỉu đá",
-    image: "/coffee/10.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
      ".....",
     brandName: "Drink",
@@ -129,7 +128,7 @@ const products = [
     {
 
     name: "Cacao nóng",
-    image: "/coffee/11.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
     brandName: "Drink",

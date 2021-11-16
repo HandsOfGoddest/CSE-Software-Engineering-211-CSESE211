@@ -3,7 +3,13 @@ import mongoose from 'mongoose';
 const brandSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    pathName: {
+        type: String,
+        required: true,
+        unique: true
     },
     image: {
         type: String,

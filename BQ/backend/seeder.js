@@ -8,7 +8,7 @@ import User from "./models/userModel.js";
 import Product from "./models/productModel.js";
 import Order from "./models/orderModel.js";
 import connectDB from "./config/db.js";
-import Brand from "./models/BrandModel.js";
+import Brand from "./models/brandModel.js";
 
 dotenv.config();
 
