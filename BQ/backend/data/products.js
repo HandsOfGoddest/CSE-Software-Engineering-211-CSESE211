@@ -1,10 +1,10 @@
 const products = [
   {
     name: "Cà phê đen đá",
-    image: "/images/coffee/1.png",
+    image: "/coffee/1.png",
     description:
       "Cà phê đen đá - ai đen thì bị đá",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 45000,
     countInStock: 20,
@@ -13,10 +13,10 @@ const products = [
   },
   {
     name: "Latte đá",
-    image: "/images/coffee/2.png",
+    image: "/coffee/2.png",
     description:
       "......",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 60000,
     countInStock: 0,
@@ -25,10 +25,10 @@ const products = [
   },
   {
     name: "Caramel Machiato",
-    image: "/images/coffee/3.png",
+    image: "/coffee/3.png",
     description:
       "....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 65000,
     countInStock: 20,
@@ -38,10 +38,10 @@ const products = [
   {
 
     name: "Cà phê đen nóng",
-    image: "/images/coffee/4.png",
+    image: "/coffee/4.png",
     description:
       "....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 45000,
     countInStock: 20,
@@ -50,12 +50,12 @@ const products = [
   },
   {
 
-    name: "Cà phê sữa đá",
-    image: "/images/coffee/5.png",
+    name: "Gà rán",
+    image: "/coffee/5.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Chicken",
+    category: "Chicken",
     price: 50000,
     countInStock: 20,
     rating: 2.5,
@@ -63,12 +63,12 @@ const products = [
   },
   {
 
-    name: "Ameracano đá",
-    image: "/images/coffee/6.png",
+    name: "Gà luộc",
+    image: "/coffee/6.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Chicken",
+    category: "kkk",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
@@ -76,12 +76,12 @@ const products = [
   },
   {
 
-    name: "Cà phê sữa đá chai",
-    image: "/images/coffee/7.png",
+    name: "Gạo",
+    image: "/coffee/7.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Rice",
+    category: "Gạo",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
@@ -90,10 +90,10 @@ const products = [
   {
 
     name: "Bạc sỉu nóng",
-    image: "/images/coffee/8.png",
+    image: "/coffee/8.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 55000,
     countInStock: 20,
@@ -103,10 +103,10 @@ const products = [
    {
 
     name: "Latte nóng",
-    image: "/images/coffee/9.png",
+    image: "/coffee/9.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 55000,
     countInStock: 20,
@@ -116,10 +116,10 @@ const products = [
     {
 
     name: "Bạc sỉu đá",
-    image: "/images/coffee/10.png",
+    image: "/coffee/10.png",
     description:
      ".....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 55000,
     countInStock: 20,
@@ -129,10 +129,10 @@ const products = [
     {
 
     name: "Cacao nóng",
-    image: "/images/coffee/11.png",
+    image: "/coffee/11.png",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
+    brandName: "Drink",
     category: "Cà phê",
     price: 55000,
     countInStock: 20,
