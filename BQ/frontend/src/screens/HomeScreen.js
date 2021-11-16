@@ -8,6 +8,7 @@ import Advertisement from "../components/Advertisement";
 import Category from "../components/Category";
 import { listProducts } from "../actions/productActions";
 
+
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
