@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="BookTableStyle.css">
+    <title>Ben's Queens</title>
+    <link rel="icon" href="src/icon.png">
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="info.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+<script type="text/babel">
+    function Header() {
+        return (
+            <div className="header">
+                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage} />
+                <input type="text" className="search-bar" placeholder="Search" />
+                <p onClick={showBrand}>Thương hiệu</p>
+                <p onClick={BookTable}>Đặt bàn</p>
+                <div className="cart-info">
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart} />
+                    <p className="cart-num">{CartNum}</p>
+                </div>
+                <img src={UserInfo.avt} alt="" className="avt" />
+                <img className="bar" src="src/bar.png" alt="" />
+            </div>
+        )
+    }
+    function MapTable() {
+        return (
+            <div className="map-overlay">
+                <p className="title">Vui lòng chọn thời gian</p>
+                <div className="time">
+                    <div>
+                        <p>Ngày:</p>
+                        <input className="date" type="date" name="" max="2021-12-31" />
+                    </div>
+                    <div>
+                        <p>Giờ:</p>
+                        <input className="hour" type="time" />
+                    </div>
+                </div>
+                <p className="error">Vui lòng chọn thời gian</p>
+                <button className="submit" type="submit" onClick={ShowMapTable}>Xác nhận </button>
+                {isShowMap == 1 ? <ShowMap /> : ''}
+                {isShowMap == 1 ? <button className="submit1" type="submit" onClick={ConfirmPopUp}>Xác nhận </button> : ''}
+
+            </div>
+        )
+    }
+    const Table2 = [
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 1,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 2,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 3,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 4,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 5,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 6,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 7,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 8,
+            status: 0,
+            isBooking: 0
+        },
+    ]
+    const Table3 = [
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 9,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 10,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 11,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 12,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 13,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 14,
+            status: 1,
+            isBooking: 0
+        },
+    ]
+    const Table4 = [
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 17,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 18,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 19,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 20,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 21,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 22,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 23,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 24,
+            status: 1,
+            isBooking: 0
+        },
+    ]
+    const Table1 = [
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 25,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 26,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table2.png)',
+            imgavailable: 'url(src/table2.png)',
+            imgout: 'url(src/sold_out_table2.png)',
+            imgbooking: 'url(src/table2available.png)',
+            number: 27,
+            status: 0,
+            isBooking: 0
+        },
+    ]
+    const TableTron = [
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 28,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 29,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 30,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 31,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 32,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 33,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 34,
+            status: 1,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 35,
+            status: 0,
+            isBooking: 0
+        },
+        {
+            img: 'url(src/table4.png)',
+            imgavailable: 'url(src/table4.png)',
+            imgout: 'url(src/sold_out_table4.png)',
+            imgbooking: 'url(src/table4available.png)',
+            number: 36,
+            status: 1,
+            isBooking: 0
+        },
+    ]
+    function ShowMap() {
+        return (
+            <React.Fragment>
+                <div className="map" style={{ backgroundImage: 'url(src/map.png)' }}>
+                    <div className="day2">
+                        {Table2.map((table, index) =>
+                            <div className="bandoi1" style={{ backgroundImage: table.status == 1 ? table.img : table.imgout }} onClick={() => changeStt(table)}>{table.number}</div>
+                        )}
+                    </div>
+                    <div className="daygiua">
+                        <div className="day3">
+                            {Table3.map((table, index) =>
+                                <div className="bandoi" style={{ backgroundImage: table.status == 1 ? table.img : table.imgout }} onClick={() => changeStt(table)}>{table.number}</div>
+                            )}
+                        </div>
+                        <div className="daytron">
+                            {TableTron.map((table, index) =>
+                                <div className="banbon" style={{ backgroundImage: table.status == 1 ? table.img : table.imgout }} onClick={() => changeStt(table)}>{table.number}</div>
+                            )}
+                        </div>
+                        <div className="day4">
+                            {Table4.map((table, index) =>
+                                <div className="bandoi" style={{ backgroundImage: table.status == 1 ? table.img : table.imgout }} onClick={() => changeStt(table)}>{table.number}</div>
+                            )}
+                        </div>
+                    </div>
+                    <div className="day1">
+                        {Table1.map((table, index) =>
+                            <div className="bandoi1" style={{ backgroundImage: table.status == 1 ? table.img : table.imgout }} onClick={() => changeStt(table)}>{table.number}</div>
+                        )}
+                    </div>
+                </div>
+
+            </React.Fragment>
+        )
+    }
+    function Confirm() {
+        return (
+            <div className="confirm-overlay">
+                <div className="confirm-content">
+                    <p>Xác nhận đặt bàn số {BookingNumber} ?</p>
+                    <div className="confirm-button">
+                        <button onClick={ConfirmCompleted}>Xác nhận</button>
+                        <button onClick={() => { ReactDOM.render(<RenderPage ShowConfirm={0} />, document.getElementById("root")) }}>Từ chối</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    function ConfirmCompleting() {
+        return (
+            <div className="confirm-overlay">
+                <div className="confirm-content">
+                    <p>Đạt bàn thành công</p>
+                    <img src="src/checked1.gif" alt="" />
+                </div>
+            </div>
+        )
+    }
+    function ResetTable() {
+        for (let i = 0; i < Table1.length; i++) {
+            Table1[i].img = Table1[i].imgavailable
+        }
+        for (let i = 0; i < Table2.length; i++) {
+            Table2[i].img = Table2[i].imgavailable
+        }
+        for (let i = 0; i < Table3.length; i++) {
+            Table3[i].img = Table3[i].imgavailable
+        }
+        for (let i = 0; i < Table4.length; i++) {
+            Table4[i].img = Table4[i].imgavailable
+        }
+        for (let i = 0; i < TableTron.length; i++) {
+            TableTron[i].img = TableTron[i].imgavailable
+        }
+    }
+    var isShowMap = 0
+    var BookingNumber = 0
+    var BookingTable
+    function changeStt(T) {
+        ResetTable()
+        if (T.isBooking == 0) {
+            T.img = T.imgbooking
+            T.isBooking = 1
+            BookingNumber = T.number
+            BookingTable = T
+        }
+        else {
+            T.img = T.imgavailable
+            T.isBooking = 0
+            BookingNumber = 0
+            BookingTable = 0
+        }
+        ReactDOM.render(<RenderPage />, document.getElementById("root"))
+    }
+
+    function ConfirmCompleted() {
+        for (let i = 0; i < Table1.length; i++) {
+            if(Table1[i].number == BookingNumber)
+            {
+                Table1[i].status = 0
+            }
+        }
+        for (let i = 0; i < Table2.length; i++) {
+            if(Table2[i].number == BookingNumber)
+            {
+                Table2[i].status = 0
+            }
+        }
+        for (let i = 0; i < Table3.length; i++) {
+            if(Table3[i].number == BookingNumber)
+            {
+                Table3[i].status = 0
+            }
+        }
+        for (let i = 0; i < Table4.length; i++) {
+            if(Table4[i].number == BookingNumber)
+            {
+                Table4[i].status = 0
+            }
+        }
+        for (let i = 0; i < TableTron.length; i++) {
+            if(TableTron[i].number == BookingNumber)
+            {
+                TableTron[i].status = 0
+            }
+        }
+        BookingNumber = 0
+        ReactDOM.render(<RenderPage ShowConfirm={2} />, document.getElementById("root")); 
+        setTimeout(function () { 
+            ReactDOM.render(<RenderPage ShowConfirm={0} />, document.getElementById("root")); 
+            isShowMap = 0; 
+            ReactDOM.render(<RenderPage />, document.getElementById("root")) }, 
+            2000)
+    }
+    function ConfirmPopUp() {
+        if (BookingNumber != 0 && BookingTable.status == 1) {
+            ReactDOM.render(<RenderPage ShowConfirm={1} />, document.getElementById("root"))
+        }
+    }
+    function ShowMapTable() {
+        // isShowMap = 1
+        // ReactDOM.render(<RenderPage />, document.getElementById("root"))
+        if(document.getElementsByClassName("date")[0].value=='' || document.getElementsByClassName("hour")[0].value==''){
+            document.getElementsByClassName("error")[0].style.display = 'block'
+            setTimeout(function(){document.getElementsByClassName("error")[0].style.display = 'none'},3000)
+        }
+        else{
+            isShowMap = 1;
+            ReactDOM.render(<RenderPage />, document.getElementById("root"))
+        }
+    }
+    var ListItem = JSON.parse(localStorage.getItem('cart-item'))
+    function RenderPage({ ShowConfirm }) {
+        return (
+            <div>
+                <Header />
+                <MapTable />
+                {ShowConfirm == 1 ? <Confirm /> : ''}
+                {ShowConfirm == 2 ? <ConfirmCompleting /> : ''}
+            </div>
+        )
+    }
+
+</script>
+<script type="text/babel">
+    ReactDOM.render(<RenderPage />, document.getElementById("root"))
+    document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
+</script>
+<script>
+    function ViewCart() {
+        window.location = "ViewCart.html"
+    }
+    function showBrand() {
+        window.location = "index.html"
+    }
+    function showMainPage() {
+        window.location = "homepage.html"
+    }
+    function BookTable() {
+        window.location = "BookTable.html"
+    }
+</script>
+
+</html>
