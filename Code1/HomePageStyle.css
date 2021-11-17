@@ -209,7 +209,7 @@ img {
 } */ 
 .brand {
     width: 70%;
-    height: 540px;
+    height: max-content;
     background-color: #ffe8bc;
     margin-left: 15%;
     margin-top: 140px;
@@ -232,8 +232,8 @@ img {
 }
 
 .brand-logo {
-    height: 160px;
-    width: 15%;
+    height: 150px;
+    width: 150px;
     background-color: #fff;
     color: #fff;
     text-shadow: 1px 1px 4px #000;
@@ -407,8 +407,8 @@ img {
         margin-bottom: 30px;
     }
     .brand-logo{
-        width: 40%;
-        height:120px;
+        width: 105px;
+        height:105px;
     }
     .brand-logo p{
         margin-top:110px;
@@ -506,8 +506,8 @@ img {
         margin-bottom: 30px;
     }
     .brand-logo{
-        width: 23.3%;
-        height:120px;
+        width: 126.5px;
+        height:126.5px;
     }
     .brand-logo p{
         margin-top:110px;
@@ -607,8 +607,8 @@ img {
         margin-bottom: 30px;
     }
     .brand-logo{
-        width: 23.3%;
-        height:157px;
+        width: 168px;
+        height:168px;
     }
     .brand-logo p{
         margin-top:140px;

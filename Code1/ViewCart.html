@@ -22,85 +22,171 @@
     function Header() {
         return (
             <div className="header">
-                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage}/>
+                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage} />
                 <input type="text" className="search-bar" placeholder="Search" />
-                <p  onClick={showBrand}>Menu</p>
-                <p>Đặt bàn</p>
+                <p onClick={showBrand}>Thương hiệu</p>
+                <p onClick={BookTable}>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart} />
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
-                <img className="bar" src="src/bar.png" alt=""/>
+                <img className="bar" src="src/bar.png" alt="" />
             </div>
         )
     }
-    function CartListItem({CartItems}){
+    function CartListItem({ CartItems }) {
         let sum = 0;
         let i = 0;
         let bill;
-       while (i < CartItems.length){
-            sum += CartItems[i].price*CartItems[i].count;
+        while (i < CartItems.length) {
+            sum += CartItems[i].price * CartItems[i].count;
             i++;
         }
-        if(sum >=1000)
-        {
-            if(sum%1000<10)
-            {
-                bill = String((sum-(sum%1000))/1000)+".00"+String(sum%1000)
+        if (sum >= 1000) {
+            if (sum % 1000 < 10) {
+                bill = String((sum - (sum % 1000)) / 1000) + ".00" + String(sum % 1000)
             }
-            else if(sum%1000<100)
-            {
-                bill = String((sum-(sum%1000))/1000)+".0"+String(sum%1000)
+            else if (sum % 1000 < 100) {
+                bill = String((sum - (sum % 1000)) / 1000) + ".0" + String(sum % 1000)
             }
-            else
-            {
-                bill = String((sum-(sum%1000))/1000)+"."+String(sum%1000)
+            else {
+                bill = String((sum - (sum % 1000)) / 1000) + "." + String(sum % 1000)
             }
-        } 
-        else{
+        }
+        else {
             bill = sum;
         }
         return (
             <div className="list">
                 <p className="tendanhsach">Danh sách giỏ hàng</p>
-                    <div className="item-title">
-                        <p className="hinh-anh"></p>
-                        <p className="ten-sp">Tên sản phẩm</p>
-                        <p className="don-gia">Đơn giá</p>
-                        <p className="so-luong">Số lượng</p>
-                        <p className="thanh-tien">Thành tiền</p>
-                        <p className="xoa"></p>
-                    </div>
-                {CartItems.map((CartItem,index)=>
-                    <div id ={index} className="item-info">
-                        <img className="anh" src={CartItem.img} alt=""/>
+                <div className="item-title">
+                    <p className="hinh-anh"></p>
+                    <p className="ten-sp">Tên sản phẩm</p>
+                    <p className="don-gia">Đơn giá</p>
+                    <p className="so-luong">Số lượng</p>
+                    <p className="thanh-tien">Thành tiền</p>
+                    <p className="xoa"></p>
+                </div>
+                {CartItems.map((CartItem, index) =>
+                    <div id={index} className="item-info">
+                        <img className="anh" src={CartItem.img} alt="" />
                         <p className="ten">{CartItem.name}</p>
                         <p className="gia">{CartItem.price}.000đ</p>
-                        <div className="soluong">                        
-                            <p className="giam" onClick={()=>CountDown(CartItem,index)}>-</p>
+                        <div className="soluong">
+                            <p className="giam" onClick={() => CountDown(CartItem, index)}>-</p>
                             <p className="count">{CartItem.count}</p>
-                            <p className="tang" onClick={()=>CountUp(CartItem,index)}>+</p>
+                            <p className="tang" onClick={() => CountUp(CartItem, index)}>+</p>
                         </div>
-                        <p className="thanhtien">{CartItem.price*CartItem.count}.000đ</p>
-                        <img className="thungrac" src="src/trash.png" alt="" onClick={()=>{DelItem(CartItem,index)}}/>
+                        <p className="thanhtien">{CartItem.price * CartItem.count}.000đ</p>
+                        <img className="thungrac" src="src/trash.png" alt="" onClick={() => { DelItem(CartItem, index) }} />
                     </div>
-                    )}
-                    <div className="thanhtoan">
-                        <p className="bill">Tổng: {bill}.000đ</p>
-                        <p className="tructuyen">Thanh toán trực tuyến</p>
-                        <p className="tructiep">Thanh toán trực tiếp</p>
-                        </div>
+                )}
+                <div className="thanhtoan">
+                    <p className="bill">Tổng: {bill}.000đ</p>
+                    <p className="tructuyen" onClick={() => { ReactDOM.render(<RenderUserInfo />, document.getElementById("root")) }}>Thanh toán trực tuyến</p>
+                    <p className="tructiep">Thanh toán trực tiếp</p>
                 </div>
+            </div>
         )
     }
     var ListItem = JSON.parse(localStorage.getItem('cart-item'))
-    console.log(ListItem)
     function RenderPage() {
         return (
             <div>
                 <Header />
                 <CartListItem CartItems={ListItem} />
+            </div>
+        )
+    }
+    function RenderUserInfo() {
+        return (
+            <div>
+                <Header />
+                <CartListItem CartItems={ListItem} />
+                <User />
+            </div>
+        )
+    }
+    function User() {
+        const Tinh = ['An Giang',
+            'Bà Rịa-Vũng Tàu',
+            'Bạc Liêu',
+            'Bắc Kạn',
+            'Bắc Giang',
+            'Bắc Ninh',
+            'Bến Tre',
+            'Bình Dương',
+            'Bình Định',
+            'Bình Phước',
+            'Bình Thuận',
+            'Cà Mau',
+            'Cao Bằng',
+            'Cần Thơ (TP)',
+            'Đà Nẵng (TP)',
+            'Đắk Lắk',
+            'Đắk Nông',
+            'Điện Biên',
+            'Đồng Nai',
+            'Đồng Tháp',
+            'Gia Lai',
+            'Hà Giang',
+            'Hà Nam',
+            'Hà Nội (TP)',
+            'Hà Tây',
+            'Hà Tĩnh',
+            'Hải Dương',
+            'Hải Phòng (TP)',
+            'Hòa Bình',
+            'Hồ Chí Minh (TP)',
+            'Hậu Giang',
+            'Hưng Yên',
+            'Khánh Hòa',
+            'Kiên Giang',
+            'Kon Tum',
+            'Lai Châu',
+            'Lào Cai',
+            'Lạng Sơn',
+            'Lâm Đồng',
+            'Long An',
+            'Nam Định',
+            'Nghệ An',
+            'Ninh Bình',
+            'Ninh Thuận',
+            'Phú Thọ',
+            'Phú Yên',
+            'Quảng Bình',
+            'Quảng Nam',
+            'Quảng Ngãi',
+            'Quảng Ninh',
+            'Quảng Trị',
+            'Sóc Trăng',
+            'Sơn La',
+            'Tây Ninh',
+            'Thái Bình',
+            'Thái Nguyên',
+            'Thanh Hóa',
+            'Thừa Thiên – Huế',
+            'Tiền Giang',
+            'Trà Vinh',
+            'Tuyên Quang',
+            'Vĩnh Long',
+            'Vĩnh Phúc',
+            'Yên Bái'
+        ]
+        const Quan_Huyen = [
+            []
+        ]
+        return (
+            <div className="User-address">
+                <div className="address-overlay">
+                    <p>Thông tin giao hàng</p>
+                    <input type="text" placeholder="Họ và tên: " className="name" />
+                    <input type="number" placeholder="Số điện thoại: " className="phone-number" />
+                    <input type="email" placeholder="Email: " className="email" />
+                    <input type="text" placeholder="Địa chỉ:"/>
+                    <p className="confirm">Hoàn tất hóa đơn</p>
+                </div>
             </div>
         )
     }
@@ -111,93 +197,88 @@
     document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
 </script>
 <script>
-    function ViewCart(){
+    function ViewCart() {
         window.location = "ViewCart.html"
     }
-    function showBrand(){
+    function showBrand() {
         window.location = "index.html"
     }
     function showMainPage() {
         window.location = "homepage.html"
     }
-    function CountDown(Item,index){
-        if(Item.count >0){
+    function BookTable(){
+        window.location = "BookTable.html"
+    }
+    function CountDown(Item, index) {
+        if (Item.count > 0) {
             Item.count -= 1;
         }
-        if(Item.count <= 0){
-            DelItem(Item,index)
+        if (Item.count <= 0) {
+            DelItem(Item, index)
         }
-        let total = Item.count*Item.price;
+        let total = Item.count * Item.price;
         document.getElementsByClassName("count")[index].innerHTML = Item.count;
         document.getElementsByClassName("thanhtien")[index].innerHTML = total + ".000đ";
-        ChangeCountItem(Item,index,-1)
+        ChangeCountItem(Item, index, -1)
         CaculateToTal()
     }
-    function CountUp(Item,index){
+    function CountUp(Item, index) {
         Item.count += 1;
-        let total = Item.count*Item.price;
+        let total = Item.count * Item.price;
         document.getElementsByClassName("count")[index].innerHTML = Item.count;
-        if(total >=1000)
-        {
-            if(total%1000<10)
-            {
-                total = String((total-(total%1000))/1000)+".00"+String(total%1000)
+        if (total >= 1000) {
+            if (total % 1000 < 10) {
+                total = String((total - (total % 1000)) / 1000) + ".00" + String(total % 1000)
             }
-            else if(total%1000<100)
-            {
-                total = String((total-(total%1000))/1000)+".0"+String(total%1000)
+            else if (total % 1000 < 100) {
+                total = String((total - (total % 1000)) / 1000) + ".0" + String(total % 1000)
             }
-            else
-            {
-                total = String((total-(total%1000))/1000)+"."+String(total%1000)
+            else {
+                total = String((total - (total % 1000)) / 1000) + "." + String(total % 1000)
             }
         }
         document.getElementsByClassName("thanhtien")[index].innerHTML = total + ".000đ";
-        ChangeCountItem(Item,index,1)
+        ChangeCountItem(Item, index, 1)
         CaculateToTal()
 
     }
-    function ChangeCountItem(Item,index,changeNumber) {
+    function ChangeCountItem(Item, index, changeNumber) {
         let NumChange = JSON.parse(localStorage.getItem('cartnum'))
         let ItemChange = JSON.parse(localStorage.getItem('cart-item'))
-        NumChange +=changeNumber
-        localStorage.setItem('cartnum',JSON.stringify(NumChange))
+        NumChange += changeNumber
+        localStorage.setItem('cartnum', JSON.stringify(NumChange))
         ItemChange[index].count += changeNumber
-        if(ItemChange[index].count == 0){
-            ItemChange.splice(index,1)
+        if (ItemChange[index].count == 0) {
+            ItemChange.splice(index, 1)
         }
-        localStorage.setItem('cart-item',JSON.stringify(ItemChange))
+        localStorage.setItem('cart-item', JSON.stringify(ItemChange))
         document.getElementsByClassName("cart-num")[0].innerHTML = JSON.parse(localStorage.getItem('cartnum'))
         window.location.reload()
     }
-    function CaculateToTal(){
+    function CaculateToTal() {
         let sum = 0;
         let i = 0;
-       while (i < ListItem.length){
-            sum += ListItem[i].price*ListItem[i].count;
+        while (i < ListItem.length) {
+            sum += ListItem[i].price * ListItem[i].count;
             i++;
         }
-        if(sum >=1000)
-        {
-            if(sum%1000<10)
-            {
-                sum = String((sum-(sum%1000))/1000)+".00"+String(sum%1000)
+        if (sum >= 1000) {
+            if (sum % 1000 < 10) {
+                sum = String((sum - (sum % 1000)) / 1000) + ".00" + String(sum % 1000)
             }
-            else if(sum%1000<100)
-            {
-                sum = String((sum-(sum%1000))/1000)+".0"+String(sum%1000)
+            else if (sum % 1000 < 100) {
+                sum = String((sum - (sum % 1000)) / 1000) + ".0" + String(sum % 1000)
             }
-            else
-            {
-                sum = String((sum-(sum%1000))/1000)+"."+String(sum%1000)
+            else {
+                sum = String((sum - (sum % 1000)) / 1000) + "." + String(sum % 1000)
             }
-        } 
-        document.getElementsByClassName("bill")[0].innerHTML = "Tổng: "+sum+".000đ";
+        }
+        document.getElementsByClassName("bill")[0].innerHTML = "Tổng: " + sum + ".000đ";
     }
-    function DelItem(Item,index){
-        ChangeCountItem(Item,index,-Item.count)
+    function DelItem(Item, index) {
+        ChangeCountItem(Item, index, -Item.count)
         Item.count = 0;
-        document.getElementById(index).style.display="none";
+        document.getElementById(index).style.display = "none";
         CaculateToTal()
     }
 </script>

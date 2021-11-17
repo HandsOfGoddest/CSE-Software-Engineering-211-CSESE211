@@ -21,16 +21,16 @@
     function Header() {
         return (
             <div className="header">
-                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage}/>
+                <img src="src/logo.png" alt="" className="logo" onClick={showMainPage} />
                 <input type="text" className="search-bar" placeholder="Search" />
-                <p  onClick={showBrand}>Menu</p>
-                <p>Đặt bàn</p>
+                <p onClick={showBrand}>Thương hiệu</p>
+                <p onClick={BookTable}>Đặt bàn</p>
                 <div className="cart-info">
-                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart}/>
+                    <img src="src/cart.png" alt="" className="cart" onClick={ViewCart} />
                     <p className="cart-num">{CartNum}</p>
                 </div>
                 <img src={UserInfo.avt} alt="" className="avt" />
-                <img className="bar" src="src/bar.png" alt=""/>
+                <img className="bar" src="src/bar.png" alt="" />
             </div>
         )
     }
@@ -170,6 +170,9 @@
     }
     function showMainPage() {
         window.location = "homepage.html"
+    }
+    function BookTable(){
+        window.location = "BookTable.html"
     }
     function NoUnderLine(index) {
         for (let i = 0; i < document.getElementsByClassName("select-prefer-food").length; i++) {
