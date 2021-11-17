@@ -9,7 +9,7 @@ import User from "../models/userModel.js"
 const authUser = asyncHandler(async (req, res) => {
     const{email, password} = req.body
     const user = await User.findOne({email})
-    console.log("backend user", user);
+   
     if(user && (await user.matchPassword(password))){
         res.json({
             _id : user._id,
@@ -54,7 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
         })
     } else {
         res.status(400)
-        throw new Error('Invalid user data')
+        throw new Error('User not found')
 
     }
 })
