@@ -12,9 +12,3 @@ body {
     overflow-x: hidden;
     background:#ffe8bc;
 }
-p{
-    cursor: pointer;
-}
-img {
-    cursor: pointer;
-}

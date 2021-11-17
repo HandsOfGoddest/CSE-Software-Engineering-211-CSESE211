@@ -30,6 +30,7 @@ const ProfileScreen = ({ history }) => {
     } else {
       if (!user?.name) {
         dispatch(getUserDetails('profile'));
+        
       } else {
         setName(user.name);
         setEmail(user.email);

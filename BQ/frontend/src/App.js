@@ -5,23 +5,22 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
-import LoginScreen from "./screens/LoginScreen"
-import RegisterScreen from "./screens/RegisterScreen"
-import ProfileScreen from "./screens/ProfileScreen"
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen from "./screens/ProfileScreen";
 import CartScreen from "./screens/CartScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 const App = () => {
-
   return (
-    
     <Router>
       <Header />
-      
       <main className="py-3">
         <Container>
+
+        <Route path="/search/:keyword" component={HomeScreen} />
         <Route path = '/placeorder' component = {PlaceOrderScreen} />
         <Route path = '/payment' component = {PaymentScreen} />
         <Route path = '/shipping' component = {ShippingScreen} />

@@ -1,58 +1,55 @@
 import React from "react";
-import {useDispatch, useSelector} from 'react-redux' 
+import {Route} from 'react-router-dom'
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { NavDropdown } from "react-bootstrap";
-import {logout} from '../actions/userActions'
-import './MyStyle.css'
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import SearchBox from "./SearchBox";
+import { logout } from "../actions/userActions";
+import "./MyStyle.css";
+
 function Header () {
   const dispatch = useDispatch()
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const {userInfo} = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   const logoutHandler = () => {
-    dispatch(logout())
-  }
-
+    dispatch(logout());
+  };
 
   return (
-      <div className="header">
-          <Link to="/">
-              <img src="/icon.png" alt = "logo" className = "logo" />
-          </Link>
-           <input type="text" className="search-bar" placeholder="Search" />
+    <div className="header">
+      <Link to="/">
+        <img src="images/logo.png" alt="logo" className="logo" />
+      </Link>
+      {/*<input type="text" className="search-bar" placeholder="Search" />*/}
+      <Route render={({history}) => <SearchBox history={history}/>} />
 
-            <Link to = "/datban">
-              <p>Đặt bàn</p>
-            </Link>
-            <div className = "cart-info">
-              <Link to="/cart">
-                 <img src="images/cart.png" alt="" className="cart"/>
-              </Link>
-              </div>
-              {userInfo? ( 
-                <NavDropdown title = {userInfo.name} id = 'username'>
-                <LinkContainer to = "/profile">
-                <NavDropdown.Item>
-                Profile
-                </NavDropdown.Item>
-                </LinkContainer>
-                <NavDropdown.Item onClick = {logoutHandler}>
-                {" "}
-                  Logout {" "}
-                </NavDropdown.Item>
-                </NavDropdown>
-              ): (
-              <Link to="/login">
-                <p>LogIn</p>
-              </Link>
-              )}
-              
-              <img className="bar" src="images/bar.png" alt="bar"/>
+      <Link to="/datban">
+        <p>Đặt bàn</p>
+      </Link>
+      <div className="cart-info">
+        
+        <Link to="/cart">
+          <img src="images/cart.png" alt="" className="cart" />
+        </Link>
       </div>
+      {userInfo ? (
+        <NavDropdown title={userInfo.name} id="username">
+          <LinkContainer to="/profile">
+            <NavDropdown.Item>Profile</NavDropdown.Item>
+          </LinkContainer>
+          <NavDropdown.Item onClick={logoutHandler}> Logout </NavDropdown.Item>
+        </NavDropdown>
+      ) : (
+        <Link to="/login">
+          <p>LogIn</p>
+        </Link>
+      )}
+
+      <img className="bar" src="images/bar.png" alt="bar" />
+    </div>
   );
 }
 export default Header;
-
-
