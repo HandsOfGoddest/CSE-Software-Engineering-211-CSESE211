@@ -29,6 +29,7 @@ function Header() {
         <p>Đặt bàn</p>
       </Link>
       <div className="cart-info">
+        
         <Link to="/cart">
           <img src="images/cart.png" alt="" className="cart" />
         </Link>

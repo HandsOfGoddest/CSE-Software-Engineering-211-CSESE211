@@ -13,7 +13,7 @@ const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList);
+  const productList = useSelector((state) => state.productList || {});
 
   const { loading, error, products } = productList;
 

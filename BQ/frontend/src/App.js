@@ -15,15 +15,15 @@ const App = () => {
     <Router>
       <Header />
 
-      <body>
+      <Container>
         <Route path="/cart" component={CartScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/register" component={RegisterScreen} />
         <Route path="/profile" component={ProfileScreen} />
         <Route path="/" component={HomeScreen} exact />
         <Route path="/product/:id" component={ProductScreen} />
-        <Route path='/search/:keyword' component={HomeScreen} />
-      </body>
+        <Route path="/search/:keyword" component={HomeScreen} />
+      </Container>
       <Footer />
     </Router>
   );
