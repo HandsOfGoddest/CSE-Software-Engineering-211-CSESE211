@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import './HomeScreenStyles.css'
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Message from "../components/Message";
@@ -21,7 +22,8 @@ const HomeScreen = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <html>
+    <body>
       <Advertisement />
       <Row>
         <Col>
@@ -42,7 +44,8 @@ const HomeScreen = () => {
           ))}
         </Row>
       )}
-    </>
+    </body>
+    </html>
   );
 };
 

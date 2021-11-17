@@ -26,9 +26,11 @@ function Header () {
             <Link to = "/datban">
               <p>Đặt bàn</p>
             </Link>
+            <div className = "cart-info">
               <Link to="/cart">
-                <p> Cart </p>
+                 <img src="images/cart.png" alt="" className="cart"/>
               </Link>
+              </div>
               {userInfo? ( 
                 <NavDropdown title = {userInfo.name} id = 'username'>
                 <LinkContainer to = "/profile">
@@ -43,7 +45,7 @@ function Header () {
                 </NavDropdown>
               ): (
               <Link to="/login">
-                <p>ĐĂNG NHẬP</p>
+                <p>LogIn</p>
               </Link>
               )}
               
