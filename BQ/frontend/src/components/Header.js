@@ -7,8 +7,9 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 import { logout } from "../actions/userActions";
 import "./MyStyle.css";
-function Header() {
-  const dispatch = useDispatch();
+
+function Header () {
+  const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
