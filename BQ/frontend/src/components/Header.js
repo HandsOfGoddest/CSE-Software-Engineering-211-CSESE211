@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch, useSelector} from 'react-redux' 
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import {logout} from '../actions/userActions'
 import './MyStyle.css'
 function Header () {
