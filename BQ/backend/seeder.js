@@ -4,11 +4,16 @@ import colors from "colors";
 import users from "./data/users.js";
 import products from "./data/products.js";
 import brands from "./data/brands.js"
+import tables from "./data/table.js"
+import tableReservations from "./data/tableReservation.js";
 import User from "./models/userModel.js";
 import Product from "./models/productModel.js";
 import Order from "./models/orderModel.js";
 import connectDB from "./config/db.js";
 import Brand from "./models/brandModel.js";
+import Table from "./models/tabelModel.js";
+import TableReservation from "./models/tableReservationModel.js";
+
 
 dotenv.config();
 
@@ -20,13 +25,21 @@ const importData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Table.deleteMany();
+    await TableReservation.deleteMany();
 
-    const createdUsers = await User.insertMany(users);
-    const adminUser = createdUsers[0]._id;
+    const tableList = await Table.insertMany(tables)
+    const createdUsers = await User.insertMany(users)
+    const adminUser = createdUsers[0]._id
+    const userReservation = createdUsers[1]._id
+    const TableReservation1 = tableList[0]._id
     const sampleProducts = products.map(product => {
       return { ...product, user: adminUser };
     });
-
+    const temp = tableReservations.map(resver => {
+      return {...resver, user: userReservation, table: TableReservation1  }
+    })
+    await TableReservation.insertMany(temp)
     const productList = await Product.insertMany(sampleProducts);
 
     const sampleBrands = brands.map(brand => {
@@ -38,7 +51,7 @@ const importData = async () => {
     })
 
     await Brand.insertMany(sampleBrands)
-
+    
     console.log("Data Imported!".green.inverse);
     process.exit();
   } catch (error) {
