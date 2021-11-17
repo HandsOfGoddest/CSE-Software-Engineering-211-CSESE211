@@ -1,17 +1,29 @@
-main{
-    min-height: 100vh;
+main {
+  min-height: 80vh;
+}
+
+body {
+  position: relative;
+  left: -8px;
+  right: -8px;
+  top: 0;
+  bottom: 0;
+  width: 101%;
+  height: max-content;
+  overflow-x: hidden;
+  background: #ffe8bc;
 }
 h3 {
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
-h1{
-    font-size: 1.8rem;
-    padding: 1rem 0;
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
 }
-h1{
-    font-size: 1.4rem;
-    padding: 0.5rem 0;
+h1 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
 }
 .rating span {
-    margin: 0.1rem;
+  margin: 0.1rem;
 }
