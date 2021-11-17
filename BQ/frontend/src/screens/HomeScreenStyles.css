@@ -1,0 +1,20 @@
+html{
+    background: rgb(255, 177, 65);
+}
+body {
+    position: relative;
+    left: -8px;
+    right: -8px;
+    top: 0;
+    bottom: 0;
+    width: 101%;
+    height: max-content;
+    overflow-x: hidden;
+    background:#ffe8bc;
+}
+p{
+    cursor: pointer;
+}
+img {
+    cursor: pointer;
+}
