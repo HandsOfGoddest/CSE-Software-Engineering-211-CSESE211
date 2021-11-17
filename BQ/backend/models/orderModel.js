@@ -40,11 +40,11 @@ shippingAddress: {
 
       
     },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0
-    },
+    // taxPrice: {
+    //   type: Number,
+    //   required: true,
+    //   default: 0.0
+    // },
      shippingPrice: {
       type: Number,
       required: true,
@@ -57,7 +57,7 @@ shippingAddress: {
     },
      isPaid: {
       type: Boolean,
-      required: true,
+      //required: true,
       default: false,
     },
      paidAt: {
@@ -65,7 +65,7 @@ shippingAddress: {
     },
     isDelivered: {
         type: Boolean,
-        required: true,
+        //required: true,
         default: false,
     },
     deliveredAt: {
