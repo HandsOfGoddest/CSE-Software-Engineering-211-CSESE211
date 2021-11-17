@@ -18,7 +18,7 @@ const App = () => {
             <Route path = '/' component={HomeScreen} exact />
             <Route path = '/product/:id' component={ProductScreen}/>
             <Route path = '/brand/:id/list_product/' component={Hello} />
-            <Route path = '/brand/:id/list_products_sort_by/:category' component={AfterPickCategory} />
+            <Route path = '/brand/:id/list_product_sort_by/:category' component={AfterPickCategory} />
           </Container>
         </main>
       <Footer />
