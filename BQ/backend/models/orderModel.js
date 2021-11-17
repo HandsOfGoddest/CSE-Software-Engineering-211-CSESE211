@@ -57,7 +57,7 @@ shippingAddress: {
     },
      isPaid: {
       type: Boolean,
-      //required: true,
+      required: true,
       default: false,
     },
      paidAt: {
@@ -65,7 +65,7 @@ shippingAddress: {
     },
     isDelivered: {
         type: Boolean,
-        //required: true,
+        required: true,
         default: false,
     },
     deliveredAt: {
