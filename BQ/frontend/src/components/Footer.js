@@ -1,7 +1,17 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import './MyStyle.css'
+//import { Container, Row, Col } from "react-bootstrap";
 const Footer = () => {
-  return <footer>
+ return(
+            <div className="footer">
+                <div className="contact">
+                    <p>Liên hệ với chúng tôi: </p>
+                    <img src="images/fb.png" alt="" />
+                    <img src="images/ig.png" alt="" />
+                </div>
+            </div>
+        )
+  /*<footer>
   <Container>
       <Row>
           <Col className="text-center py-3">
@@ -9,7 +19,8 @@ const Footer = () => {
           </Col>
       </Row>
   </Container>
-  </footer>;
+  </footer>;*/
+
 };
 
 export default Footer;

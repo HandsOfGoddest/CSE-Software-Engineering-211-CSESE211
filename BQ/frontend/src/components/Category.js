@@ -4,61 +4,50 @@ import { Card, CardGroup, Container, Row, Col } from "react-bootstrap";
 
 const Category = () => {
   return (
-    <Container>
-      <Row>
-        <Col className="text-center py-3">BAN MUON GI NEO</Col>
-      </Row>
-      <CardGroup>
-        <Card className="my-3 p-3 rounded">
-          <Link to={``}>
-            <Card.Img src="/images/cate_favourite.png " width="80" height="100" variant="top" />
-          </Link>
-          <Card.Body>
+    <div className="content">
+      <div className="prefer">
+        <p>Bạn thích gì nèo :3</p>
+
+        <div className="select-prefer-foods">
+          <div className="select-prefer-food">
             <Link to={``}>
-              <Card.Title as="div">
-                <strong>Best seller</strong>
-              </Card.Title>
+              <img src="/images/cate_favourite.png " />
             </Link>
-          </Card.Body>
-        </Card>
-        <Card className="my-3 p-3 rounded">
-          <Link to={``}>
-            <Card.Img src="/images/cg_coffee_web.png " width="80" height="100" variant="top" />
-          </Link>
-          <Card.Body>
+
             <Link to={``}>
-              <Card.Title as="div">
-                <strong>Cà phê</strong>
-              </Card.Title>
+              <strong>Best seller</strong>
             </Link>
-          </Card.Body>
-        </Card>
-        <Card className="my-3 p-3 rounded">
-          <Link to={``}>
-            <Card.Img src="/images/cg_frappu_web.png" width="80" height="100" variant="top" />
-          </Link>
-          <Card.Body>
+          </div>
+          <div className="select-prefer-food">
             <Link to={``}>
-              <Card.Title as="div">
-                <strong>Trà/Trà sữa</strong>
-              </Card.Title>
+              <img src="/images/cg_coffee_web.png " />
             </Link>
-          </Card.Body>
-        </Card>
-        <Card className="my-3 p-3 rounded">
-          <Link to={``}>
-            <Card.Img src="/images/cg_tea_milk_tea_web.png " width="80" height="100" variant="top" />
-          </Link>
-          <Card.Body>
+
             <Link to={``}>
-              <Card.Title as="div">
-                <strong>Đá xay</strong>
-              </Card.Title>
+              <strong>Cà phê</strong>
             </Link>
-          </Card.Body>
-        </Card>
-      </CardGroup>
-    </Container>
+          </div>
+          <div className="select-prefer-food">
+            <Link to={``}>
+              <img src="/images/cg_frappu_web.png" />
+            </Link>
+
+            <Link to={``}>
+              <strong>Trà/Trà sữa</strong>
+            </Link>
+          </div>
+          <div className="select-prefer-food">
+            <Link to={``}>
+              <img src="/images/cg_tea_milk_tea_web.png " />
+            </Link>
+
+            <Link to={``}>
+              <strong>Đá xay</strong>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
