@@ -45,11 +45,11 @@ const importData = async () => {
     const sampleBrands = brands.map(brand => {
       let listProductID = []
       for (let i=0; i<productList.length; i++) {
-        if ( productList[i].brandName == brand.name) listProductID.push(productList[i]._id)
+        if ( productList[i].brandName == brand.brandName) listProductID.push(productList[i]._id)
       }
       return { ...brand, hasProducts: listProductID }
     })
-
+    console.log(sampleBrands)
     await Brand.insertMany(sampleBrands)
     
     console.log("Data Imported!".green.inverse);
@@ -65,6 +65,9 @@ const destroyData = async () => {
     await Order.deleteMany();
     await Product.deleteMany();
     await User.deleteMany();
+    await Brand.deleteMany()
+    await Table.deleteMany()
+    await TableReservation.deleteMany()
 
     console.log("Data Destroyed!".red.inverse);
     process.exit();

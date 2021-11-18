@@ -25,7 +25,7 @@ const getBrandByPathName = asyncHandler(async(req, res) => {
 
 
 const addBrand = asyncHandler(async(req, res) => {
-    const { brandName, pathName } = req.body
+    const { name, pathName } = req.body
     const brandPathNameExists = await Brand.find({pathName})
     const brandNameExists = await Brand.find({name})
 
@@ -40,7 +40,7 @@ const addBrand = asyncHandler(async(req, res) => {
     }
 
     const newBrand = await Brand.create({
-        brandName,
+        name,
         pathName,
         image,
         hasProducts
@@ -49,7 +49,7 @@ const addBrand = asyncHandler(async(req, res) => {
     if (newBrand) {
         res.status(201).json({
             _id: newBrand._id,
-            brandName: newBrand.brandName,
+            name: newBrand.name,
             pathName: newBrand.pathName,
             hasProducts: newBrand.hasProducts
         })
