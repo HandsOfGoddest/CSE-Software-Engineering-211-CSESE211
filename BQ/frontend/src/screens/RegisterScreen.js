@@ -10,6 +10,7 @@ import { register } from "../actions/userActions";
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
@@ -31,7 +32,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Mật khẩu không khớp");
     } else {
-      dispatch(register(name, email, password));
+      dispatch(register(name,userName, email, password));
     }
   };
 
@@ -50,6 +51,16 @@ const RegisterScreen = ({ location, history }) => {
             placeholder="Nhập tên của bạn"
             value={name}
             onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="userName">
+          <Form.Label>userName</Form.Label>
+          <Form.Control
+            type="userName"
+            placeholder="UserName"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

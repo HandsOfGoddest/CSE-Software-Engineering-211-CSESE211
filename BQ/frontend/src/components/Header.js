@@ -36,12 +36,16 @@ function Header () {
         </Link>
       </div>
       {userInfo ? (
-        <NavDropdown title={userInfo.name} id="username">
+        <>
+        <NavDropdown title={userInfo.name} id="username" >
+         
+          <NavDropdown.Item>{userInfo.name}</NavDropdown.Item>
           <LinkContainer to="/profile">
             <NavDropdown.Item>Profile</NavDropdown.Item>
           </LinkContainer>
           <NavDropdown.Item onClick={logoutHandler}> Logout </NavDropdown.Item>
-        </NavDropdown>
+          </NavDropdown>
+          </>
       ) : (
         <Link to="/login">
           <p>LogIn</p>

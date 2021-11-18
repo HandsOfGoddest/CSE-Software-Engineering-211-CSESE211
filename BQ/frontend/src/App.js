@@ -18,7 +18,7 @@ const App = () => {
     <Router>
       <Header />
       <main className="py-3">
-        <Container>
+        <Container style = {{marginTop: "70px"}}>
 
         <Route path="/search/:keyword" component={HomeScreen} />
         <Route path = '/placeorder' component = {PlaceOrderScreen} />
