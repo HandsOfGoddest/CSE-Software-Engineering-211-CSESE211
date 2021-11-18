@@ -54,7 +54,7 @@ const ProfileScreen = ({ history }) => {
   };
 
   return(
-    <Row>
+    <Row style = {{marginTop:"100px"}}>
       <Col md={3}>
         <h6>USER PROFILE</h6>
         {message && <Message variant="danger">{message}</Message>}
