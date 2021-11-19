@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
+import Hello from "./components/getListProductOfBrand";
+import AfterPickCategory from "./components/getListProductByCategoryOfBrand";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ProfileScreen from "./screens/ProfileScreen";
@@ -13,6 +15,8 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import CreateRes from "./components/CreateRes";
+
 const App = () => {
   return (
     <Router>
@@ -30,6 +34,13 @@ const App = () => {
           <Route path="/" component={HomeScreen} exact />
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component={CartScreen} />
+          <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/brand/:id/list_product/" component={Hello} />
+          <Route
+            path="/brand/:id/list_product_sort_by/:category"
+            component={AfterPickCategory}
+          />
+          <Route path="/createRes" component={CreateRes} />
         </Container>
       </main>
       <Footer />

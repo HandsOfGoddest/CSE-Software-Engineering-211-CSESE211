@@ -14,7 +14,7 @@ const HomeScreen = ({ match }) => {
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList || {});
-
+  
   const { loading, error, products } = productList;
   // const a = products.filter(item => item.category === 'coffee'  || item.category === 'tea')
 
@@ -33,17 +33,11 @@ const HomeScreen = ({ match }) => {
         <Message variant="danger">{error}</Message>
       ) : (
         <div id="food-list">
-          {products.map((product) => (
+          {(products ||[] ).map((product) => (
             <div key={product._id}>
               <Product product={product} />
             </div>
           ))}
-
-          {/*products.map((product) => (
-            <div key={product._id}>
-              <Product product={product} />
-            </div>
-          ))*/}
         </div>
       )}
     </>

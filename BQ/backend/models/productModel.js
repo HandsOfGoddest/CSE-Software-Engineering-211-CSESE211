@@ -27,19 +27,17 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    brand:{
+    brandName: {
         type: String,
-        required: false, ///****xem lai */
+        required: true
     },
     category:{
         type: String,
         required: true,
-        
     },
     description:{
         type: String,
-        required: true,
-        
+        required: true, 
     },
     reviews: [reviewSchema],
     rating:{
@@ -62,10 +60,9 @@ const productSchema = mongoose.Schema({
         required: true,
         default: 0
     }
-
-},{
+}, {
     timestamps: true,
 })
-const Product = mongoose.model('Product',productSchema)
+const Product = mongoose.model('Product', productSchema)
 
 export default Product

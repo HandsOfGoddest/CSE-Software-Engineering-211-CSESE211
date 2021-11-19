@@ -15,7 +15,7 @@ const Category = () => {
             </Link>
 
             <Link to={``}>
-              <strong>Best seller</strong>
+              <p>Best seller</p>
             </Link>
           </div>
           <div className="select-prefer-food">
@@ -24,7 +24,7 @@ const Category = () => {
             </Link>
 
             <Link to={``}>
-              <strong>Cà phê</strong>
+              <p>Cà phê</p>
             </Link>
           </div>
           <div className="select-prefer-food">
@@ -33,7 +33,7 @@ const Category = () => {
             </Link>
 
             <Link to={``}>
-              <strong>Trà/Trà sữa</strong>
+              <p>Trà/Trà sữa</p>
             </Link>
           </div>
           <div className="select-prefer-food">
@@ -42,7 +42,7 @@ const Category = () => {
             </Link>
 
             <Link to={``}>
-              <strong>Đá xay</strong>
+              <p>Đá xay</p>
             </Link>
           </div>
         </div>

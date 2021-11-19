@@ -19,7 +19,7 @@ const Product = ({ product }) => {
           <Rating value = {product.rating}
           text = {`${product.numReviews} reviews`}/>
         </div>
-      <div className="product-price">{product.price} VND </div>
+      <div className="product-price">{product.price/1000}.000 VND </div>
       </>
   );
 };
