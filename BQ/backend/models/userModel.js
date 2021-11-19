@@ -22,6 +22,22 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    dateOfBirth: {
+      type: Date,
+      required: false,
+      unique: false,
+    },
+    gender: {
+      type: String,
+      required: false,
+      unique: false
+    },
+    phoneNumber: {
+      type: Number,
+      required: false,
+      unique: true,
+    },
+
     isAdmin: {
       type: Boolean,
       required: true,

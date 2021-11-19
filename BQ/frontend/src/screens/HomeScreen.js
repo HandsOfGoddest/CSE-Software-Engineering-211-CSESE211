@@ -7,15 +7,17 @@ import Loader from "../components/Loader";
 import { Row, Col } from "react-bootstrap";
 import Advertisement from "../components/Advertisement";
 import Category from "../components/Category";
+import Filter from "../components/Filter";
 import { listProducts } from "../actions/productActions";
 
 const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword
+  const keyword = match.params.keyword;
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList || {});
 
   const { loading, error, products } = productList;
+  // const a = products.filter(item => item.category === 'coffee'  || item.category === 'tea')
 
   useEffect(() => {
     dispatch(listProducts(keyword));
@@ -25,6 +27,7 @@ const HomeScreen = ({ match }) => {
     <>
       <Advertisement />
       <Category />
+      <Filter count={this.state.products.length}></Filter>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -36,6 +39,12 @@ const HomeScreen = ({ match }) => {
               <Product product={product} />
             </div>
           ))}
+
+          {/*products.map((product) => (
+            <div key={product._id}>
+              <Product product={product} />
+            </div>
+          ))*/}
         </div>
       )}
     </>
