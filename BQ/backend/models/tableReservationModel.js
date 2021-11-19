@@ -12,7 +12,7 @@ const TableReservationSchema = mongoose.Schema({
         ref: 'Table'
     },
     time: {
-        type: String,
+        type: Number,
         required: true
     }
 },{

@@ -4,8 +4,8 @@ import {protect} from '../middleware/authMiddleware.js'
 
 const router = express.Router()
 
-router.route('/').get()
-router.route('/search').get(getTablesByTime)
-router.route('/reservation').post(protect, addReservation)
+router.route('/').get(getTablesByTime)
+router.route('/search').post(getTablesByTime)
+router.route('/create').post(protect, addReservation)
 
 export default router

@@ -8,10 +8,15 @@ import TableReservation from "../models/tableReservationModel.js";
 // @access Private
 
 const getTablesByTime = asyncHandler(async (req, res) => {
-    const tables = await Table.find({timeList: req.query.time})
+    const { time } = req.body
+    const tables = await Table.find({})
     
     if(tables){
-      res.json(tables)
+      let ans = []
+      for (let i=0; i<tables.length; i++) {
+        if (tables[i].timeList.indexOf(time) == -1) ans.push(tables[i])
+      }
+      res.json(ans)
     } else {
       res.status(404)
       throw new Error('tables not found')
@@ -23,27 +28,35 @@ const getTablesByTime = asyncHandler(async (req, res) => {
 // @access Private
 
 const addReservation = asyncHandler(async (req, res) => {
-    const{ 
-        tableNum, 
-        time,
+    const { 
+      tableNum, 
+      time
     } = req.body
 
-    if(orderItems && orderItems.length === 0){
-        res.status(400)
-        throw new Error('No order items')
-        return
-    } else {
-        const reservation = new TableReservation({
-            user: req.user._id,
-            table: req.table._id, 
-            time: req.time, 
-        })
+    const table = await Table.findOne({number: tableNum})
 
-        const createReservation = await reservation.save()
-
-        res.status(201).json(createReservation)
+    const newReservation = await TableReservation.create({
+      user: req.user._id,
+      table: table._id,
+      time: time
+    })
+    if (newReservation) {
+      await newReservation.save()
+      table.timeList.push(time)
+      await table.save()
+      res.status(201).json({
+        id: newReservation._id,
+        user: newReservation.user,
+        table: newReservation.table,
+        time: newReservation.time
+      })
     }
-})
+    else {
+      res.status(400)
+      throw new Error('Invalid data')
+    }
+}
+)
 
 // @desc POST table status
 // @route POST/api/tables/reservation
