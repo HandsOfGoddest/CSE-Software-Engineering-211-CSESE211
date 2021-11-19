@@ -23,6 +23,42 @@ const getBrandByPathName = asyncHandler(async(req, res) => {
 })
 
 
+const addBrand = asyncHandler(async(req, res) => {
+    const { name, pathName } = req.body
+    const brandPathNameExists = await Brand.find({pathName})
+    const brandNameExists = await Brand.find({name})
+
+    if (brandPathNameExists) {
+        res.status(400)
+        throw new Error('Pathname already existed')
+    }
+
+    if (brandNameExists) {
+        res.status(400)
+        throw new Error('Name already existed')
+    }
+
+    const newBrand = await Brand.create({
+        name,
+        pathName,
+        image,
+        hasProducts
+    })
+
+    if (newBrand) {
+        res.status(201).json({
+            _id: newBrand._id,
+            name: newBrand.name,
+            pathName: newBrand.pathName,
+            hasProducts: newBrand.hasProducts
+        })
+    }
+    else {
+        res.status(400)
+        throw new Error('Invalid data')
+    }
+})
+
 export {
-    getBrand, getBrandByPathName
+    getBrand, getBrandByPathName, addBrand
 }

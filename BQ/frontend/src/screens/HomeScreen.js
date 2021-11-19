@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "./HomeScreenStyle.css";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Message from "../components/Message";
@@ -8,37 +9,34 @@ import Advertisement from "../components/Advertisement";
 import Category from "../components/Category";
 import { listProducts } from "../actions/productActions";
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword
   const dispatch = useDispatch();
 
-  const productList = useSelector(state => state.productList);
+  const productList = useSelector((state) => state.productList || {});
+
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
+    dispatch(listProducts(keyword));
+  }, [dispatch, keyword]);
 
   return (
     <>
       <Advertisement />
-      <Row>
-        <Col>
-          <Category />
-        </Col>
-      </Row>
-      <h1>Cà phê</h1>
+      <Category />
       {loading ? (
-        <Loader/>
+        <Loader />
       ) : error ? (
-        <Message variant = 'danger'>{error}</Message>
+        <Message variant="danger">{error}</Message>
       ) : (
-        <Row>
-          {(products).map((product) => (
-            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+        <div id="food-list">
+          {products.map((product) => (
+            <div key={product._id}>
               <Product product={product} />
-            </Col>
+            </div>
           ))}
-        </Row>
+        </div>
       )}
     </>
   );

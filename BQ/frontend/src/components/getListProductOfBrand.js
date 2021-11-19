@@ -1,20 +1,26 @@
 import React, { useEffect } from 'react'
+import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux'
 import { listProductsOfBrand } from '../actions/brandActions'
+import Product from './Product';
 
 function Hello({match}) {
-    // const dispatch = useDispatch()
-    // const productListOfBrand = useSelector(state => state.productListOfBrand)
-    // const { loading, error, listProductOfBrand } = productListOfBrand     //Now list is in listProductOfBrand
-    // useEffect(() => {
-    //     dispatch(listProductsOfBrand(match.params.id))
-    // }, [dispatch])
+    const dispatch = useDispatch()
+    const productListOfBrand = useSelector(state => state.productListOfBrand)
+    const { loading, error, ProductsOfBrand } = productListOfBrand     //Now list is in listProductOfBrand
+    useEffect(() => {
+        dispatch(listProductsOfBrand(match.params.id))
+    }, [dispatch])
+    console.log(ProductsOfBrand)
     return (
         <div>
-            <h1 id="a">A</h1>
-            <input type="date"></input>
-            <input type="time"></input>
-            <button onClick={console.log(7)}>"7:00 - 9:00"</button>
+        <Row>
+          {(ProductsOfBrand).map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
         </div>
     )
 }

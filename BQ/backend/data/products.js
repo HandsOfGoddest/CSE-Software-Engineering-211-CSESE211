@@ -5,7 +5,7 @@ const products = [
     description:
       "Cà phê đen đá - ai đen thì bị đá",
     brandName: "Drink",
-    category: "coffee",
+    category: "tea",
     price: 45000,
     countInStock: 20,
     rating: 1.5,
@@ -17,7 +17,7 @@ const products = [
     description:
       "......",
     brandName: "Drink",
-    category: "coffee",
+    category: "tea",
     price: 60000,
     countInStock: 0,
     rating: 1.5,
@@ -29,7 +29,7 @@ const products = [
     description:
       "....",
     brandName: "Drink",
-    category: "coffee",
+    category: "milk",
     price: 65000,
     countInStock: 20,
     rating: 1.5,
