@@ -3,7 +3,7 @@ import React, { Component } from "react";
 const Filter = () => {
   return (
     <div>
-    <div className="filter-result">{this.props.count}</div>
+    <div className="filter-result"></div>
       <div className="filter-brand">
         Brand{" "}
         <select>

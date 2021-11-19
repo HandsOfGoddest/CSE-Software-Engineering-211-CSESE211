@@ -7,7 +7,6 @@ import Loader from "../components/Loader";
 import { Row, Col } from "react-bootstrap";
 import Advertisement from "../components/Advertisement";
 import Category from "../components/Category";
-import Filter from "../components/Filter";
 import { listProducts } from "../actions/productActions";
 
 const HomeScreen = ({ match }) => {
@@ -27,7 +26,7 @@ const HomeScreen = ({ match }) => {
     <>
       <Advertisement />
       <Category />
-      <Filter count={this.state.products.length}></Filter>
+     
       {loading ? (
         <Loader />
       ) : error ? (
