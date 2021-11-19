@@ -53,13 +53,11 @@ export const login = (email, password) => async(dispatch) => {
 export const logout = () =>(dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({type: USER_LOGOUT})
-    dispatch({type: USER_DETAILS_RESET})
-    dispatch({type: ORDER_LIST_MY_RESET})
-    dispatch
 }
 
 
-export const register = (name, email, password) => async (dispatch) => {
+
+export const register = (name,userName, email, password) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -73,7 +71,7 @@ export const register = (name, email, password) => async (dispatch) => {
 
     const { data } = await axios.post(
       "/api/users",
-      { name, email, password },
+      { name, userName,email, password },
       config
     );
 
@@ -104,7 +102,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       type: USER_DETAILS_REQUEST,
     });
     
-    const userInfo = getState().userLogin.userInfo; console.log("userinfo", userInfo);
+    const userInfo = getState().userLogin.userInfo; 
     const config = {
       
       headers: {
@@ -114,7 +112,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     };
     
     const { data } = await axios.get(`/api/users/${id}`, config);
-    console.log("data", data);
+   
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
