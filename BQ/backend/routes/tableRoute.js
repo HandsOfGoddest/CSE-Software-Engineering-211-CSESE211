@@ -1,33 +1,11 @@
-import express from "express";
-import asyncHandler from "express-async-handler";
-const router = express.Router();
-import Table from "../models/tabelModel.js";
+import express from 'express'
+import { getTablesByTime, addReservation } from '../controllers/tableReservationController.js'
+import {protect} from '../middleware/authMiddleware.js'
 
-// @desc Fetch all table
-// @route GET/api/tables
-// @access Public
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    const products = await Table.find({})
-    res.json(products);
-  })
-);
-// @desc Fetch one table by ID
-// @route GET/api/tables/:id
-// @access Public
-router.get("/:numberTable",
-    asyncHandler(async (req, res) => {
-      const product = await Table.find({number: req.params.numberTable});
-  
-      if (product) {
-        res.json(product);
-      } else {
-        res.status(404)
-        throw new Error('Product not found')
-      }
-    })
-  );
+const router = express.Router()
 
+router.route('/').get()
+router.route('/search').get(getTablesByTime)
+router.route('/reservation').post(protect, addReservation)
 
 export default router

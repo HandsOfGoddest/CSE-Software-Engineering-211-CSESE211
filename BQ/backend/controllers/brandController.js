@@ -8,7 +8,6 @@ import Brand from '../models/brandModel.js'
 const getBrand = asyncHandler(async(req, res) => {
     const brands = await Brand.find({})
     res.json(brands)
-   
 })
 
 

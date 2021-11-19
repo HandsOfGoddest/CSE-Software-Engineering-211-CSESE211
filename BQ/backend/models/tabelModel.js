@@ -7,9 +7,18 @@ const TableSchema = mongoose.Schema({
     },
     timeList: [
         {
-            type: Number
-        }
-    ]
+            time:{
+                type: String,
+            },
+            status:{
+                type: Num,
+            },
+        },
+    ],
+    brand: {
+        type: String,
+        required: true,
+    },
 },{
     timestamps: true
 })
