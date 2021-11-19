@@ -14,6 +14,7 @@ import CartScreen from "./screens/CartScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import CreateRes from "./components/CreateRes";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path = '/register' component = {RegisterScreen} />
         <Route path = '/profile' component = {ProfileScreen} />
         <Route path = '/cart/:id?' component={CartScreen}/>
+        <Route path = '/createRes' component={CreateRes} />
         </Container>
       </main>
       
