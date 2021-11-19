@@ -13,9 +13,9 @@ const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.productList || {});
+  const productList1 = useSelector((state) => state.productList1 || {});
   
-  const { loading, error, products } = productList;
+  const { loading, error, products } = productList1;
   // const a = products.filter(item => item.category === 'coffee'  || item.category === 'tea')
 
   useEffect(() => {
