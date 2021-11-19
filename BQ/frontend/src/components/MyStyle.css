@@ -119,7 +119,7 @@ a{
 }
 .best-sale {
     width: 100%;
-    height: 600px;
+    height: max-content;
     background: #FFB141;
     position: relative; 
     top: -5px;
@@ -150,8 +150,9 @@ a{
 .best-sale-container {
     height: max-content;
     width: 80%;
-    background-color: #fff;
+    background-color: rgb(255, 177, 65);
     overflow: hidden;
+    padding: 3% 0px;
 }
 
 .qcs {
@@ -230,6 +231,7 @@ a{
     flex-direction: row !important;
     margin: 3px !important;
 }
+
 .review-count{
     width: max-content;
     margin-bottom: -15px;
@@ -424,13 +426,12 @@ a{
         font-size:50px !important;
     }
     .best-sale{
-        height:400px;
-        left:-5px;
-        top: 20px;
+        height:max-content;
+        left:0px;
+        top: -5px;
     }
     .best-sale-container{
         height:70%;
-        padding-top:5%;
         background-color:rgb(255, 177, 65);
     }
     ul{
@@ -477,6 +478,9 @@ a{
         display: flex !important;
         flex-direction: row !important;
         margin: 3px !important;
+    }
+    .review-count{
+        width: 100%;
     }
     .product-price{
         font-size:15px;
@@ -537,13 +541,12 @@ a{
         font-size:50px !important;
     }
     .best-sale{
-        height:400px;
-        left:-5px;
-        top: 20px;
+        height:max-content;
+        left:0px;
+        top: -5px;
     }
     .best-sale-container{
         height:70%;
-        padding-top:5%;
         background-color:rgb(255, 177, 65);
     }
     ul{
@@ -590,6 +593,9 @@ a{
         display: flex !important;
         flex-direction: row !important;
         margin: 3px !important;
+    }
+    .review-count{
+        width: 100%;
     }
     .product-price{
         font-size:15px;
@@ -651,13 +657,12 @@ a{
         font-size:50px !important;
     }
     .best-sale{
-        height:400px;
-        left:-5px;
-        top: 0px;
+        height:max-content;
+        left:0px;
+        top: -5px;
     }
     .best-sale-container{
         height:70%;
-        padding-top:5%;
         background-color:rgb(255, 177, 65);
     }
     ul{
@@ -708,6 +713,9 @@ a{
     }
     .Price-Add{
         height:20px !important;
+    }
+    .review-count{
+        width: 100%;
     }
     .product-price{
         font-size:18px;

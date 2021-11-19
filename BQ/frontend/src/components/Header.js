@@ -22,10 +22,11 @@ function Header () {
     <div className="header">
       <Link to="/">
         <img src="images/logo.png" alt="logo" className="logo" />
+
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({history}) => <SearchBox history={history}/>} />
-
+      <div className="space"></div>
       <Link to="/datban">
         <p className="datban">Đặt bàn</p>
       </Link>
@@ -48,7 +49,7 @@ function Header () {
           </>
       ) : (
         <Link to="/login">
-          <p className="login">LogIn</p>
+          <p className="login">Login</p>
         </Link>
       )}
 
