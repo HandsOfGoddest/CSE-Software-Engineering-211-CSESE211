@@ -49,7 +49,6 @@ const importData = async () => {
       }
       return { ...brand, hasProducts: listProductID }
     })
-    console.log(sampleBrands)
     await Brand.insertMany(sampleBrands)
     
     console.log("Data Imported!".green.inverse);
