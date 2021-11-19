@@ -12,7 +12,7 @@ function Header () {
   const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin);
-  const userInfo =getState().userLogin.userInfo;
+  const { userInfo } = userLogin;
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -22,11 +22,10 @@ function Header () {
     <div className="header">
       <Link to="/">
         <img src="images/logo.png" alt="logo" className="logo" />
-
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({history}) => <SearchBox history={history}/>} />
-      <div className="space"></div>
+
       <Link to="/datban">
         <p className="datban">Đặt bàn</p>
       </Link>
@@ -49,7 +48,7 @@ function Header () {
           </>
       ) : (
         <Link to="/login">
-          <p className="login">Login</p>
+          <p className="login">LogIn</p>
         </Link>
       )}
 
