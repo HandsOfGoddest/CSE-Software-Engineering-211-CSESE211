@@ -501,7 +501,7 @@ a{
 {
     .logo{
         height:50px;
-        margin-left: 20px;
+        margin-left: 110px;
     }
     .search-bar{
         margin-right:0;
@@ -509,6 +509,10 @@ a{
     }
     .cart-info{
     height:40px;
+    }
+    .cart{
+        margin: 0px 10px;
+        margin-top: 5px;
     }
     .cart-num{
         font-size:20px !important;
@@ -518,8 +522,8 @@ a{
     .avt {
         height: 35px;
     }
-    .header p{
-
+    .datban{
+        margin-left: 50px;
     }
     .brand{
         margin-top:157px;
