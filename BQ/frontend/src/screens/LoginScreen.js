@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { login } from "../actions/userActions";
+import { getUserDetails, login } from "../actions/userActions";
+import { listMyCart, updateAllCart } from "../actions/cartActions";
+import { listMyOrders } from "../actions/orderActions";
+import { cartItemsFromStorage} from "../store";
+import store from "../store";
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
@@ -16,14 +20,31 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  const userDetails = useSelector((state) => state.userDetails);
+  const {  user } = userDetails;
+
+
+  
+  // const cartListMy = useSelector((state) => state.cartListMy);
+  // const { cart: Items } = cartListMy;
+  // console.log(Items)
+
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
+      if(!loading){
+        dispatch(listMyCart())
+        
+      }
       history.push(redirect);
     }
-  }, [history, userInfo, redirect]);
+    
+  }, [dispatch, history, userInfo, redirect ]);
 
+  
+
+ 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));

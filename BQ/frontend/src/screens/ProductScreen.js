@@ -29,6 +29,7 @@ const ProductScreen = ({ history, match }) => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
+  console.log(product)
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;

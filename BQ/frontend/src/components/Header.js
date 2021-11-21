@@ -6,15 +6,22 @@ import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import SearchBox from "./SearchBox";
 import { logout } from "../actions/userActions";
+import { updateCart, removeAllCart } from "../actions/cartActions";
 import "./MyStyle.css";
+
 
 function Header () {
   const dispatch = useDispatch()
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
+  const cart = useSelector((state) => state.cart)
+  const { cartItems} = cart
 
   const logoutHandler = () => {
+    console.log(cartItems)
+    dispatch(updateCart(cartItems));
+    dispatch(removeAllCart());
     dispatch(logout());
   };
 
