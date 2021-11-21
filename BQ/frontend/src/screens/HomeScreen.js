@@ -16,7 +16,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList || {});
 
   const { loading, error, products } = productList;
-
+  
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);

@@ -4221,6 +4221,7 @@
         width: 200px;
     }
  }
+ 
  @media (prefers-reduced-motion:reduce) {
      .nav-link {
          transition: none
@@ -5150,7 +5151,6 @@
      transition: transform .2s ease-in-out;
      transition: transform .2s ease-in-out, -webkit-transform .2s ease-in-out
  }
-
  
  @media (prefers-reduced-motion:reduce) {
      .accordion-button::after {
