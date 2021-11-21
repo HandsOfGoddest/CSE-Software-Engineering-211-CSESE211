@@ -29,12 +29,13 @@ function Header () {
     <div className="header">
       <Link to="/">
         <img src="images/logo.png" alt="logo" className="logo" />
+
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({history}) => <SearchBox history={history}/>} />
-
+      <div className="space"></div>
       <Link to="/datban">
-        <p>Đặt bàn</p>
+        <p className="datban">Đặt bàn</p>
       </Link>
       <div className="cart-info">
         
@@ -55,7 +56,7 @@ function Header () {
           </>
       ) : (
         <Link to="/login">
-          <p>LogIn</p>
+          <p className="login">Login</p>
         </Link>
       )}
 

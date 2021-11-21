@@ -5,11 +5,13 @@ const TableSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    timeList: [
-        {
-            type: Number
-        }
-    ]
+    timeList: [{
+        type: Number
+    }],
+    brand: {
+        type: String,
+        required: true,
+    },
 },{
     timestamps: true
 })

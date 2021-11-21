@@ -102,7 +102,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className="py-3">
         <Col>
           Đã có tài khoản?{" "}
-          <Link to={redirect ? `/login?redirect = ${redirect}` : "/login"}>
+          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
             Đăng nhập
           </Link>
         </Col>
