@@ -9,7 +9,7 @@ function Hello({match}) {
     const productListOfBrand = useSelector(state => state.productListOfBrand)
     const { loading, error, ProductsOfBrand } = productListOfBrand     //Now list is in listProductOfBrand
     useEffect(() => {
-        dispatch(listProductsOfBrand(match.params.id))
+        dispatch(listProductsOfBrand(match.params.pathName))
     }, [dispatch])
     console.log(ProductsOfBrand)
     return (

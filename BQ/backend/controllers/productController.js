@@ -1,5 +1,8 @@
 import asyncHandler from "express-async-handler";
+import Brand from "../models/brandModel.js";
+import Category from "../models/categoryModel.js";
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 
 // @desc Fetch all products
 // @route GET/api/products
@@ -69,5 +72,35 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+const createProduct = asyncHandler(async(req, res) => {
+  const { name, image, description, price, countInStock } = req.body
+  const brand = await Brand.findOne({pathName: req.params.brand})
+  const category = await Category.findOne({catePathName: req.params.cate})
+  const admin = await User.findOne({isAdmin: true})
+  if (brand && category && category.brandName === brand.brandName) {
+    const newProduct = await Product.create({
+      user: admin._id,
+      name,
+      image,
+      brandName: brand.brandName,
+      category: category.cateName,
+      description,
+      price,
+      countInStock
+    })
+    if (newProduct) {
+      await newProduct.save()
+      res.json(newProduct)
+    }
+    else {
+      res.json(404)
+      throw new Error("Invalid data")
+    }
+  }
+  else {
+    res.status(404)
+    throw new Error("Brand or category not found!")
+  }
+})
 
-export {getProducts, getProductById, createProductReview}
+export {getProducts, getProductById, createProductReview, createProduct }
