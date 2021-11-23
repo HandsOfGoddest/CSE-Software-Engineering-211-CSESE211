@@ -4201,11 +4201,32 @@
      text-decoration: none;
      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out
  }
+ @media (max-width: 46.188em)
+ {
+    .nav-link{
+        margin-right: 70px;
+        padding: 8px 0px;   
+    }
+    .form-control{
+        width: 200px;
+    }
+ }
+ @media (min-width: 46.188em) and (max-width:48em )
+ {
+    .nav-link{
+        margin-right: 70px;
+        padding: 8px 0px;   
+    }
+    .form-control{
+        width: 200px;
+    }
+ }
  
  @media (prefers-reduced-motion:reduce) {
      .nav-link {
          transition: none
      }
+
  }
  
  .nav-link:focus, .nav-link:hover {
