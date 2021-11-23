@@ -107,12 +107,29 @@ const deleteProductByID = asyncHandler(async(req, res) => {
   const product = await Product.findById(req.params.id)
   if (product) {
       await product.remove()
-      res.json({message: "product removed"})
+      res.json({message: "Product removed"})
   }
   else {
       res.status(404)
-      throw new Error('product not found')
+      throw new Error('Product not found')
   }
 })
 
-export {getProducts, getProductById, createProductReview, createProduct, deleteProductByID }
+const updateProduct = asyncHandler(async(req, res) => {
+  const product = await Product.findById(req.params.id)
+  if (product) {
+    product.name = req.body.name || product.name
+    product.image = req.body.image || product.image
+    product.description = req.body.description || product.description
+    product.price = req.body.price || product.price
+    product.countInStock = req.body.countInStock || product.countInStock
+    const updProduct = await product.save()
+    res.json(updProduct)
+  }
+  else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
+})
+
+export {getProducts, getProductById, createProductReview, createProduct, deleteProductByID, updateProduct }
