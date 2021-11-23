@@ -7,14 +7,12 @@ function CreateRes() {
     let tableNum = "1"
     let time = 12
     const dispatch = useDispatch()
-    const tableReservationCreate = useSelector(state => state.tableReservationCreate)
-
-    const { loading, error, reservation } = tableReservationCreate
+    const reservationCreate = useSelector(state => state.reservationCreate)
+    const { loading, error, reservation } = reservationCreate
 
     const createRes = () => {
         dispatch(createReservation(tableNum, time))
     }
-
     return (
         <div>
             <h1>Create</h1>
