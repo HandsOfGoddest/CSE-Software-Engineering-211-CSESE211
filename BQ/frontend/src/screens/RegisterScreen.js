@@ -11,6 +11,9 @@ const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [dateOfBirth, setdateOfBirth] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
@@ -32,7 +35,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Mật khẩu không khớp");
     } else {
-      dispatch(register(name,userName, email, password));
+      dispatch(register(name,userName, email,phoneNumber, gender, dateOfBirth, password));
     }
   };
 
@@ -42,6 +45,16 @@ const RegisterScreen = ({ location, history }) => {
       {message && <Message variant="danger">{message}</Message>}
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
+
+      <Form.Group controlId="userName">
+          <Form.Label>userName</Form.Label>
+          <Form.Control
+            type="userName"
+            placeholder="UserName"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
 
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
@@ -54,15 +67,7 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        <Form.Group controlId="userName">
-          <Form.Label>userName</Form.Label>
-          <Form.Control
-            type="userName"
-            placeholder="UserName"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        
 
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
@@ -71,6 +76,36 @@ const RegisterScreen = ({ location, history }) => {
             placeholder="Nhập email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="phoneNumber">
+          <Form.Label>phone Number</Form.Label>
+          <Form.Control
+            type="phoneNumber"
+            placeholder="Phone Number"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="gender">
+          <Form.Label>Gender</Form.Label>
+          <Form.Control
+            type="gender"
+            placeholder="Gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="dateOfBirth">
+          <Form.Label>Date Of Birth </Form.Label>
+          <Form.Control
+            type="dateOfBirth"
+            placeholder="Date Of Birth"
+            value={dateOfBirth}
+            onChange={(e) => setdateOfBirth(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

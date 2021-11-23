@@ -12,7 +12,7 @@ import { cartItemsFromStorage} from "../store";
 import store from "../store";
 
 const LoginScreen = ({ location, history }) => {
-  const [email, setEmail] = useState("");
+  const [userName, setuserName] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const LoginScreen = ({ location, history }) => {
  
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(login(email, password));
+    dispatch(login(userName, password));
   };
 
   return (
@@ -56,18 +56,18 @@ const LoginScreen = ({ location, history }) => {
       {error && <Message variant="danger">{error} </Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Form.Group controlId="email">
-          <Form.Label> Email Address </Form.Label>
+        <Form.Group controlId="userName">
+          <Form.Label> User Name</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="userName"
+            placeholder="Enter userName"
+            value={userName}
+            onChange={(e) => setuserName(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label> Password Address </Form.Label>
+          <Form.Label> Password </Form.Label>
           <Form.Control
             type="password"
             placeholder="Enter password"
