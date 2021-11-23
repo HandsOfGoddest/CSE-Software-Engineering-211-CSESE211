@@ -25,7 +25,7 @@ const getBrandByPathName = asyncHandler(async(req, res) => {
 
 
 const addBrand = asyncHandler(async(req, res) => {
-    const { brandName, pathName } = req.body
+    const { brandName, pathName, image } = req.body
     const brandPathNameExists = await Brand.findOne({pathName})
     const brandNameExists = await Brand.findOne({brandName})
     if (brandPathNameExists) {
@@ -40,7 +40,8 @@ const addBrand = asyncHandler(async(req, res) => {
 
     const newBrand = await Brand.create({
         brandName,
-        pathName
+        pathName,
+        image
     })
 
     if (newBrand) {
@@ -120,7 +121,44 @@ const addCategory = asyncHandler(async(req, res) => {
     }
 })
 
+const deleteBrandByPathName = asyncHandler(async(req, res) => {
+    const brand = await Brand.findOne({pathName: req.params.id})
+    const categories = await Category.find({brandName: brand.brandName})
+    const products = await Product.find({brandName: brand.brandName})
+    if (brand) {
+        for (let i=0; i<categories.length; i++) {
+            await categories[i].remove()
+        }
+        for (let i=0; i<products.length; i++) {
+            await products[i].remove()
+        }
+        await brand.remove()
+        res.json({message: "Brand removed"})
+    }
+    else {
+        res.status(404)
+        throw new Error('Brand not found')
+    }
+})
+
+const deleteCateByPathName = asyncHandler(async(req, res) => {
+    const category = await Category.find({catePathName: req.params.pathName})
+    const products = await Product.find({category: category.cateName})
+    if (category) {
+        for (let i=0; i<products.length; i++) {
+            await products[i].remove()
+        }
+        await category.remove()
+        res.json({message: "Category removed"})
+    }
+    else {
+        res.status(404)
+        throw new Error('Category not found')
+    }
+})
+
 export {
     getBrand, getBrandByPathName, addBrand, getProductListByPathname,
-    getProductListByBrandAndCatePathName, addCategory
+    getProductListByBrandAndCatePathName, addCategory, deleteBrandByPathName,
+    deleteCateByPathName
 }

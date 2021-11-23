@@ -8,6 +8,18 @@ import {
   CATE_LIST_PRODUCTS_FAIL,
   CATE_LIST_PRODUCTS_REQUEST,
   CATE_LIST_PRODUCTS_SUCCESS,
+  CREATE_BRAND_FAIL,
+  CREATE_BRAND_REQUEST,
+  CREATE_BRAND_SUCCESS,
+  CREATE_CATEGORY_FAIL,
+  CREATE_CATEGORY_REQUEST,
+  CREATE_CATEGORY_SUCCESS,
+  DELETE_BRAND_FAIL,
+  DELETE_BRAND_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_REQUEST,
+  DELETE_CATEGORY_SUCCESS,
+  DELETE_CATEGORY_FAIL,
 } from "../constants/brandConstants";
 
 export const brandListReducers = (state = { brands: [] }, action) => {
@@ -53,3 +65,55 @@ export const productsListOfCateReducers = (
       return state;
   }
 };
+
+export const addOneBrandReducer = (state ={}, action) => {
+  switch (action.type) {
+    case CREATE_BRAND_REQUEST:
+      return { loading: true }
+    case CREATE_BRAND_SUCCESS:
+      return { loading: false, success: true }
+    case CREATE_BRAND_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const addOneCategoryReducer = (state ={}, action) => {
+  switch (action.type) {
+    case CREATE_CATEGORY_REQUEST:
+      return { loading: true }
+    case CREATE_CATEGORY_SUCCESS:
+      return { loading: false, success: true }
+    case CREATE_CATEGORY_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const deleteOneBrandReducer = (state = {}, action) => {
+  switch(action.type) {
+    case DELETE_BRAND_REQUEST:
+      return { loading: true }
+    case DELETE_BRAND_SUCCESS:
+      return { loading: false, success: true }
+    case DELETE_BRAND_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const deleteOneCategoryReducer = (state = {}, action) => {
+  switch(action.type) {
+    case DELETE_CATEGORY_REQUEST:
+      return { loading: true }
+    case DELETE_CATEGORY_SUCCESS:
+      return { loading: false, success: true }
+    case DELETE_CATEGORY_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
