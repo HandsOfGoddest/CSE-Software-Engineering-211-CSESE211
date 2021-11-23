@@ -29,12 +29,13 @@ function Header () {
     <div className="header">
       <Link to="/">
         <img src="images/logo.png" alt="logo" className="logo" />
+
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({history}) => <SearchBox history={history}/>} />
-
+      <div className="space"></div>
       <Link to="/datban">
-        <p>Đặt bàn</p>
+        <p className="datban">Đặt bàn</p>
       </Link>
       <div className="cart-info">
         
@@ -43,15 +44,19 @@ function Header () {
         </Link>
       </div>
       {userInfo ? (
-        <NavDropdown title={userInfo.name} id="username">
+        <>
+        <NavDropdown title={userInfo.name} id="username" >
+         
+          <NavDropdown.Item>{userInfo.name}</NavDropdown.Item>
           <LinkContainer to="/profile">
             <NavDropdown.Item>Profile</NavDropdown.Item>
           </LinkContainer>
           <NavDropdown.Item onClick={logoutHandler}> Logout </NavDropdown.Item>
-        </NavDropdown>
+          </NavDropdown>
+          </>
       ) : (
         <Link to="/login">
-          <p>LogIn</p>
+          <p className="login">Login</p>
         </Link>
       )}
 

@@ -1,11 +1,11 @@
 const products = [
   {
     name: "Cà phê đen đá",
-    image: "/images/coffee/1.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "Cà phê đen đá - ai đen thì bị đá",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "tea",
     price: 45000,
     countInStock: 20,
     rating: 1.5,
@@ -13,11 +13,11 @@ const products = [
   },
   {
     name: "Latte đá",
-    image: "/images/coffee/2.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "......",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "tea",
     price: 60000,
     countInStock: 0,
     rating: 1.5,
@@ -25,11 +25,11 @@ const products = [
   },
   {
     name: "Caramel Machiato",
-    image: "/images/coffee/3.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "milk",
     price: 65000,
     countInStock: 20,
     rating: 1.5,
@@ -38,11 +38,11 @@ const products = [
   {
 
     name: "Cà phê đen nóng",
-    image: "/images/coffee/4.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       "....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "coffee",
     price: 45000,
     countInStock: 20,
     rating: 2.5,
@@ -50,12 +50,12 @@ const products = [
   },
   {
 
-    name: "Cà phê sữa đá",
-    image: "/images/coffee/5.png",
+    name: "Gà rán",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Chicken",
+    category: "chicken",
     price: 50000,
     countInStock: 20,
     rating: 2.5,
@@ -63,12 +63,12 @@ const products = [
   },
   {
 
-    name: "Ameracano đá",
-    image: "/images/coffee/6.png",
+    name: "Gà luộc",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Chicken",
+    category: "kkk",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
@@ -76,25 +76,24 @@ const products = [
   },
   {
 
-    name: "Cà phê sữa đá chai",
-    image: "/images/coffee/7.png",
+    name: "Gạo",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Rice",
+    category: "Gạo",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
     numReviews: 12,
   },
   {
-
     name: "Bạc sỉu nóng",
-    image: "/images/coffee/8.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 2.5,
@@ -103,11 +102,11 @@ const products = [
    {
 
     name: "Latte nóng",
-    image: "/images/coffee/9.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,
@@ -116,11 +115,11 @@ const products = [
     {
 
     name: "Bạc sỉu đá",
-    image: "/images/coffee/10.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
      ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,
@@ -129,11 +128,11 @@ const products = [
     {
 
     name: "Cacao nóng",
-    image: "/images/coffee/11.png",
+    image: "https://onecoffee.vn/wp-content/uploads/2020/12/Hinh1-Huong-vi-thom-ngon-cua-Cafe-Moka.jpg",
     description:
       ".....",
-    brand: "Luân Lộ Liễu",
-    category: "Cà phê",
+    brandName: "Drink",
+    category: "coffee",
     price: 55000,
     countInStock: 20,
     rating: 1.5,
