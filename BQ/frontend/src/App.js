@@ -15,6 +15,7 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import CategoryScreen from "./screens/CategoryScreen"
 
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
         <Container style={{ marginTop: "70px" }}>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/search/:keyword" component={HomeScreen} />
-          <Route path='/' component={HomeScreen} exact />
+          <Route path='/' component={CategoryScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/brand/:id/list_product/' component={Hello} />
           <Route path='/brand/:id/list_product_sort_by/:category' component={AfterPickCategory} />
