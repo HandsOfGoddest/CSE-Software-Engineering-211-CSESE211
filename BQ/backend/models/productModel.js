@@ -25,15 +25,18 @@ const productSchema = mongoose.Schema({
     },
     image:{
         type: String,
-        required: true
+        required: true,
+        default: "https://quangbinhtourism.vn/wp-content/uploads/2019/06/default-image.png"
     },
     brandName: {
         type: String,
-        required: true
+        required: true,
+        ref: 'Brand'
     },
     category:{
         type: String,
         required: true,
+        ref: 'Category'
     },
     description:{
         type: String,

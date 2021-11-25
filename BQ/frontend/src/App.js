@@ -26,8 +26,8 @@ const App = () => {
           <Route path="/search/:keyword" component={HomeScreen} />
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/brand/:id/list_product/' component={Hello} />
-          <Route path='/brand/:id/list_product_sort_by/:category' component={AfterPickCategory} />
+          <Route path='/brand/:pathName/list_product/' component={Hello} />
+          <Route path='/brand/:pathName/list_product_sort_by/:catePathName' component={AfterPickCategory} />
           <Route path='/search/:keyword' component={HomeScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/payment' component={PaymentScreen} />
