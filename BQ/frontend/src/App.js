@@ -17,6 +17,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import ListBrand from "./components/ListBrand";
 import ListCategory from "./components/ListCategory";
+import OrderList from "./components/OrderList";
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/listbrand' component={ListBrand} />
           <Route path='/listcate/:brandPathName' component={ListCategory} />
+          <Route path='/orderlist' component={OrderList} />
         </Container>
       </main>
 
