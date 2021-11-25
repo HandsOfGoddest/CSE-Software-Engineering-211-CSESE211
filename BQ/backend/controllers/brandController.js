@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import Brand from '../models/brandModel.js'
-
+import Product from '../models/productModel.js'
+import Category from '../models/categoryModel.js'
 
 // @desc    Fetch all brands
 // @route   GET /api/brands
@@ -24,10 +25,9 @@ const getBrandByPathName = asyncHandler(async(req, res) => {
 
 
 const addBrand = asyncHandler(async(req, res) => {
-    const { name, pathName } = req.body
-    const brandPathNameExists = await Brand.find({pathName})
-    const brandNameExists = await Brand.find({name})
-
+    const { brandName, pathName, image } = req.body
+    const brandPathNameExists = await Brand.findOne({pathName})
+    const brandNameExists = await Brand.findOne({brandName})
     if (brandPathNameExists) {
         res.status(400)
         throw new Error('Pathname already existed')
@@ -39,18 +39,18 @@ const addBrand = asyncHandler(async(req, res) => {
     }
 
     const newBrand = await Brand.create({
-        name,
+        brandName,
         pathName,
-        image,
-        hasProducts
+        image
     })
 
     if (newBrand) {
+        await newBrand.save()
         res.status(201).json({
             _id: newBrand._id,
-            name: newBrand.name,
+            brandName: newBrand.brandName,
             pathName: newBrand.pathName,
-            hasProducts: newBrand.hasProducts
+            image: newBrand.image
         })
     }
     else {
@@ -59,6 +59,106 @@ const addBrand = asyncHandler(async(req, res) => {
     }
 })
 
+const getProductListByPathname = asyncHandler(async(req, res) => {
+    const brand = await Brand.findOne({pathName: `${req.params.pathName}`})
+    if (brand) {
+        const productList = await Product.find({brandName: brand.brandName})
+        res.json(productList)
+    }
+    else {
+        res.status(404)
+        throw new Error('Brand not found!')
+    }
+})
+
+const getProductListByBrandAndCatePathName = asyncHandler(async(req, res) => {
+    const brand = await Brand.findOne({pathName: req.params.pathName})
+    const category = await Category.findOne({catePathName: req.params.catePathName})
+    if (brand && category) {
+        const productList = await Product.find({brandName: brand.brandName, category: category.cateName})
+        res.json(productList)
+    }
+    else {
+        res.status(404)
+        throw new Error('Brand or category not found!')
+    }
+
+})
+
+const addCategory = asyncHandler(async(req, res) => {
+    const { cateName, catePathName, brandName, image } = req.body
+    const categoryPathNameExists = await Category.findOne({catePathName})
+    const brand = await Brand.findOne({brandName})
+    if (!brand) {
+        res.status(400)
+        throw new Error('Brandname is not existed')
+    }
+    if (categoryPathNameExists) {
+        res.status(400)
+        throw new Error('Pathname already existed')
+    }
+
+    const newCategory = await Category.create({
+        cateName,
+        catePathName,
+        brandName,
+        image
+    })
+
+    if (newCategory) {
+        await newCategory.save()
+        res.status(201).json({
+            _id: newCategory._id,
+            cateName: newCategory.cateName,
+            catePathName: newCategory.catePathName,
+            brandName: newCategory.brandName,
+            image: newCategory.image
+        })
+    }
+    else {
+        res.status(400)
+        throw new Error('Invalid data')
+    }
+})
+
+const deleteBrandByPathName = asyncHandler(async(req, res) => {
+    const brand = await Brand.findOne({pathName: req.params.id})
+    const categories = await Category.find({brandName: brand.brandName})
+    const products = await Product.find({brandName: brand.brandName})
+    if (brand) {
+        for (let i=0; i<categories.length; i++) {
+            await categories[i].remove()
+        }
+        for (let i=0; i<products.length; i++) {
+            await products[i].remove()
+        }
+        await brand.remove()
+        res.json({message: "Brand removed"})
+    }
+    else {
+        res.status(404)
+        throw new Error('Brand not found')
+    }
+})
+
+const deleteCateByPathName = asyncHandler(async(req, res) => {
+    const category = await Category.find({catePathName: req.params.pathName})
+    const products = await Product.find({category: category.cateName})
+    if (category) {
+        for (let i=0; i<products.length; i++) {
+            await products[i].remove()
+        }
+        await category.remove()
+        res.json({message: "Category removed"})
+    }
+    else {
+        res.status(404)
+        throw new Error('Category not found')
+    }
+})
+
 export {
-    getBrand, getBrandByPathName, addBrand
+    getBrand, getBrandByPathName, addBrand, getProductListByPathname,
+    getProductListByBrandAndCatePathName, addCategory, deleteBrandByPathName,
+    deleteCateByPathName
 }

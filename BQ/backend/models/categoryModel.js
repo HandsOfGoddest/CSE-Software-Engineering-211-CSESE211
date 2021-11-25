@@ -1,15 +1,19 @@
 import mongoose from 'mongoose';
 
-const brandSchema = mongoose.Schema({
-    brandName: {
+const categorySchema = mongoose.Schema({
+    cateName: {
+        type: String,
+        required: true
+    },
+    catePathName: {
         type: String,
         required: true,
         unique: true
     },
-    pathName: {
+    brandName: {
         type: String,
         required: true,
-        unique: true
+        ref: 'Brand'
     },
     image: {
         type: String,
@@ -22,6 +26,6 @@ const brandSchema = mongoose.Schema({
 
 
 
-const Brand = mongoose.model('Brand', brandSchema)
+const Category = mongoose.model('Category', categorySchema)
 
-export default Brand
+export default Category

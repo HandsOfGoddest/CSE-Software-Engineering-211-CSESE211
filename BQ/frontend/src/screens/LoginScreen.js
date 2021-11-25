@@ -81,7 +81,7 @@ const LoginScreen = ({ location, history }) => {
         </Button>
       </Form>
 
-      <Row classNamr="py-3">
+      <Row className="py-3">
         <Col>
           New Customer ?{" "}
           <Link
