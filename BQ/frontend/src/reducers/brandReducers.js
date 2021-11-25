@@ -20,9 +20,12 @@ import {
   DELETE_CATEGORY_REQUEST,
   DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAIL,
+  CATEGORY_LIST_REQUEST,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_LIST_FAIL,
 } from "../constants/brandConstants";
 
-export const brandListReducers = (state = { brands: [] }, action) => {
+export const brandListReducers = (state = {}, action) => {
   switch (action.type) {
     case BRAND_LIST_REQUEST:
       return { loading: true, brands: [] };
@@ -34,6 +37,19 @@ export const brandListReducers = (state = { brands: [] }, action) => {
       return state;
   }
 };
+
+export const cateListReducer = (state = {}, action) => {
+  switch(action.type) {
+    case CATEGORY_LIST_REQUEST:
+      return { loading: true }
+    case CATEGORY_LIST_SUCCESS:
+      return { loading: false, categoryList: action.payload }
+    case CATEGORY_LIST_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
 
 export const productsListOfBrandReducers = (
   state = { ProductsOfBrand: [] },

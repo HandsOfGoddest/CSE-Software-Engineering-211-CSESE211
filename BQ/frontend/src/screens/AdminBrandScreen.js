@@ -4,25 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserDetails} from "../actions/userActions";
-import { listBrands, listCate} from "../actions/brandActions";
+import { getUserDetails, updateUserProfile } from "../actions/userActions";
+import {  listCate, listBrands } from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
-const AdminScreen = ({ history }) => {
-  
+const AdminBrandScreen = ({ history, match }) => {
+    
     const dispatch = useDispatch();
-  
+
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
   
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
-    const brandList = useSelector((state) => state.brandList || {})
-    const { loading: loadingBrands, error: errorBrands, brands} = brandList
-
-    const cateList = useSelector((state) => state.cateList)
+    const cateList = useSelector((state) => state.cateList || {})
     const { loading: loadingCates, error: errorCates, categoryList} = cateList
+    console.log(categoryList)
+    console.log(match.params.name)
 
     useEffect(() => {
       if (!userInfo) {
@@ -31,30 +30,31 @@ const AdminScreen = ({ history }) => {
       else {
         if (!user?.name) {
           dispatch(getUserDetails('profile'));
-         
-        }  
+        } 
+        console.log('listcase')
+        dispatch(listCate(match.params.name))
         dispatch(listBrands());
+        
     }
-    }, [dispatch, history, userInfo, user]);
+    }, [dispatch,match, history, userInfo, user]);
   
 
-    const removeBrandHandler = (id) => {
-        console.log("delete brand")
+    const removeCateHandler = (id) => {
+        console.log("delete cate")
     }
-
     
     return(
-        loading?<></>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
+        loadingCates?<Loader/>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
         <Row style = {{marginTop:"100px"}}>
             <Row>
-            {loadingBrands ? <Loader/> : errorBrands ? <Message variant='danger'>{errorBrands}</Message> : (
+            {loadingCates ? <Loader/> : errorCates ? <Message variant='danger'>{errorCates}</Message> : (
                 <Col>
                     <Row>
                         <Col md={8}>
-                            <h2>Brands</h2>
+                            <h2>{`Catagorys of ${match.params.name}`}</h2>
                         </Col>
                         <Col md={4}>
-                            <button type="button" className="btn btn-success">Add Brand + </button>
+                            <button type="button" class="btn btn-success">Add Category + </button>
                         </Col>
                     </Row>
                     <Row>
@@ -63,19 +63,19 @@ const AdminScreen = ({ history }) => {
                             <thead>
                                 <tr>
                                 <th>ID</th>
-                                <th>Name Brand</th>
+                                <th>Name Category</th>
                                 <th>
                                 
                                 </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {brands.map(brand => (
-                                <tr key={brand._id}>
-                                    <td>{brand._id}</td>
-                                    <td><Link to={`/admin/cate/${brand.pathName}`}>{brand.brandName}</Link></td>
+                                {categoryList.map(cate => (
+                                <tr key={cate._id}>
+                                    <td>{cate._id}</td>
+                                    <td><Link to={`/admin/product/${match.params.name}/${cate.cateName}`}>{cate.cateName}</Link></td>
                                     <td>
-                                    <Button type='button' variant='light' onClick={() => removeBrandHandler(brand._id)}><i className='fas fa-trash'></i></Button>
+                                    <Button type='button' variant='light' onClick={() => removeCateHandler(cate._id)}><i className='fas fa-trash'></i></Button>
                                     </td>
                                 </tr>
                                 ))}
@@ -94,5 +94,5 @@ const AdminScreen = ({ history }) => {
 
     
   
-  export default AdminScreen;
+  export default AdminBrandScreen;
   

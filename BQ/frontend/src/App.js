@@ -4,6 +4,9 @@ import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
+import AdminScreen from "./screens/AdminScreen";
+import AdminProductScreen from "./screens/AdminProductScreen";
+import AdminBrandScreen from "./screens/AdminBrandScreen";
 import ProductScreen from "./screens/ProductScreen";
 import Hello from "./components/getListProductOfBrand";
 import AfterPickCategory from "./components/getListProductByCategoryOfBrand";
@@ -15,6 +18,8 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import ListBrand from "./components/ListBrand";
+import ListCategory from "./components/ListCategory";
 
 const App = () => {
   return (
@@ -22,6 +27,9 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container style={{ marginTop: "70px" }}>
+          <Route path="/admin/product/:pathname/:catename" component={AdminProductScreen} />
+          <Route path="/admin/cate/:name" component={AdminBrandScreen} />
+          <Route path="/admin/brand" component={AdminScreen} />
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/search/:keyword" component={HomeScreen} />
           <Route path='/' component={HomeScreen} exact />
@@ -36,6 +44,8 @@ const App = () => {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/listbrand' component={ListBrand} />
+          <Route path='/listcate/:brandPathName' component={ListCategory} />
         </Container>
       </main>
 

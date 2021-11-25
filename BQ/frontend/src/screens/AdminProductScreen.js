@@ -5,10 +5,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails} from "../actions/userActions";
-import { listBrands, listCate} from "../actions/brandActions";
+import { listBrands, listCate, listProductsOfCate} from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
-const AdminScreen = ({ history }) => {
+const AdminScreen = ({ history, match }) => {
   
     const dispatch = useDispatch();
   
@@ -21,8 +21,11 @@ const AdminScreen = ({ history }) => {
     const brandList = useSelector((state) => state.brandList || {})
     const { loading: loadingBrands, error: errorBrands, brands} = brandList
 
-    const cateList = useSelector((state) => state.cateList)
+    const cateList = useSelector((state) => state.cateList || {})
     const { loading: loadingCates, error: errorCates, categoryList} = cateList
+
+    const productList = useSelector((state => state.productsListOfCate) || {})
+    const { loading: loadingProducts, error: errorProducts, productsOfCate} = productList
 
     useEffect(() => {
       if (!userInfo) {
@@ -33,13 +36,13 @@ const AdminScreen = ({ history }) => {
           dispatch(getUserDetails('profile'));
          
         }  
-        dispatch(listBrands());
+        dispatch(listProductsOfCate(match.params.pathname, match.params.catename))
     }
-    }, [dispatch, history, userInfo, user]);
+    }, [dispatch,match, history, userInfo, user]);
   
 
-    const removeBrandHandler = (id) => {
-        console.log("delete brand")
+    const removeProductHandler = (id) => {
+        console.log("delete product")
     }
 
     
@@ -47,14 +50,14 @@ const AdminScreen = ({ history }) => {
         loading?<></>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
         <Row style = {{marginTop:"100px"}}>
             <Row>
-            {loadingBrands ? <Loader/> : errorBrands ? <Message variant='danger'>{errorBrands}</Message> : (
+            {loadingProducts ? <Loader/> : errorProducts ? <Message variant='danger'>{errorProducts}</Message> : (
                 <Col>
                     <Row>
                         <Col md={8}>
-                            <h2>Brands</h2>
+                            <h2>{`Products of Category ${match.params.catename} of Brand ${match.params.pathname}`}</h2>
                         </Col>
                         <Col md={4}>
-                            <button type="button" className="btn btn-success">Add Brand + </button>
+                            <button type="button" className="btn btn-success">Add Product + </button>
                         </Col>
                     </Row>
                     <Row>
@@ -63,19 +66,21 @@ const AdminScreen = ({ history }) => {
                             <thead>
                                 <tr>
                                 <th>ID</th>
-                                <th>Name Brand</th>
-                                <th>
-                                
-                                </th>
+                                <th>Name Product</th>
+                                <th>Price</th>
+                                <th>Count In Stock</th>
+                                <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {brands.map(brand => (
-                                <tr key={brand._id}>
-                                    <td>{brand._id}</td>
-                                    <td><Link to={`/admin/cate/${brand.pathName}`}>{brand.brandName}</Link></td>
+                                {productsOfCate.map(product => (
+                                <tr key={product._id}>
+                                    <td>{product._id}</td>
+                                    <td>{product.name}</td>
+                                    <td>{product.price}</td>
+                                    <td>{product.countInStock}</td>
                                     <td>
-                                    <Button type='button' variant='light' onClick={() => removeBrandHandler(brand._id)}><i className='fas fa-trash'></i></Button>
+                                    <Button type='button' variant='light' onClick={() => removeProductHandler(product._id)}><i className='fas fa-trash'></i></Button>
                                     </td>
                                 </tr>
                                 ))}
