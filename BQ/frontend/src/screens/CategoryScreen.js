@@ -3,41 +3,40 @@ import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { Form } from "react-bootstrap";
 import { listProducts } from "../actions/productActions";
-import { listBrands } from "../actions/brandActions";
+import { listBrands , listProductsOfBrand} from "../actions/brandActions";
 import Brand from "../components/Brand";
-import Product from "../components/Product";
+import  Hello from "../components/getListProductOfBrand";
 
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
 
 const CategoryScreen = () => {
+
   const dispatch = useDispatch();
-
-  const productList = useSelector((state) => state.productList || {});
-
-  const { loading, error, products } = productList;
 
   const brandList = useSelector((state) => state.brandList || {});
 
   const { brands } = brandList;
 
+
   useEffect(() => {
     //dispatch(listProducts());
     dispatch(listBrands());
+   
   }, [dispatch]);
-  const element = <Welcome name="Sara" />;
+  
 
   return (
     <>
       <div id="food-list">
-        {brands.map((product) => (
-          <div key={product._id}>
-            <Brand brand={product} />
+        {brands.map((brand) => (
+          <div key={brand._id}>
+            <Brand brand={brand} />
+             <Hello match={brand}/>
           </div>
         ))}
       </div>
      
+
+    
     </>
      
   );

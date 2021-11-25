@@ -10,19 +10,10 @@ import Product from "../components/Product";
 import "./MyStyle.css";
 
 const Brand = ({ brand }) => {
-  const dispatch = useDispatch();
-  const productList = useSelector((state) => state.productList || {});
-
-  const { loading, error, products } = productList;
-
-  useEffect(() => {
-    dispatch(listProducts());
-  }, [dispatch]);
-
   return (
-    <>
+    <Link to = {``}>
       <img className="product-image" src={brand.image} variant="top" />
-    </>
+    </Link>
   );
 };
 
