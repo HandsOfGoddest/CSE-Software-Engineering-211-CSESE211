@@ -181,7 +181,7 @@ export const deleteBrand = (brandPathName) => async (dispatch, getState) => {
     })
   }
 };
-export const deleteBrand = (catePathName) => async (dispatch, getState) => {
+export const deleteCategory = (catePathName) => async (dispatch, getState) => {
   try {
     dispatch({
       type: DELETE_CATEGORY_REQUEST,
