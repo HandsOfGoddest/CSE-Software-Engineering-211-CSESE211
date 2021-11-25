@@ -28,7 +28,7 @@ function Header () {
   return (
     <div className="header">
       <Link to="/">
-        <img src="images/logo.png" alt="logo" className="logo" />
+        <img src="/images/logo.png" alt="logo" className="logo" />
 
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
