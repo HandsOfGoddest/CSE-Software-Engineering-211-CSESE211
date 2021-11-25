@@ -63,10 +63,10 @@ shippingAddress: {
      paidAt: {
       type: Date,
     },
-    isDelivered: {
-        type: Boolean,
-        required: true,
-        default: false,
+    status: {
+      type: String,
+      required: true,
+      default: "Chưa xác nhận"
     },
     deliveredAt: {
       type: Date,

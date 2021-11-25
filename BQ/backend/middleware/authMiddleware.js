@@ -39,4 +39,13 @@ const checkAdmin = asyncHandler(async (req, res, next) => {
   }
 })
 
-export { protect, checkAdmin };
+const checkClerk = asyncHandler(async(req, res, next) => {
+  if (req.user && (req.user.isAdmin || req.user.isClerk)) {
+    next()
+  }
+  else {
+    res.status(401)
+    throw new Error("Not authorization as an Admin or a Clerk")
+  }
+})
+export { protect, checkAdmin, checkClerk };
