@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
+import Footer from "../components/Footer";
 import { Row, Col } from "react-bootstrap";
 import Advertisement from "../components/Advertisement";
 import Category from "../components/Category";

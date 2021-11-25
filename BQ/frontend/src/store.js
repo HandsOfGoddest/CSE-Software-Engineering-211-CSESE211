@@ -7,7 +7,7 @@ import {userLoginReducer, userRegisterReducer,
 userDetailsReducer,
 userUpdateProfileReducer,
 } from './reducers/userReducers'
-import { getTableReducer, reservationCreateReducer } from './reducers/tableReservationReducers'
+
 import { cartReducer, cartListMyReducer, updateCartReducer } from './reducers/cartReducers'
 import { 
         orderCreateReducer, 
@@ -33,9 +33,6 @@ const reducer = combineReducers({
     orderListMy: orderListMyReducer,
     cartListMy: cartListMyReducer,
     updateCart: updateCartReducer,
-    getTable1: getTableReducer,
-    reservationCreate: reservationCreateReducer
-
 })
 
 

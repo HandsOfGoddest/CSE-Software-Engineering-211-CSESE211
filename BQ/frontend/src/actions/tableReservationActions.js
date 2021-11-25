@@ -1,68 +1,22 @@
-import axios from 'axios'
-
-import {
-    RES_CREATE_FAIL,
-    RES_CREATE_REQUEST,
-    RES_CREATE_SUCCESS,
-    TABLE_FAIL,
-    TABLE_REQUEST,
-    TABLE_SUCCESS, 
-} from '../constants/tableReservationConstants';
+import axios from "axios";
+import { TABLE_LIST_FAIL, TABLE_LIST_REQUEST, TABLE_LIST_SUCCESS} from "../constants/tableReservationConstants";
 
 
-export const createReservation = (tableNum, time) => async (dispatch, getState) => {
+export const listTables = () => async (dispatch) => {
     try {
+      dispatch({ type: TABLE_LIST_REQUEST})
+      const { data } = await axios.get('/api/tables')
       dispatch({
-        type: RES_CREATE_REQUEST
+        type: TABLE_LIST_SUCCESS,
+        payload: data
       })
-
-      const {
-        userLogin: {userInfo},
-      } = getState()
-  
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userInfo.token}`,
-        },
-      };
-
-      const { data } = await axios.post(`/api/tables/create`, {tableNum, time}, config);
-
-      dispatch({
-        type: RES_CREATE_SUCCESS,
-        payload: data,
-      });
     } catch (error) {
       dispatch({
-        type: RES_CREATE_FAIL,
+        type: TABLE_LIST_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
-
-export const getTable = (time) => async (dispatch, getState) => {
-    try {
-      dispatch({
-        type: TABLE_REQUEST
+            : error.message
       })
-
-      const { data } = await axios.post(`/api/tables/search`, {time});
-
-      dispatch({
-        type: TABLE_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: TABLE_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
     }
-  };
+}

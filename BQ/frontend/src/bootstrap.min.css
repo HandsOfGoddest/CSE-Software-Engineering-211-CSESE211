@@ -648,6 +648,7 @@
      --bs-gutter-y: 0;
      display: -ms-flexbox;
      display: flex;
+     align-items: center;
      -ms-flex-wrap: wrap;
      flex-wrap: wrap;
      margin-top: calc(-1 * var(--bs-gutter-y));
@@ -1204,7 +1205,8 @@
      .col-md-8 {
          -ms-flex: 0 0 auto;
          flex: 0 0 auto;
-         width: 66.666667%
+         width: 50%;
+         margin-left: 120px;
      }
  
      .col-md-9 {
@@ -2253,6 +2255,10 @@
      appearance: none;
      border-radius: .25rem;
      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+ }
+ select.form-control{
+    width: 100px;
+    text-align: center;
  }
  
  @media (prefers-reduced-motion:reduce) {
@@ -8206,7 +8212,8 @@
  
  .px-3 {
      padding-right: 1rem !important;
-     padding-left: 1rem !important
+     padding-left: 1rem !important;
+
  }
  
  .px-4 {
@@ -8236,7 +8243,9 @@
  
  .py-3 {
      padding-top: 1rem !important;
-     padding-bottom: 1rem !important
+     padding-bottom: 1rem !important;
+     margin-bottom: 100px;
+     height: max-content;
  }
  
  .py-4 {
