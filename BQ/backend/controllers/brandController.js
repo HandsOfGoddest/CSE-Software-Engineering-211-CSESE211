@@ -73,7 +73,7 @@ const getProductListByPathname = asyncHandler(async(req, res) => {
 
 const getProductListByBrandAndCatePathName = asyncHandler(async(req, res) => {
     const brand = await Brand.findOne({pathName: req.params.pathName})
-    const category = await Category.findOne({cateName: req.params.cateName})
+    const category = await Category.findOne({catePathName: req.params.catePathName})
     if (brand && category) {
         const productList = await Product.find({brandName: brand.brandName, category: category.cateName})
         res.json(productList)

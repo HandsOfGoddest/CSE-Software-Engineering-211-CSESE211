@@ -10,7 +10,7 @@ router.route('/:id').get(getBrandByPathName).delete(protect, checkAdmin, deleteB
 
 router.route('/getproducts/:pathName').get(getProductListByPathname)
 
-router.route('/getproducts/:pathName/:cateName').get(getProductListByBrandAndCatePathName)
+router.route('/getproducts/:pathName/:catePathName').get(getProductListByBrandAndCatePathName)
 
 router.route('/add').post(protect, checkAdmin, addBrand)
 
