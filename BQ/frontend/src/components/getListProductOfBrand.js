@@ -3,7 +3,6 @@ import { Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductsOfBrand } from "../actions/brandActions";
 import Product from "./Product";
-import { Link } from "react-router-dom";
 import Advertisement from "./Advertisement";
 import Cate from "./Cate";
 import { listCate } from "../actions/brandActions";
@@ -17,6 +16,8 @@ function Hello({ match }) {
 
   const cateList = useSelector((state) => state.cateList);
   const { categoryList } = cateList;
+
+  console.log("hihi", ProductsOfBrand)
 
   useEffect(() => {
     dispatch(listProductsOfBrand(match.params.pathName));
@@ -37,7 +38,7 @@ function Hello({ match }) {
       </div>
 
       <div id="food-list">
-        {ProductsOfBrand.map((product) => (
+        {(ProductsOfBrand||[]).map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>

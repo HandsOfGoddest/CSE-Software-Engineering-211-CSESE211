@@ -1,3 +1,4 @@
+
 import {
   BRAND_LIST_FAIL,
   BRAND_LIST_PRODUCTS_FAIL,
@@ -18,11 +19,11 @@ import {
   DELETE_BRAND_REQUEST,
   DELETE_BRAND_SUCCESS,
   DELETE_CATEGORY_REQUEST,
-  DELETE_CATEGORY_SUCCESS,
   DELETE_CATEGORY_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
   CATEGORY_LIST_FAIL,
+  DELETE_CATEGORY_SUCCESS,
 } from "../constants/brandConstants";
 
 export const brandListReducers = (state = {}, action) => {

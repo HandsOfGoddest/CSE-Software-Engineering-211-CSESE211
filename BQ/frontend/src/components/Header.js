@@ -1,5 +1,5 @@
 import React from "react";
-import {Route} from 'react-router-dom'
+import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
@@ -9,17 +9,16 @@ import { logout } from "../actions/userActions";
 import { updateCart, removeAllCart } from "../actions/cartActions";
 import "./MyStyle.css";
 
-
-function Header () {
-  const dispatch = useDispatch()
+function Header() {
+  const dispatch = useDispatch();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const cart = useSelector((state) => state.cart)
-  const { cartItems} = cart
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   const logoutHandler = () => {
-    console.log(cartItems)
+    console.log(cartItems);
     dispatch(updateCart(cartItems));
     dispatch(removeAllCart());
     dispatch(logout());
@@ -28,37 +27,65 @@ function Header () {
   return (
     <div className="header">
       <Link to="/">
-        <img src="/images/logo.png" alt="logo" className="logo" />
-
+        <img src="images/logo.png" alt="logo" className="logo" />
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
-      <Route render={({history}) => <SearchBox history={history}/>} />
+      <Route render={({ history }) => <SearchBox history={history} />} />
       <div className="space"></div>
       <Link to="/datban">
         <p className="datban">Đặt bàn</p>
       </Link>
       <div className="cart-info">
-        
         <Link to="/cart">
           <img src="images/cart.png" alt="" className="cart" />
         </Link>
       </div>
       {userInfo ? (
         <>
-        <NavDropdown title={userInfo.name} id="username" >
-         
-          <NavDropdown.Item>{userInfo.name}</NavDropdown.Item>
-          <LinkContainer to="/profile">
-            <NavDropdown.Item>Profile</NavDropdown.Item>
-          </LinkContainer>
-          <NavDropdown.Item onClick={logoutHandler}> Logout </NavDropdown.Item>
+          <NavDropdown title={userInfo.name} id="username">
+            <LinkContainer to="/profile">
+              <NavDropdown.Item>Profile</NavDropdown.Item>
+            </LinkContainer>
+            <NavDropdown.Item onClick={logoutHandler}>
+              {" "}
+              Logout{" "}
+            </NavDropdown.Item>
           </NavDropdown>
-          </>
+        </>
       ) : (
         <Link to="/login">
           <p className="login">Login</p>
         </Link>
       )}
+      {userInfo && userInfo.isAdmin && (
+        <NavDropdown title="Admin" id="adminmenu">
+          <LinkContainer to="/admin/userlist">
+            <NavDropdown.Item>Danh sách người dùng</NavDropdown.Item>
+          </LinkContainer>
+          <LinkContainer to="/admin/productlist">
+            <NavDropdown.Item>Sản phẩm</NavDropdown.Item>
+          </LinkContainer>
+          <LinkContainer to="/admin/orderlist">
+            <NavDropdown.Item>Đơn đặt hàng</NavDropdown.Item>
+          </LinkContainer>
+        </NavDropdown>
+      )}
+      {userInfo &&
+        userInfo.isClerk &&
+        (console.log("hihu"),
+        (
+          <NavDropdown title="Clerk" id="clerkmenu">
+            <LinkContainer to="/clerk/userlist">
+              <NavDropdown.Item>1</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/clerk/productlist">
+              <NavDropdown.Item>2</NavDropdown.Item>
+            </LinkContainer>
+            <LinkContainer to="/clerk/orderlist">
+              <NavDropdown.Item>3</NavDropdown.Item>
+            </LinkContainer>
+          </NavDropdown>
+        ))}
 
       <img className="bar" src="images/bar.png" alt="bar" />
     </div>

@@ -10,13 +10,18 @@ userDetailsReducer,
 userUpdateProfileReducer,
 } from './reducers/userReducers'
 
-import { cartReducer, cartListMyReducer, updateCartReducer } from './reducers/cartReducers'
-import { 
-        orderCreateReducer, 
-        orderDetailsReducer,
-        orderPayReducer,
-        orderListMyReducer,
-    } from './reducers/orderReducers'
+
+import {
+  cartReducer,
+  cartListMyReducer,
+  updateCartReducer,
+} from "./reducers/cartReducers";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  orderListMyReducer,
+} from "./reducers/orderReducers";
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -47,31 +52,31 @@ const reducer = combineReducers({
 })
 
 
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-    ? JSON.parse(localStorage.getItem('cartItems'))
-    : []
+const cartItemsFromStorage = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
 
+const userInfoFromStorage = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo"))
+  : null;
 
-
-const userInfoFromStorage = localStorage.getItem('userInfo')
-? JSON.parse(localStorage.getItem('userInfo'))
-:null
-
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
-? JSON.parse(localStorage.getItem('shippingAddress'))
-:{}
+const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
+  ? JSON.parse(localStorage.getItem("shippingAddress"))
+  : {};
 
 const initialState = {
-    cart: {
-        cartItems: cartItemsFromStorage, 
-        shippingAddress: shippingAddressFromStorage,
-    },
-    userLogin: {userInfo: userInfoFromStorage},
-    
-}
+  cart: {
+    cartItems: cartItemsFromStorage,
+    shippingAddress: shippingAddressFromStorage,
+  },
+  userLogin: { userInfo: userInfoFromStorage },
+};
 
+const middleware = [thunk];
+const store = createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(applyMiddleware(...middleware))
+);
 
-const middleware = [thunk]
-const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(...middleware)))
-
-export default store
+export default store;

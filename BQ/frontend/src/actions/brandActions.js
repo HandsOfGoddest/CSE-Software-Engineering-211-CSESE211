@@ -6,6 +6,11 @@ import {
   BRAND_LIST_PRODUCTS_SUCCESS,
   BRAND_LIST_REQUEST,
   BRAND_LIST_SUCCESS,
+  CATEGORY_PRODUCTS_FAIL,
+  CATEGORY_PRODUCTS_REQUEST,
+  CATEGORY_PRODUCTS_SUCCESS,
+  SAVE_BRAND_FAIL,
+  SAVE_BRAND_REQUEST,
   CATE_LIST_PRODUCTS_FAIL,
   CATE_LIST_PRODUCTS_REQUEST,
   CATE_LIST_PRODUCTS_SUCCESS,
@@ -61,13 +66,20 @@ export const listCate = (brandPathName) => async (dispatch) => {
   }
 }
 
+
+
 export const listProductsOfBrand = (pathName) => async (dispatch) => {
   try {
     dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST });
-    const { data } = await axios.get(`/api/brands/getproducts/${pathName}`);
+    const { data } = await axios.get(`/api/brands/${pathName}`);
+    const temp_id = data.hasProducts;
+    let ans = [];
+    for (let i = 0; i < temp_id.length; i++) {
+      ans.push((await axios.get(`/api/products/${temp_id[i]}`)).data);
+    }
     dispatch({
       type: BRAND_LIST_PRODUCTS_SUCCESS,
-      payload: data,
+      payload: ans,
     });
   } catch (error) {
     dispatch({
@@ -77,8 +89,11 @@ export const listProductsOfBrand = (pathName) => async (dispatch) => {
           ? error.response.data.message
           : error.message,
     });
+
   }
-};
+}
+
+
 export const listProductsOfCate = (pathName, cateName) => async (dispatch) => {
   try {
     dispatch({ type: CATE_LIST_PRODUCTS_REQUEST });
@@ -208,8 +223,7 @@ export const deleteCategory = (catePathName) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-
-    const config = {
+ const config = {
       headers: {
         "Content-type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,

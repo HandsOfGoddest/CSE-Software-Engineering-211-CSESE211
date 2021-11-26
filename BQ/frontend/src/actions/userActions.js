@@ -20,7 +20,7 @@ import axios from 'axios'
 import { CART_UPDATE_REQUEST } from "../constants/cartConstant"
 
 
-export const login = (email, password) => async(dispatch) => {
+export const login = (userName, password) => async(dispatch) => {
     try{
         dispatch({
             type: USER_LOGIN_REQUEST
@@ -30,7 +30,7 @@ export const login = (email, password) => async(dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const {data} = await axios.post('/api/users/login', {email, password}, config)
+        const {data} = await axios.post('/api/users/login', {userName, password}, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -62,7 +62,7 @@ export const logout = () =>(dispatch) => {
 }
 
 
-export const register = (name,userName, email, password) => async (dispatch) => {
+export const register = (name,userName, email, password, phoneNumber, gender, dateOfBirth) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -76,7 +76,7 @@ export const register = (name,userName, email, password) => async (dispatch) => 
 
     const { data } = await axios.post(
       "/api/users",
-      { name, userName,email, password },
+      { name, userName,phoneNumber, gender, dateOfBirth,email, password },
       config
     );
 

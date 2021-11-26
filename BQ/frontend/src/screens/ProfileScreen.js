@@ -11,6 +11,10 @@ const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [dateOfBirth, setdateOfBirth] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState(null);
 
@@ -40,6 +44,10 @@ const ProfileScreen = ({ history }) => {
       } else {
         setName(user.name);
         setEmail(user.email);
+        setUserName(user.userName);
+        setGender(user.gender);
+        setPhoneNumber(user.phoneNumber);
+        setdateOfBirth(user.dateOfBirth);
       }
     }
   }, [dispatch, history, userInfo, user]);
@@ -49,7 +57,7 @@ const ProfileScreen = ({ history }) => {
     if (password !== confirmPassword) {
       setMessage("MẬT KHẨU KHÔNG KHỚP");
     } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }));
+      dispatch(updateUserProfile({ id: user._id, name, email, password, userName, phoneNumber, gender, dateOfBirth }));
     }
   };
 
@@ -65,8 +73,20 @@ const ProfileScreen = ({ history }) => {
           Cập nhật thay đổi thành công</Message>
         ) } 
         {loading && <Loader />}
-
+          <img src="images/avt.png" alt="avt" />    
+       
         <Form onSubmit={submitHandler}>
+          
+           <Form.Group controlId="userName">
+            <Form.Label>User Name</Form.Label>
+            <Form.Control
+              type="userName"
+              placeholder="user Name"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
           <Form.Group controlId="name">
             <Form.Label>Tên người dùng</Form.Label>
             <Form.Control
@@ -74,6 +94,36 @@ const ProfileScreen = ({ history }) => {
               placeholder="Nhập tên người dùng"
               value={name}
               onChange={(e) => setName(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="gender">
+            <Form.Label>Gender</Form.Label>
+            <Form.Control
+              type="gender"
+              placeholder="Gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="phoneNumber">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              type="phoneNumber"
+              placeholder="Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group controlId="dateOfBirth">
+            <Form.Label>Date Of Birth </Form.Label>
+            <Form.Control
+              type="dateOfBirth"
+              placeholder="Date Of Birth"
+              value={dateOfBirth}
+              onChange={(e) => setdateOfBirth(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
