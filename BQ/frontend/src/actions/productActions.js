@@ -116,7 +116,7 @@ export const addNewProduct = (name, image, description, price, countInStock, bra
   }
 }
 
-export const deleteBrand = (id) => async (dispatch, getState) => {
+export const deleteProduct = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: DELETE_PRODUCT_REQUEST,
