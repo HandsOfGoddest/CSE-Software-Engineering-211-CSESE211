@@ -8,6 +8,7 @@ import {productListReducer, productDetailsReducer, productReviewCreateReducer, a
 import {userLoginReducer, userRegisterReducer,
 userDetailsReducer,
 userUpdateProfileReducer,
+resetPassReducer,
 } from './reducers/userReducers'
 
 import { cartReducer, cartListMyReducer, updateCartReducer } from './reducers/cartReducers'
@@ -43,7 +44,8 @@ const reducer = combineReducers({
     deleteOneBrand: deleteOneBrandReducer,
     deleteOneCategory: deleteOneCategoryReducer,
     deleteOneProduct: deleteOneProductReducer,
-    updateOneProduct: updateOneProductReducer
+    updateOneProduct: updateOneProductReducer,
+    resetPass: resetPassReducer
 })
 
 

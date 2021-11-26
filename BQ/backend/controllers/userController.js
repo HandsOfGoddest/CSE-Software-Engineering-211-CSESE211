@@ -114,6 +114,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const resetPass = asyncHandler(async(req, res) => {
+    const user = await User.findOne({userName: req.body.userName, email: req.body.email})
+    if (user) {
+        user.password = req.body.password
+        await user.save()
+        res.status(200).json(req.body.password)
+    }
+    else {
+        res.status(401)
+        throw new Error("Username or email invalid!")
+    }
+})
 
-
-export {authUser,registerUser, getUserProfile, updateUserProfile}
+export {authUser,registerUser, getUserProfile, updateUserProfile, resetPass}
