@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails} from "../actions/userActions";
-import { listBrands, listCate} from "../actions/brandActions";
+import { listBrands, deleteBrand, addNewBrand} from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
 const AdminScreen = ({ history }) => {
@@ -18,11 +18,19 @@ const AdminScreen = ({ history }) => {
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
+    const deleteOneBrand = useSelector((state) => state.deleteOneBrand)
+    const {success: successDeleteBrand} = deleteOneBrand
+
+    const addOneBrand = useSelector((state) => state.addOneBrand)
+    const {success: successAddBrand} = addOneBrand
+
     const brandList = useSelector((state) => state.brandList || {})
     const { loading: loadingBrands, error: errorBrands, brands} = brandList
 
-    const cateList = useSelector((state) => state.cateList)
+    const cateList = useSelector((state) => state.cateList || {})
     const { loading: loadingCates, error: errorCates, categoryList} = cateList
+
+    
 
     useEffect(() => {
       if (!userInfo) {
@@ -31,15 +39,20 @@ const AdminScreen = ({ history }) => {
       else {
         if (!user?.name) {
           dispatch(getUserDetails('profile'));
-         
         }  
         dispatch(listBrands());
+
+        
+        if(successDeleteBrand){
+            dispatch(listBrands());
+        }
     }
-    }, [dispatch, history, userInfo, user]);
+    }, [dispatch, history, userInfo, user, successDeleteBrand, successAddBrand]);
   
 
-    const removeBrandHandler = (id) => {
+    const removeBrandHandler = (pathName) => {
         console.log("delete brand")
+        dispatch(deleteBrand(pathName));
     }
 
     
@@ -54,7 +67,7 @@ const AdminScreen = ({ history }) => {
                             <h2>Brands</h2>
                         </Col>
                         <Col md={4}>
-                            <button type="button" className="btn btn-success">Add Brand + </button>
+                            <button type="button" className="btn btn-success"><Link to={`/admin/add/brand`}>Add Brand +</Link></button>
                         </Col>
                     </Row>
                     <Row>
@@ -75,7 +88,7 @@ const AdminScreen = ({ history }) => {
                                     <td>{brand._id}</td>
                                     <td><Link to={`/admin/cate/${brand.pathName}`}>{brand.brandName}</Link></td>
                                     <td>
-                                    <Button type='button' variant='light' onClick={() => removeBrandHandler(brand._id)}><i className='fas fa-trash'></i></Button>
+                                    <Button type='button' variant='light' onClick={() => removeBrandHandler(brand.pathName)}><i className='fas fa-trash'></i></Button>
                                     </td>
                                 </tr>
                                 ))}

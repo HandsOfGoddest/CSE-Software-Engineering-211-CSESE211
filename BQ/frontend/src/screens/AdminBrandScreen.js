@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import {  listCate, listBrands } from "../actions/brandActions";
+import {  listCate, listBrands, deleteCategory } from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
 const AdminBrandScreen = ({ history, match }) => {
@@ -17,6 +17,16 @@ const AdminBrandScreen = ({ history, match }) => {
   
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
+
+    const brandList = useSelector((state) => state.brandList || {})
+    const { loading: loadingBrands, error: errorBrands, brands} = brandList
+
+    const deleteOneCategory = useSelector((state) => state.deleteOneCategory)
+    const {success: successDeleteCate} = deleteOneCategory
+
+    const addOneCategory = useSelector((state) => state.addOneCategory)
+    const {success: successAddCate} = addOneCategory
+
 
     const cateList = useSelector((state) => state.cateList || {})
     const { loading: loadingCates, error: errorCates, categoryList} = cateList
@@ -36,11 +46,12 @@ const AdminBrandScreen = ({ history, match }) => {
         dispatch(listBrands());
         
     }
-    }, [dispatch,match, history, userInfo, user]);
+    }, [dispatch,match, history, userInfo, user, successDeleteCate, successAddCate]);
   
 
-    const removeCateHandler = (id) => {
+    const removeCateHandler = (catePathName) => {
         console.log("delete cate")
+        dispatch(deleteCategory(catePathName))
     }
     
     return(
@@ -54,7 +65,7 @@ const AdminBrandScreen = ({ history, match }) => {
                             <h2>{`Catagorys of ${match.params.name}`}</h2>
                         </Col>
                         <Col md={4}>
-                            <button type="button" class="btn btn-success">Add Category + </button>
+                            <button type="button" class="btn btn-success"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
                         </Col>
                     </Row>
                     <Row>
@@ -65,7 +76,7 @@ const AdminBrandScreen = ({ history, match }) => {
                                 <th>ID</th>
                                 <th>Name Category</th>
                                 <th>
-                                
+                                Delete
                                 </th>
                                 </tr>
                             </thead>
@@ -75,7 +86,7 @@ const AdminBrandScreen = ({ history, match }) => {
                                     <td>{cate._id}</td>
                                     <td><Link to={`/admin/product/${match.params.name}/${cate.cateName}`}>{cate.cateName}</Link></td>
                                     <td>
-                                    <Button type='button' variant='light' onClick={() => removeCateHandler(cate._id)}><i className='fas fa-trash'></i></Button>
+                                    <Button type='button' variant='light' onClick={() => removeCateHandler(cate.catePathName)}><i className='fas fa-trash'></i></Button>
                                     </td>
                                 </tr>
                                 ))}
@@ -95,4 +106,3 @@ const AdminBrandScreen = ({ history, match }) => {
     
   
   export default AdminBrandScreen;
-  

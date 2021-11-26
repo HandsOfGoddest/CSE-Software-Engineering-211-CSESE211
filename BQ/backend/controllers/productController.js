@@ -77,7 +77,7 @@ const createProduct = asyncHandler(async(req, res) => {
   const brand = await Brand.findOne({pathName: req.params.brand})
   const category = await Category.findOne({catePathName: req.params.cate})
   const admin = await User.findOne({isAdmin: true})
-  if (brand && category && category.brandName === brand.brandName) {
+  if (brand && category && category.brandName === brand.pathName) {
     const newProduct = await Product.create({
       user: admin._id,
       name,
