@@ -34,7 +34,6 @@ const ShippingScreen = ({ history }) => {
             type="text"
             placeholder="Nhập địa chỉ"
             value={address}
-            required
             onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
@@ -45,32 +44,20 @@ const ShippingScreen = ({ history }) => {
             type="text"
             placeholder="Nhập thành phố"
             value={city}
-            required
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Form.Group controlId="postalCode">
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Nhập postalcode"
-            value={postalCode}
-            required
-            onChange={(e) => setPostalCode(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
+        <h1>On The Spot</h1>
         <Form.Group controlId="country">
-          <Form.Label>Quốc gia</Form.Label>
+          <Form.Label>Bàn</Form.Label>
           <Form.Control
             type="text"
             placeholder="Nhập quốc gia"
             value={country}
-            required
             onChange={(e) => setCountry(e.target.value)}
           ></Form.Control>
         </Form.Group>
+
 
 
         <Button type='submit' variant='primary'>

@@ -66,7 +66,7 @@ const AdminScreen = ({ history }) => {
                         <Col md={8}>
                             <h2>Brands</h2>
                         </Col>
-                        <Col md={4}>
+                        <Col md={2}>
                             <button type="button" className="btn btn-success"><Link to={`/admin/add/brand`}>Add Brand +</Link></button>
                         </Col>
                     </Row>

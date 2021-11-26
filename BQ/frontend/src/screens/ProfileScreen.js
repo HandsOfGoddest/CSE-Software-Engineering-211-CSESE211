@@ -5,7 +5,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { listMyOrders } from "../actions/orderActions";
+import { listMyOrders, updateOrder } from "../actions/orderActions";
 
 const ProfileScreen = ({ history }) => {
   const [name, setName] = useState("");
@@ -32,6 +32,9 @@ const ProfileScreen = ({ history }) => {
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
+  const updateOrderStatus = useSelector((state) => state.updateOrderStatus);
+  const {success: successUpdateOrder} = updateOrderStatus
+
   console.log(user)
   useEffect(() => {
     if (!userInfo) {
@@ -49,8 +52,11 @@ const ProfileScreen = ({ history }) => {
         setPhoneNumber(user.phoneNumber);
         setdateOfBirth(user.dateOfBirth);
       }
+      if(successUpdateOrder){
+        dispatch(listMyOrders())
+      }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user,successUpdateOrder]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -59,6 +65,11 @@ const ProfileScreen = ({ history }) => {
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password, userName, phoneNumber, gender, dateOfBirth }));
     }
+  };
+
+  const confirmHandler = (id) => {
+    console.log("cf")
+    dispatch(updateOrder(id, "Đã giao hàng"))
   };
 
   return(
@@ -169,10 +180,10 @@ const ProfileScreen = ({ history }) => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>DATE</th>
                 <th>TOTAL</th>
                 <th>PAID</th>
                 <th>DELIVERED</th>
+                <th></th>
                 <th></th>
               </tr>
             </thead>
@@ -180,18 +191,28 @@ const ProfileScreen = ({ history }) => {
               {orders.map(order => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
-                  <td>{order.isPaid ? order.paidAt.substring(0,10): (
+                  <td>{order.isPaid ? <i className='fas fa-check' style={{color: 'green'}}></i>: (
                     <i className='fas fa-times' style={{color: 'red'}}></i>
                   )}</td>
-                  <td>{order.isDelivered ? order.deliveredAt.substring(0,10): (
+                  <td>{order.status=="Đã giao hàng" ?<i className='fas fa-check' style={{color: 'green'}}></i> : (
                     <i className='fas fa-times' style={{color: 'red'}}></i>
                   )}</td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button variant='light'>Details</Button>
+                      <Button type='button' variant='light' style={{color: 'gray'},{width:'50%'}}>Details</Button>
                     </LinkContainer>
+                  </td>
+                  <td>
+                    {!order.isPaid?
+                    <Button type='button' variant='light' style={{color: 'gray'},{width:'100%'}}>Chưa thanh toán</Button>:
+                    order.status === "Chưa xác nhận"?
+                    <Button type='button'  style={{color: 'green'},{width:'100%'}} >Chưa được xác nhận</Button>:
+                    !(order.status === "Đã giao hàng")?
+                    <Button type='button'  style={{color: 'green'},{width:'100%'}} onClick={() => confirmHandler(order._id)}>Đã nhận hàng</Button>:
+                    <Button type='button' variant='light' style={{color: 'blue'},{width:'100%'}} >Đã nhận hàng</Button>
+                    }
+                    
                   </td>
                 </tr>
               ))}

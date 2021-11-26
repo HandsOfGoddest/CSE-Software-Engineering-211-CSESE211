@@ -50,6 +50,9 @@ const PlaceOrderScreen = ({history}) => {
                                 {cart.shippingAddress.address}, 
                                 {cart.shippingAddress.city}, 
                                 {cart.shippingAddress.postalCode},{' '}
+                            </p>
+                            <p>
+                            <strong>Bàn : </strong>
                                 {cart.shippingAddress.country}
                             </p>
                         </ListGroup.Item>

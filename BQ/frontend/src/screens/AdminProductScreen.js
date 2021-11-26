@@ -57,10 +57,13 @@ const AdminScreen = ({ history, match }) => {
             {loadingProducts ? <Loader/> : errorProducts ? <Message variant='danger'>{errorProducts}</Message> : (
                 <Col>
                     <Row>
+                        <Col md={2}>
+                        <button type="button" class="btn btn-success"><Link to={`/admin/cate/${match.params.pathname}`}>Back </Link></button>
+                        </Col>
                         <Col md={8}>
                             <h2>{`Products of Category ${match.params.catename} of Brand ${match.params.pathname}`}</h2>
                         </Col>
-                        <Col md={4}>
+                        <Col md={2}>
                             <button type="button" className="btn btn-success"><Link to={`/admin/add/product/${match.params.catename}/${match.params.pathname}`}>Add Product + </Link></button>
                         </Col>
                     </Row>
@@ -85,7 +88,7 @@ const AdminScreen = ({ history, match }) => {
                                     <td>{product.price}</td>
                                     <td>{product.countInStock}</td>
                                     <td>
-                                    <Button type='button' variant='light' href={`/admin/edit/product/${product._id}`}><i className='fas fa-edit'></i></Button>
+                                    <Button type='button' variant='light' href={`/admin/edit/product/${product._id}/${match.params.pathname}`}><i className='fas fa-edit'></i></Button>
                                     </td>
                                     <td>
                                     <Button type='button' variant='light' onClick={() => removeProductHandler(product._id)}><i className='fas fa-trash'></i></Button>

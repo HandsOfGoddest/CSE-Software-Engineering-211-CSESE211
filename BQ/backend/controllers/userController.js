@@ -9,7 +9,7 @@ import User from "../models/userModel.js";
 const authUser = asyncHandler(async (req, res) => {
   const { userName, password } = req.body;
   const user = await User.findOne({ userName });
-
+   console.log(user)
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
@@ -20,6 +20,7 @@ const authUser = asyncHandler(async (req, res) => {
       gender: user.gender,
       dateOfBirth: user.dateOfBirth,
       isAdmin: user.isAdmin,
+      isClerk: user.isClerk,
       token: generateToken(user._id),
     });
   } else {
@@ -41,7 +42,6 @@ const registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User already exists");
   }
-
   const user = await User.create({
     name,
     email,
@@ -86,6 +86,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
       dateOfBirth: user.dateOfBirth,
       email: user.email,
       isAdmin: user.isAdmin,
+      isClerk: user.isClerk,
     });
   } else {
     res.status(404);
@@ -121,6 +122,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       gender: updateUser.gender,
       dateOfBirth: updateUser.dateOfBirth,
       isAdmin: updateUser.isAdmin,
+      isClerk: updateUser.isClerk,
       token: generateToken(updateUser._id),
     });
   } else {
@@ -129,4 +131,17 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { authUser, registerUser, getUserProfile, updateUserProfile };
+const resetPass = asyncHandler(async(req, res) => {
+    const user = await User.findOne({userName: req.body.userName, email: req.body.email})
+    if (user) {
+        user.password = req.body.password
+        await user.save()
+        res.status(200).json(req.body.password)
+    }
+    else {
+        res.status(401)
+        throw new Error("Username or email invalid!")
+    }
+})
+
+export {authUser,registerUser, getUserProfile, updateUserProfile, resetPass}

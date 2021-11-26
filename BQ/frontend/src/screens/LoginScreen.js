@@ -31,6 +31,9 @@ const LoginScreen = ({ location, history }) => {
       if(userInfo.isAdmin){
         history.push('/admin/brand')
       }
+      else if (userInfo.isClerk){
+        history.push('/clerk')
+      }
       else{
          history.push(redirect);
       }
@@ -77,7 +80,7 @@ const LoginScreen = ({ location, history }) => {
         </Button>
       </Form>
 
-      <Row className="py-3">
+      <Row className="py">
         <Col>
           New Customer ?{" "}
           <Link
@@ -85,6 +88,14 @@ const LoginScreen = ({ location, history }) => {
           >
             Register
           </Link>
+        </Col>
+      </Row>
+      <Row>
+      <Col>
+        Forgot password?{" "}
+        <Link to={`/forgotpass`}>
+          Reset it
+        </Link>
         </Col>
       </Row>
     </FormContainer>

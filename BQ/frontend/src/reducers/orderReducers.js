@@ -13,6 +13,12 @@ import {
     ORDER_LIST_MY_SUCCESS,
     ORDER_LIST_MY_FAIL,
     ORDER_LIST_MY_RESET,
+    GET_ALL_ORDER_REQUEST,
+    GET_ALL_ORDER_SUCCESS,
+    GET_ALL_ORDER_FAIL,
+    UPDATE_ORDER_REQUEST,
+    UPDATE_ORDER_SUCCESS,
+    UPDATE_ORDER_FAIL,
 } from "../constants/orderConstants";
 
 
@@ -113,3 +119,29 @@ export const orderListMyReducer = (
       return state;
   }
 };
+
+export const orderListReducer = (state = {}, action) => {
+  switch (action.type){
+    case GET_ALL_ORDER_REQUEST:
+      return { loading: true }
+    case GET_ALL_ORDER_SUCCESS:
+      return { loading: false, orders: action.payload }
+    case GET_ALL_ORDER_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const updateOrderStatusReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_ORDER_REQUEST:
+      return { loading: true }
+    case UPDATE_ORDER_SUCCESS:
+      return { loading: false, success: true }
+    case UPDATE_ORDER_FAIL:
+      return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}

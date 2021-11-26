@@ -64,7 +64,8 @@ function Header() {
           </LinkContainer>
         </NavDropdown>
       )}
-       {userInfo && userInfo.isClerk && (
+      {userInfo && userInfo.isClerk && (
+        
         <NavDropdown title="Clerk" id="clerkmenu">
           <LinkContainer to="/clerk">
             <NavDropdown.Item>Quản lý order</NavDropdown.Item>
