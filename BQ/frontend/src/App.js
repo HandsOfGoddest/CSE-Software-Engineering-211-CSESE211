@@ -26,6 +26,7 @@ import ListBrand from "./components/ListBrand";
 import ListCategory from "./components/ListCategory";
 import ForgotPassScreen from "./screens/ForgotPassScreen";
 import ClerkScreen from "./screens/ClerkScreen";
+import OrderList from "./components/OrderList";
 
 const App = () => {
   return (
@@ -58,6 +59,7 @@ const App = () => {
           <Route path='/listbrand' component={ListBrand} />
           <Route path='/listcate/:brandPathName' component={ListCategory} />
           <Route path='/forgotpass' component={ForgotPassScreen} />
+          <Route path='/orderlist' component={OrderList} />
         </Container>
       </main>
 

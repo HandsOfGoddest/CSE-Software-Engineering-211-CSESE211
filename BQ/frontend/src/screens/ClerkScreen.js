@@ -5,7 +5,8 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
-import { listMyOrders } from "../actions/orderActions";
+import { getOrderList, listMyOrders, updateOrder } from "../actions/orderActions";
+import { disable } from "colors";
 
 const ClerkScreen = ({ history }) => {
   const [name, setName] = useState("");
@@ -25,8 +26,11 @@ const ClerkScreen = ({ history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
-  const orderListMy = useSelector((state) => state.orderListMy);
-  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+  const orderList = useSelector((state) => state.orderList);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderList;
+
+  const updateOrderStatus = useSelector((state) => state.updateOrderStatus);
+  const {success: successUpdateOrder} = updateOrderStatus
 
   useEffect(() => {
     if (!userInfo) {
@@ -34,56 +38,63 @@ const ClerkScreen = ({ history }) => {
     } else {
       if (!user?.name) {
         dispatch(getUserDetails('profile'));
-        dispatch(listMyOrders())
-        
-      } else {
-        setName(user.name);
-        setEmail(user.email);
+        dispatch(getOrderList())
+      }
+      if(successUpdateOrder){
+        dispatch(getOrderList())
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user,successUpdateOrder]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setMessage("MẬT KHẨU KHÔNG KHỚP");
-    } else {
-      dispatch(updateUserProfile({ id: user._id, name, email, password }));
-    }
+  const confirmHandler = (id) => {
+    console.log("cf")
+    dispatch(updateOrder(id, "Đã xác nhận"))
+  };
+
+  const confirmPayHandler = (id) => {
+    console.log("cf")
+    dispatch(updateOrder(id, "Đã thanh toán"))
   };
 
   return(
-    <Row style = {{marginTop:"100px"}}>
+    loading?<></>:(!user?.isClerk?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(<Row style = {{marginTop:"100px"}}>
       <Col md={12}>
-        <h2>Đơn hàng cần xác nhận</h2>
+        <h2>QUẢN LÝ ĐƠN HÀNG</h2>
         {loadingOrders ? <Loader/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
           <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>DATE</th>
                 <th>TOTAL</th>
                 <th>PAID</th>
                 <th>DELIVERED</th>
-                <th></th>
+                <th>PAID</th>
+                <th>CONFIRM</th>
               </tr>
             </thead>
             <tbody>
               {orders.map(order => (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
-                  <td>{order.isPaid ? order.paidAt.substring(0,10): (
+                  <td>{order.isPaid ? <i className='fas fa-check' style={{color: 'green'}}></i>: (
                     <i className='fas fa-times' style={{color: 'red'}}></i>
                   )}</td>
-                  <td>{order.isDelivered ? order.deliveredAt.substring(0,10): (
+                  <td>{order.status=="Đã giao hàng" ?<i className='fas fa-check' style={{color: 'green'}}></i> : (
                     <i className='fas fa-times' style={{color: 'red'}}></i>
                   )}</td>
                   <td>
-                    <LinkContainer to={`/order/${order._id}`}>
-                      <Button variant='light'>Details</Button>
-                    </LinkContainer>
+                    {order.isPaid?<Button type='button' variant='light' style={{color: 'gray'},{width:'100%'}}>Đã thanh toán</Button>:
+                    <Button type='button'  style={{color: 'green'},{width:'100%'}} onClick={() => confirmPayHandler(order._id)}>Thanh toán</Button>
+                    }
+                  </td>
+                  <td>
+                    {!order.isPaid?<Button type='button' variant='light' style={{color: 'gray'},{width:'100%'}}>Chưa thanh toán</Button>:
+                    order.status === "Chưa xác nhận"?
+                    <Button type='button'  style={{color: 'green'},{width:'100%'}} onClick={() => confirmHandler(order._id)}>Xác nhận</Button>:
+                    <Button type='button' variant='light' style={{color: 'blue'},{width:'100%'}} >Đã xác nhận</Button>
+                    }
+                    
                   </td>
                 </tr>
               ))}
@@ -93,6 +104,7 @@ const ClerkScreen = ({ history }) => {
       </Col>
     </Row>
   )
+  ))
 }
 
 export default ClerkScreen;
