@@ -81,7 +81,7 @@ const AdminBrandScreen = ({ history, match }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {categoryList.map(cate => (
+                                {categoryList && categoryList.map(cate => (
                                 <tr key={cate._id}>
                                     <td>{cate._id}</td>
                                     <td><Link to={`/admin/product/${match.params.name}/${cate.catePathName}`}>{cate.cateName}</Link></td>
