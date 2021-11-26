@@ -85,7 +85,7 @@ const AdminScreen = ({ history, match }) => {
                                     <td>{product.price}</td>
                                     <td>{product.countInStock}</td>
                                     <td>
-                                    <Button type='button' variant='light' href={`/admin/edit/product/${product._id}`}><i className='fas fa-edit'></i></Button>
+                                    <Button type='button' variant='light' href={`/admin/edit/product/${product._id}/${match.params.pathname}`}><i className='fas fa-edit'></i></Button>
                                     </td>
                                     <td>
                                     <Button type='button' variant='light' onClick={() => removeProductHandler(product._id)}><i className='fas fa-trash'></i></Button>
