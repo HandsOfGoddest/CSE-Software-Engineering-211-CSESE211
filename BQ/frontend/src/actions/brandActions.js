@@ -69,9 +69,10 @@ export const listCate = (brandPathName) => async (dispatch) => {
 
 
 export const listProductsOfBrand = (pathName) => async (dispatch) => {
-  try {
+  try {/*
+  
     dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST });
-    const { data } = await axios.get(`/api/brands/${pathName}`);
+    const { data } = await axios.get(`/api/brands/getproducts/${pathName}`);
     const temp_id = data.hasProducts;
     let ans = [];
     for (let i = 0; i < temp_id.length; i++) {
@@ -81,7 +82,13 @@ export const listProductsOfBrand = (pathName) => async (dispatch) => {
       type: BRAND_LIST_PRODUCTS_SUCCESS,
       payload: ans,
     });
-  } catch (error) {
+  */
+  dispatch({ type: BRAND_LIST_PRODUCTS_REQUEST });
+    const { data } = await axios.get(`/api/brands/getproducts/${pathName}`);
+    dispatch({
+      type: BRAND_LIST_PRODUCTS_SUCCESS,
+      payload: data,
+    });} catch (error) {
     dispatch({
       type: BRAND_LIST_PRODUCTS_FAIL,
       payload:

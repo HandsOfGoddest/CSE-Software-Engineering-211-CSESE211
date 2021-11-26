@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import {  Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { listProductsOfBrand } from "../actions/brandActions";
 import Product from "./Product";
@@ -9,15 +9,13 @@ import { listCate } from "../actions/brandActions";
 
 function Hello({ match }) {
   const dispatch = useDispatch();
-  const productListOfBrand = useSelector(
-    (state) => state.productListOfBrand || {}
-  );
+  const productListOfBrand = useSelector((state) => state.productListOfBrand || {} );
   const { ProductsOfBrand } = productListOfBrand; //Now list is in listProductOfBrand
 
   const cateList = useSelector((state) => state.cateList);
   const { categoryList } = cateList;
 
-  console.log("hihi", ProductsOfBrand)
+  console.log("hihi", ProductsOfBrand);
 
   useEffect(() => {
     dispatch(listProductsOfBrand(match.params.pathName));
@@ -38,7 +36,7 @@ function Hello({ match }) {
       </div>
 
       <div id="food-list">
-        {(ProductsOfBrand||[]).map((product) => (
+        {(ProductsOfBrand || []).map((product) => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
             <Product product={product} />
           </Col>
