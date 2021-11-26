@@ -47,10 +47,10 @@ const RegisterScreen = ({ location, history }) => {
       {loading && <Loader />}
 
       <Form.Group controlId="userName">
-          <Form.Label>userName</Form.Label>
+          <Form.Label>User Name</Form.Label>
           <Form.Control
             type="userName"
-            placeholder="UserName"
+            placeholder="Enter User Name"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
           ></Form.Control>
@@ -58,10 +58,10 @@ const RegisterScreen = ({ location, history }) => {
 
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
-          <Form.Label>Tên</Form.Label>
+          <Form.Label>Full Name</Form.Label>
           <Form.Control
             type="name"
-            placeholder="Nhập tên của bạn"
+            placeholder="Enter Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
@@ -73,17 +73,17 @@ const RegisterScreen = ({ location, history }) => {
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Nhập email"
+            placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="phoneNumber">
-          <Form.Label>phone Number</Form.Label>
+          <Form.Label>Phone Number</Form.Label>
           <Form.Control
             type="phoneNumber"
-            placeholder="Phone Number"
+            placeholder="Enter Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           ></Form.Control>
@@ -93,7 +93,7 @@ const RegisterScreen = ({ location, history }) => {
           <Form.Label>Gender</Form.Label>
           <Form.Control
             type="gender"
-            placeholder="Gender"
+            placeholder="Enter Gender"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
           ></Form.Control>
@@ -103,42 +103,42 @@ const RegisterScreen = ({ location, history }) => {
           <Form.Label>Date Of Birth </Form.Label>
           <Form.Control
             type="dateOfBirth"
-            placeholder="Date Of Birth"
+            placeholder="Enter Date Of Birth"
             value={dateOfBirth}
             onChange={(e) => setdateOfBirth(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Mật khẩu</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Nhập mật khẩu"
+            placeholder="Enter Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Xác nhận mật khẩu</Form.Label>
+          <Form.Label>Confirm Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Xác nhận mật khẩu"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
         <Button type="submit" variant="primary">
-          Đăng ký
+          Register
         </Button>
       </Form>
 
       <Row className="py-3">
         <Col>
-          Đã có tài khoản?{" "}
+          Have a account?{" "}
           <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-            Đăng nhập
+            Log In
           </Link>
         </Col>
       </Row>

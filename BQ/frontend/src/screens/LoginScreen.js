@@ -7,9 +7,6 @@ import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { getUserDetails, login } from "../actions/userActions";
 import { listMyCart, updateAllCart } from "../actions/cartActions";
-import { listMyOrders } from "../actions/orderActions";
-import { cartItemsFromStorage} from "../store";
-import store from "../store";
 
 const LoginScreen = ({ location, history }) => {
   const [userName, setuserName] = useState("");
