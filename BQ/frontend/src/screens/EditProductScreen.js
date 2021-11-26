@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { addNewProduct, listProductDetails } from "../actions/productActions";
+import { addNewProduct, listProductDetails, updateProduct } from "../actions/productActions";
 
 
 const EditProductScreen = ({history, match }) => {
@@ -48,7 +48,17 @@ const EditProductScreen = ({history, match }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(match.params.catename)
-    dispatch(addNewProduct(name, image, description, price, countInStock, match.params.pathname, match.params.catename))
+    dispatch(updateProduct(
+      match.params.id,
+      {
+        name: name, 
+        image: image, 
+        description: description, 
+        price: price, 
+        countInStock: countInStock, 
+      }
+      ))
+      history.push(`/admin/product/${match.params.pathname}/${product.category}`)
   };
 
   return (
@@ -67,7 +77,7 @@ const EditProductScreen = ({history, match }) => {
             onChange={(e) => setName(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        <br></br>
         <Form.Group controlId="text">
           <Form.Label>Description</Form.Label>
           <Form.Control
@@ -77,7 +87,7 @@ const EditProductScreen = ({history, match }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        <br></br>
         <Form.Group controlId="Image">
           <Form.Label> Image URL </Form.Label>
           <Form.Control
@@ -87,6 +97,10 @@ const EditProductScreen = ({history, match }) => {
             onChange={(e) => setImage(e.target.value)}
           ></Form.Control>
         </Form.Group>
+      
+          <br></br>
+        <Image src={image} alt={name} fluid rounded></Image>
+        <br></br>
 
         <Form.Group controlId="text">
           <Form.Label> Price </Form.Label>
@@ -97,7 +111,7 @@ const EditProductScreen = ({history, match }) => {
             onChange={(e) => setPrice(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        <br></br>
         <Form.Group controlId="text">
           <Form.Label>Count In Stock </Form.Label>
           <Form.Control
@@ -107,7 +121,7 @@ const EditProductScreen = ({history, match }) => {
             onChange={(e) => setCountInStock(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        <br></br>
         <Button type="submit" variant="primary">
           Confirm
         </Button>

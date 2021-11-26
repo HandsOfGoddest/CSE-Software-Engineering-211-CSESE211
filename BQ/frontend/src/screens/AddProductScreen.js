@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
@@ -75,7 +75,9 @@ const AddProductScreen = ({ location, history, match }) => {
             onChange={(e) => setImage(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
+        <br></br>
+        <Image src={image} alt={name} fluid rounded></Image>
+        <br></br>
         <Form.Group controlId="text">
           <Form.Label> Price </Form.Label>
           <Form.Control
