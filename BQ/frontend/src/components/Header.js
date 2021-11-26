@@ -59,33 +59,19 @@ function Header() {
       )}
       {userInfo && userInfo.isAdmin && (
         <NavDropdown title="Admin" id="adminmenu">
-          <LinkContainer to="/admin/userlist">
-            <NavDropdown.Item>Danh sách người dùng</NavDropdown.Item>
-          </LinkContainer>
-          <LinkContainer to="/admin/productlist">
-            <NavDropdown.Item>Sản phẩm</NavDropdown.Item>
-          </LinkContainer>
-          <LinkContainer to="/admin/orderlist">
-            <NavDropdown.Item>Đơn đặt hàng</NavDropdown.Item>
+          <LinkContainer to="/admin/brand">
+            <NavDropdown.Item>Quản lý brand</NavDropdown.Item>
           </LinkContainer>
         </NavDropdown>
       )}
-      {userInfo &&
-        userInfo.isClerk &&
-        (console.log("hihu"),
-        (
-          <NavDropdown title="Clerk" id="clerkmenu">
-            <LinkContainer to="/clerk/userlist">
-              <NavDropdown.Item>1</NavDropdown.Item>
-            </LinkContainer>
-            <LinkContainer to="/clerk/productlist">
-              <NavDropdown.Item>2</NavDropdown.Item>
-            </LinkContainer>
-            <LinkContainer to="/clerk/orderlist">
-              <NavDropdown.Item>3</NavDropdown.Item>
-            </LinkContainer>
-          </NavDropdown>
-        ))}
+       {userInfo && userInfo.isClerk && (
+        <NavDropdown title="Clerk" id="clerkmenu">
+          <LinkContainer to="/clerk">
+            <NavDropdown.Item>Quản lý order</NavDropdown.Item>
+          </LinkContainer>
+        </NavDropdown>
+      )}
+      
 
       <img className="bar" src="images/bar.png" alt="bar" />
     </div>
