@@ -28,35 +28,27 @@ const EditProductScreen = ({history, match }) => {
   const { loading: loadingPr, product } = productDetails;
   
   
+  console.log(product)
   
-  
- console.log(product)
+  useEffect(() => {
+    dispatch(listProductDetails(match.params.id))
+  }, [dispatch, history]);
 
   useEffect(() => {
-    if(!product){
-      console.log(match.params.id)
-        dispatch(listProductDetails(match.params.id))
+    if (product) {
+    setName(product.name);
+    setDescription(product.description);
+    setImage(product.image);
+    setPrice(product.price);
+    setCountInStock(product.countInStock);
     }
-    else{
-      setName(product.name);
-      setDescription(product.description);
-      setImage(product.image);
-      setPrice(product.price);
-      setCountInStock(product.countInStock);
-
-    }
-    
-  }, [dispatch, match, history, product ]);
-
-  
+  }, [product])
 
  
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(match.params.catename)
     dispatch(addNewProduct(name, image, description, price, countInStock, match.params.pathname, match.params.catename))
-    console.log(match.params.pathname)
-    history.push(`/admin/product/${match.params.pathname}/${match.params.catename}`)
   };
 
   return (

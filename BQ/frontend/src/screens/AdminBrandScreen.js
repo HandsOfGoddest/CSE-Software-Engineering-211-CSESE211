@@ -84,7 +84,7 @@ const AdminBrandScreen = ({ history, match }) => {
                                 {categoryList.map(cate => (
                                 <tr key={cate._id}>
                                     <td>{cate._id}</td>
-                                    <td><Link to={`/admin/product/${match.params.name}/${cate.cateName}`}>{cate.cateName}</Link></td>
+                                    <td><Link to={`/admin/product/${match.params.name}/${cate.catePathName}`}>{cate.cateName}</Link></td>
                                     <td>
                                     <Button type='button' variant='light' onClick={() => removeCateHandler(cate.catePathName)}><i className='fas fa-trash'></i></Button>
                                     </td>
