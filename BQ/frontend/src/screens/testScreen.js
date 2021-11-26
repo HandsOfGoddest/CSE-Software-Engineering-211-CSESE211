@@ -8,9 +8,11 @@ import Advertisement from "../components/Advertisement";
 //import Category from "../components/Category";
 import ListBrand from "../components/ListBrand";
 import { listProducts } from "../actions/productActions";
+import Hello from "../components/getListProductOfBrand";
 
-const HomeScreen = ({ match }) => {
-  const keyword = match.params.keyword
+
+const HomeScreen = () => {
+  
   const dispatch = useDispatch();
 
   const productList = useSelector((state) => state.productList || {});
@@ -18,28 +20,17 @@ const HomeScreen = ({ match }) => {
   const { loading, error, products } = productList;
   
   useEffect(() => {
-    dispatch(listProducts(keyword));
-  }, [dispatch, keyword]);
-  console.log(productList)
+    dispatch(listProducts());
+  }, [dispatch]);
+ 
 
   return (
     <>
-      <Advertisement />
+      
       {/* <Category />*/}
       <ListBrand />
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <div id="food-list">
-          {products.map((product) => (
-            <div key={product._id}>
-              <Product product={product} />
-            </div>
-          ))}
-        </div>
-      )}
+     
+      
     </>
   );
 };

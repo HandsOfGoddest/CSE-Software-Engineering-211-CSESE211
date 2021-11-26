@@ -15,6 +15,9 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import ListBrand from "./components/ListBrand";
+import ListCategory from "./components/ListCategory";
+import testScreen from "./screens/testScreen"
 
 const App = () => {
   return (
@@ -24,11 +27,10 @@ const App = () => {
         <Container style={{ marginTop: "70px" }}>
           <Route path="/order/:id" component={OrderScreen} />
           <Route path="/search/:keyword" component={HomeScreen} />
-          <Route path='/' component={HomeScreen} exact />
+          <Route path='/' component={testScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/brand/:pathName/list_product/' component={Hello} />
           <Route path='/brand/:pathName/list_product_sort_by/:catePathName' component={AfterPickCategory} />
-          <Route path='/search/:keyword' component={HomeScreen} />
           <Route path='/placeorder' component={PlaceOrderScreen} />
           <Route path='/payment' component={PaymentScreen} />
           <Route path='/shipping' component={ShippingScreen} />
@@ -36,6 +38,8 @@ const App = () => {
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />
           <Route path='/cart/:id?' component={CartScreen} />
+          <Route path='/listbrand' component={ListBrand} />
+          <Route path='/listcate/:brandPathName' component={ListCategory} />
         </Container>
       </main>
 
