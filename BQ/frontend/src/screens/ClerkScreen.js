@@ -28,7 +28,6 @@ const ProfileScreen = ({ history }) => {
   const orderListMy = useSelector((state) => state.orderListMy);
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
-  console.log(user)
   useEffect(() => {
     if (!userInfo) {
       history.push("/login");
@@ -55,65 +54,8 @@ const ProfileScreen = ({ history }) => {
 
   return(
     <Row style = {{marginTop:"100px"}}>
-      <Col md={3}>
-        <h6>USER PROFILE</h6>
-        {message && <Message variant="danger">{message}</Message>}
-        {error && <Message variant="danger">{error}</Message>}
-       {success && (
-          <Message variant="success">
-          
-          Cập nhật thay đổi thành công</Message>
-        ) } 
-        {loading && <Loader />}
-
-        <Form onSubmit={submitHandler}>
-          <Form.Group controlId="name">
-            <Form.Label>Tên người dùng</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Nhập tên người dùng"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="email">
-            <Form.Label>Địa chỉ Email</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Nhập email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="password">
-            <Form.Label>Nhập mật khẩu mới</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Nhập mật khẩu"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Form.Group controlId="confirmPassword">
-            <Form.Label>Xác nhận mật khẩu</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Xác nhận mật khẩu"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            ></Form.Control>
-          </Form.Group>
-
-          <Button type="submit" variant="primary">
-            Cập nhật
-          </Button>
-        </Form>
-      </Col>
-      <Col md={9}>
-        <h2>Đơn hàng đã đặt</h2>
+      <Col md={12}>
+        <h2>Đơn hàng cần xác nhận</h2>
         {loadingOrders ? <Loader/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
           <Table striped bordered hover responsive className='table-sm'>
             <thead>

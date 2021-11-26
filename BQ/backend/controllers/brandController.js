@@ -14,7 +14,7 @@ const getBrand = asyncHandler(async(req, res) => {
 const getCateByBrandPathName = asyncHandler(async(req, res) => {
     const brand = await Brand.findOne({pathName: req.params.brandPathName})
     if (brand) {
-        const categories = await Category.find({brandName: brand.brandName})
+        const categories = await Category.find({brandName: brand.pathName})
         res.json(categories)
     }
     else {
@@ -87,6 +87,7 @@ const getProductListByBrandAndCatePathName = asyncHandler(async(req, res) => {
     const category = await Category.findOne({catePathName: req.params.catePathName})
     if (brand && category) {
         const productList = await Product.find({brandName: brand.brandName, category: category.cateName})
+        console.log(productList)
         res.json(productList)
     }
     else {
@@ -99,7 +100,7 @@ const getProductListByBrandAndCatePathName = asyncHandler(async(req, res) => {
 const addCategory = asyncHandler(async(req, res) => {
     const { cateName, catePathName, brandName, image } = req.body
     const categoryPathNameExists = await Category.findOne({catePathName})
-    const brand = await Brand.findOne({brandName})
+    const brand = await Brand.findOne({pathName: brandName})
     if (!brand) {
         res.status(400)
         throw new Error('Brandname is not existed')
@@ -153,7 +154,7 @@ const deleteBrandByPathName = asyncHandler(async(req, res) => {
 })
 
 const deleteCateByPathName = asyncHandler(async(req, res) => {
-    const category = await Category.find({catePathName: req.params.pathName})
+    const category = await Category.findOne({catePathName: req.params.pathName})
     const products = await Product.find({category: category.cateName})
     if (category) {
         for (let i=0; i<products.length; i++) {

@@ -8,7 +8,6 @@ import Advertisement from "../components/Advertisement";
 //import Category from "../components/Category";
 import ListBrand from "../components/ListBrand";
 import { listProducts } from "../actions/productActions";
-import Hello from "../components/getListProductOfBrand";
 
 
 const HomeScreen = () => {

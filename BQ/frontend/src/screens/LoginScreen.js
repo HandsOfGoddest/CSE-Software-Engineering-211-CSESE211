@@ -22,12 +22,7 @@ const LoginScreen = ({ location, history }) => {
 
   const userDetails = useSelector((state) => state.userDetails);
   const {  user } = userDetails;
-
-
-  
-  // const cartListMy = useSelector((state) => state.cartListMy);
-  // const { cart: Items } = cartListMy;
-  // console.log(Items)
+ 
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
@@ -35,12 +30,16 @@ const LoginScreen = ({ location, history }) => {
     if (userInfo) {
       if(!loading){
         dispatch(listMyCart())
-        
       }
-      history.push(redirect);
+      if(userInfo.isAdmin){
+        history.push('/admin/brand')
+      }
+      else{
+         history.push(redirect);
+      }
     }
     
-  }, [dispatch, history, userInfo, redirect ]);
+  }, [dispatch, history, userInfo, redirect, user ]);
 
   
 

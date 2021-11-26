@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import AfterPickCategory from './getListProductByCategoryOfBrand';
 import "./MyStyle.css"
 
-const Cate= ({ cate }) => {
+const Cate= ({ cate}) => {
   return (
     <>
-      <Link to={``}>
+      <Link to={`/brand/${cate.brandName}/list_product_sort_by/${cate.catePathName}`}>
         <img className="product-image" src={cate.image} variant="top" />
       </Link>
       <div className="product-name">

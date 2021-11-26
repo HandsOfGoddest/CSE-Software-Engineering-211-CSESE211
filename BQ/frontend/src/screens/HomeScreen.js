@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import Advertisement from "../components/Advertisement";
-//import Category from "../components/Category";
 import ListBrand from "../components/ListBrand";
 import { listProducts } from "../actions/productActions";
 
@@ -20,26 +18,11 @@ const HomeScreen = ({ match }) => {
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
-  console.log(productList)
+ 
 
   return (
     <>
-      <Advertisement />
-      {/* <Category />*/}
       <ListBrand />
-      {loading ? (
-        <Loader />
-      ) : error ? (
-        <Message variant="danger">{error}</Message>
-      ) : (
-        <div id="food-list">
-          {products.map((product) => (
-            <div key={product._id}>
-              <Product product={product} />
-            </div>
-          ))}
-        </div>
-      )}
     </>
   );
 };
