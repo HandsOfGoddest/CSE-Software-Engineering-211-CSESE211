@@ -9,14 +9,14 @@ import User from "../models/userModel.js"
 const authUser = asyncHandler(async (req, res) => {
     const{email, password} = req.body
     const user = await User.findOne({email})
-   
+   console.log(user)
     if(user && (await user.matchPassword(password))){
         res.json({
             _id : user._id,
             name: user.name,
             userName: user.userName,
             email: user.email,
-           
+            isClerk: user.isClerk,
             isAdmin: user.isAdmin,
             token: generateToken(user._id)
         })
@@ -54,6 +54,7 @@ const registerUser = asyncHandler(async (req, res) => {
             userName: user.userName,
             email: user.email,
             isAdmin: user.isAdmin,
+            isClerk: user.isClerk,
             token: generateToken(user._id)
         })
     } else {
@@ -77,6 +78,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
             userName: user.userName,
             email: user.email,
             isAdmin: user.isAdmin,
+            isClerk: user.isClerk,
          })
 
     } else {
@@ -106,6 +108,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       name: updateUser.name,
       email: updateUser.email,
       isAdmin: updateUser.isAdmin,
+      isClerk: updateUser.isClerk,
       token: generateToken(updateUser._id),
     });
   } else {

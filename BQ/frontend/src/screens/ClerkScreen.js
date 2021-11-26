@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 import { getUserDetails, updateUserProfile } from "../actions/userActions";
 import { listMyOrders } from "../actions/orderActions";
 
-const ProfileScreen = ({ history }) => {
+const ClerkScreen = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -95,4 +95,4 @@ const ProfileScreen = ({ history }) => {
   )
 }
 
-export default ProfileScreen;
+export default ClerkScreen;

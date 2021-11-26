@@ -34,6 +34,9 @@ const LoginScreen = ({ location, history }) => {
       if(userInfo.isAdmin){
         history.push('/admin/brand')
       }
+      else if (userInfo.isClerk){
+        history.push('/clerk')
+      }
       else{
          history.push(redirect);
       }

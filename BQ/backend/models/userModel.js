@@ -17,12 +17,31 @@ const userSchema = mongoose.Schema(
       required: true, 
       unique: true,
     },
+    phoneNumber: {
+      type: Number,
+      required: true,
+    },
+    gender: {
+      type: String,
+      default: null
+      
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true,
+      default: Date.now
+    },
     
     password: {
       type: String,
       required: true,
     },
     isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isClerk: {
       type: Boolean,
       required: true,
       default: false,

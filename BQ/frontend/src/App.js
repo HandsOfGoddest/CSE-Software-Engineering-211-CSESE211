@@ -25,6 +25,7 @@ import OrderScreen from "./screens/OrderScreen";
 import ListBrand from "./components/ListBrand";
 import ListCategory from "./components/ListCategory";
 import ForgotPassScreen from "./screens/ForgotPassScreen";
+import ClerkScreen from "./screens/ClerkScreen";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
       <Header />
       <main className="py-3">
         <Container style={{ marginTop: "70px" }}>
+          <Route path="/clerk" component={ClerkScreen} />
           <Route path="/admin/add/product/:catename/:pathname" component={AddProductScreen} />
           <Route path="/admin/edit/product/:id/:pathname"  component={EditProductScreen} />
           <Route path="/admin/add/category/:pathname" component={AddCateScreen} />
