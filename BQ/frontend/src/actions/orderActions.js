@@ -183,7 +183,7 @@ export const getOrderList = () => async (dispatch, getState) => {
 
 
 
-export const updateOrder = (status) => async (dispatch, getState) => {
+export const updateOrder = (id,status) => async (dispatch, getState) => {
  try {
   dispatch({
     type: UPDATE_ORDER_REQUEST
@@ -195,7 +195,7 @@ export const updateOrder = (status) => async (dispatch, getState) => {
       Authorization: `Bearer ${userInfo.token}`,
     },
   };
-  await axios.put('/api/orders', {status}, config)
+  await axios.put(`/api/orders/${id}`, {status}, config)
   dispatch({
     type: UPDATE_ORDER_SUCCESS
   })

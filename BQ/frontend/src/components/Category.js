@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardGroup, Container, Row, Col } from "react-bootstrap";
+
 
 const Category = () => {
   return (

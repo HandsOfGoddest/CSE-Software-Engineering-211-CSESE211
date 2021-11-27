@@ -12,11 +12,12 @@ import {
         CART_UPDATE_FAIL,
         CART_UPDATE_REQUEST,
         CART_UPDATE_ALL_ITEM,
+        REMOVE_OR_CR,
     } from '../constants/cartConstant'
 
 
 
-export const cartReducer = (state = { cartItems: [], shippingAdress:{} }, action) => {
+export const cartReducer = (state = { cartItems: [], shippingAdress:{},orderCreate:{} }, action) => {
     switch(action.type){
         case CART_ADD_ITEM:
             const item = action.payload

@@ -11,12 +11,12 @@ import {
             CART_UPDATE_SUCCESS,
             CART_UPDATE_FAIL,
             CART_REMOVE_ALL_ITEM,
-            CART_UPDATE_ALL_ITEM
+            CART_UPDATE_ALL_ITEM,
+            REMOVE_OR_CR
         } from '../constants/cartConstant'
 
 export const addToCart = (id, qty) => async(dispatch, getState) => {
     const { data } = await axios.get(`/api/products/${id}`)
-
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
@@ -25,7 +25,8 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
             image: data.image,
             price: data.price,
             countInStock: data.countInStock,
-            qty
+            qty,
+            brandName: data.brandName
         }
     })
 
@@ -33,12 +34,19 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
 } 
 
 export const removeFromCart = (id) => (dispatch, getState) => {
+  console.log("removeitem")
     dispatch({
         type: CART_REMOVE_ITEM,
         payload: id
     })
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+export const removeOrderCreate = () => (dispatch, getState) => {
+  dispatch({
+    type: REMOVE_OR_CR
+  })
 }
 
 
@@ -75,6 +83,8 @@ export const savePaymentMethod = (data) => (dispatch) => {
 
     localStorage.setItem('paymentMethod', JSON.stringify(data))
 }
+
+
 
 
 export const listMyCart = () => async (dispatch, getState) => {

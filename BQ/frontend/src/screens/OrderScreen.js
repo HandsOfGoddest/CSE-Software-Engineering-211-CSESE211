@@ -47,7 +47,7 @@ const OrderScreen = ({ match }) => {
       document.body.appendChild(script)
     }
 
-    if(!order || successPay){
+    if(!order || successPay || order._id !== orderId){
       dispatch({ type: ORDER_PAY_RESET })
       dispatch(getOrderDetails(orderId));
     } else if(!order.isPay){
@@ -89,8 +89,8 @@ const OrderScreen = ({ match }) => {
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
-              {order.isDelivered?(
-                  <Message variant = 'success'>Delivered on {order.deliveredAt}</Message>
+              {order.status ==="Đã giao hàng"?(
+                  <Message variant = 'success'>Delivered {order.deliveredAt}</Message>
               ):(
                   <Message variant = 'danger'>Not Delivered</Message>
               )}
@@ -103,7 +103,7 @@ const OrderScreen = ({ match }) => {
               {order.paymentMethod}
               </p>
               {order.isPaid?(
-                  <Message variant = 'success'>Paid on {order.paidAt}</Message>
+                  <Message variant = 'success'>Paid </Message>
               ):(
                   <Message variant = 'danger'>Not Paid</Message>
               )}
@@ -168,7 +168,7 @@ const OrderScreen = ({ match }) => {
                   <Col>{order.totalPrice} VND</Col>
                 </Row>
               </ListGroup.Item>
-              {!order.isPaid && (
+              {!order.isPaid && (order.paymentMethod === "PayPal")&& (
                 <ListGroup.Item>
                   {loadingPay && <Loader/> }
                   {!sdkReady ? <Loader/> : (
@@ -177,7 +177,11 @@ const OrderScreen = ({ match }) => {
                   )}
                 </ListGroup.Item>
               )}
+              {order.paymentMethod === "Trực tiếp" && (
+                <Message variant = 'success'><strong>PLEASE PAY FOR RECEPTIONIST</strong></Message>
+              )}
             </ListGroup>
+            
           </Card>
         </Col>
       </Row>

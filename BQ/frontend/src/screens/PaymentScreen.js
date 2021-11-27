@@ -7,12 +7,12 @@ import { savePaymentMethod } from '../actions/cartActions';
 
 
 
-const PaymentScreen = ({ history }) => {
+const PaymentScreen = ({ history,match }) => {
     const cart = useSelector(state => state.cart)
     const { shippingAddress} = cart
 
     if(!shippingAddress){
-        history.push('/shipping')
+        history.push(`/shipping/${match.params.brandname}`)
     }
 
     const [paymentMethod, setPaymentMethod] = useState('PayPal')
@@ -22,7 +22,7 @@ const PaymentScreen = ({ history }) => {
     const submitHandler = (e) => {
       e.preventDefault()
       dispatch(savePaymentMethod( paymentMethod ))
-      history.push('/placeorder')
+      history.push(`/placeorder/${match.params.brandname}`)
     }
 
     return (
@@ -41,18 +41,17 @@ const PaymentScreen = ({ history }) => {
                     id='PayPal' 
                     name='paymentMethod' 
                     value='PayPal'
-                    checked
+                    
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     ></Form.Check>
                 </Row>
                 <Row>
                     <Form.Check 
                     type='radio' 
-                    label='Stripe' 
-                    id='Stripe' 
+                    label='Trực tiếp' 
+                    id='Trực tiếp' 
                     name='paymentMethod' 
-                    value='Stripe'
-                    checked
+                    value='Trực tiếp'
                     onChange={(e) => setPaymentMethod(e.target.value)}
                     ></Form.Check>
                 </Row>

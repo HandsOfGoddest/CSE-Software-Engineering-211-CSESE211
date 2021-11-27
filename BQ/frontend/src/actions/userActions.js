@@ -13,6 +13,9 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
+  RESET_PASS_REQUEST,
+  RESET_PASS_SUCCESS,
+  RESET_PASS_FAIL,
 
 } from "../constants/userConstants"
 import { ORDER_LIST_MY_RESET, ORDER_PAY_RESET } from "../constants/orderConstants"
@@ -20,7 +23,7 @@ import axios from 'axios'
 import { CART_UPDATE_REQUEST } from "../constants/cartConstant"
 
 
-export const login = (email, password) => async(dispatch) => {
+export const login = (userName, password) => async(dispatch) => {
     try{
         dispatch({
             type: USER_LOGIN_REQUEST
@@ -30,7 +33,7 @@ export const login = (email, password) => async(dispatch) => {
                 'Content-Type': 'application/json'
             }
         }
-        const {data} = await axios.post('/api/users/login', {email, password}, config)
+        const {data} = await axios.post('/api/users/login', {userName, password}, config)
 
         dispatch({
             type: USER_LOGIN_SUCCESS,
@@ -62,7 +65,7 @@ export const logout = () =>(dispatch) => {
 }
 
 
-export const register = (name,userName, email, password) => async (dispatch) => {
+export const register = (name,userName, email, password, phoneNumber, gender, dateOfBirth) => async (dispatch) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST,
@@ -76,7 +79,7 @@ export const register = (name,userName, email, password) => async (dispatch) => 
 
     const { data } = await axios.post(
       "/api/users",
-      { name, userName,email, password },
+      { name, userName,phoneNumber, gender, dateOfBirth,email, password },
       config
     );
 
@@ -162,5 +165,34 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+
+
+export const resetNewPass = (inform) => async (dispatch) => {
+  try {
+      dispatch({
+          type: RESET_PASS_REQUEST,
+      });
+
+      const config = {
+          headers: {
+              "Content-type": "application/json",
+          }
+      }
+      const { data } = await axios.put(`/api/users/reset`, inform, config);
+
+      dispatch({
+          type: RESET_PASS_SUCCESS,
+          payload: data,
+      });
+  } catch (error) {
+      dispatch({
+          type: RESET_PASS_FAIL,
+          payload:
+              error.response && error.response.data.message
+                  ? error.response.data.message
+                  : error.message,
+      });
   }
 };
