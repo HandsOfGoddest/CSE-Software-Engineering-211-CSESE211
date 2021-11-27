@@ -30,8 +30,13 @@ const PlaceOrderScreen = ({history,match}) => {
     const { order, success, error } = orderCreate
 
     useEffect(() => {
-        if(success){dispatch({type: REMOVE_OR_CR})
+        if(success){
+            dispatch({type: REMOVE_OR_CR})
             history.push(`/order/${order._id}/${match.params.brandname}`)
+            brandCartItems.map((item) => {
+                console.log(item.product)
+                dispatch(removeFromCart(item.product))
+            })
         }
         // eslint-disable-next-line
     },[success])
@@ -46,12 +51,6 @@ const PlaceOrderScreen = ({history,match}) => {
             shippingPrice: cart.shippingPrice,
             totalPrice: cart.totalPrice,
         })) 
-        console.log(brandCartItems)
-        brandCartItems.map((item) => {
-            console.log(item.product)
-            dispatch(removeFromCart(item.product))
-        })
-        
     }
 
     return (
