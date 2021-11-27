@@ -15,6 +15,7 @@ const CartScreen = ({match, location, history}) => {
 
     const cart = useSelector((state) => state.cart)
     const { cartItems} = cart
+   // const brandCartItems = cartItems.find(x => x.brandName === )
 
     useEffect(() => {
         if(productId){
