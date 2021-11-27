@@ -11,7 +11,8 @@ import {
             CART_UPDATE_SUCCESS,
             CART_UPDATE_FAIL,
             CART_REMOVE_ALL_ITEM,
-            CART_UPDATE_ALL_ITEM
+            CART_UPDATE_ALL_ITEM,
+            REMOVE_OR_CR
         } from '../constants/cartConstant'
 
 export const addToCart = (id, qty) => async(dispatch, getState) => {
@@ -40,6 +41,12 @@ export const removeFromCart = (id) => (dispatch, getState) => {
     })
 
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
+}
+
+export const removeOrderCreate = () => (dispatch, getState) => {
+  dispatch({
+    type: REMOVE_OR_CR
+  })
 }
 
 

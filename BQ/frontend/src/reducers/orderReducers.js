@@ -1,3 +1,4 @@
+import { REMOVE_OR_CR } from "../constants/cartConstant";
 import { 
     ORDER_CREATE_REQUEST,
     ORDER_CREATE_SUCCESS,
@@ -39,6 +40,8 @@ export const orderCreateReducer = ( state = {}, action) => {
                 loading: false,
                 error: action.payload,
             }
+        case REMOVE_OR_CR:
+          return {}
         default:
             return state
     }

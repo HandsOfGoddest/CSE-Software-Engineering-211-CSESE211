@@ -5,7 +5,8 @@ import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
-import { removeFromCart } from '../actions/cartActions';
+import { removeFromCart, removeOrderCreate } from '../actions/cartActions';
+import { REMOVE_OR_CR } from '../constants/cartConstant';
 
 const PlaceOrderScreen = ({history,match}) => {
     const dispatch = useDispatch()
@@ -29,11 +30,11 @@ const PlaceOrderScreen = ({history,match}) => {
     const { order, success, error } = orderCreate
 
     useEffect(() => {
-        if(success){
+        if(success){dispatch({type: REMOVE_OR_CR})
             history.push(`/order/${order._id}/${match.params.brandname}`)
         }
         // eslint-disable-next-line
-    },[history, success, order])
+    },[success])
 
     const placeOrderHandler = () => {
        
@@ -50,6 +51,7 @@ const PlaceOrderScreen = ({history,match}) => {
             console.log(item.product)
             dispatch(removeFromCart(item.product))
         })
+        
     }
 
     return (
