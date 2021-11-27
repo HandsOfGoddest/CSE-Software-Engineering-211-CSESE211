@@ -7,8 +7,9 @@ import { saveShippingAddress } from '../actions/cartActions';
 
 
 
-const ShippingScreen = ({ history }) => {
+const ShippingScreen = ({ history,match }) => {
     const cart = useSelector(state => state.cart)
+    console.log(cart)
     const { shippingAddress} = cart
 
     const [address, setAddress] = useState(shippingAddress.address)
@@ -20,7 +21,7 @@ const ShippingScreen = ({ history }) => {
     const submitHandler = (e) => {
       e.preventDefault()
       dispatch(saveShippingAddress({ address, city, postalCode, country }))
-      history.push('/payment')
+      history.push(`/payment/${match.params.brandname}`)
     }
 
     return (

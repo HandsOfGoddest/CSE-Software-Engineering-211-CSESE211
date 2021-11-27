@@ -15,7 +15,11 @@ const users = [
     name: "Clerk User",
     userName: "clerk",
     email: "clerk@gmail.com",
+<<<<<<< HEAD
+    phoneNumber: "0365480412",
+=======
     phoneNumber: "0375480412",
+>>>>>>> c560a0d18e06397e906de942e1e440601e4daa29
     gender: "both",
     dateOfBirth: "2/10/2001",
     password: bcrypt.hashSync("123456", 10),
@@ -86,4 +90,8 @@ const users = [
   },
 ];
 
+<<<<<<< HEAD
 export default users;
+=======
+export default users;
+>>>>>>> c560a0d18e06397e906de942e1e440601e4daa29

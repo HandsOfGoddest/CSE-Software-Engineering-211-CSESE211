@@ -16,7 +16,6 @@ import {
 
 export const addToCart = (id, qty) => async(dispatch, getState) => {
     const { data } = await axios.get(`/api/products/${id}`)
-
     dispatch({
         type: CART_ADD_ITEM,
         payload: {
@@ -25,7 +24,8 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
             image: data.image,
             price: data.price,
             countInStock: data.countInStock,
-            qty
+            qty,
+            brandName: data.brandName
         }
     })
 
@@ -75,6 +75,8 @@ export const savePaymentMethod = (data) => (dispatch) => {
 
     localStorage.setItem('paymentMethod', JSON.stringify(data))
 }
+
+
 
 
 export const listMyCart = () => async (dispatch, getState) => {

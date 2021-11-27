@@ -123,6 +123,7 @@ const updateProduct = asyncHandler(async(req, res) => {
     product.description = req.body.description || product.description
     product.price = req.body.price || product.price
     product.countInStock = req.body.countInStock || product.countInStock
+    product.brandName = req.body.brandName || product.brandName
     const updProduct = await product.save()
     res.json(updProduct)
   }

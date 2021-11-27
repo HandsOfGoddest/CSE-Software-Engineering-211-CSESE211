@@ -6,30 +6,46 @@ import Message from '../components/Message'
 import { addToCart, removeFromCart, } from '../actions/cartActions'
 import ListBrandCart from '../components/ListBrandCart'
 
-const CartScreen = ({match, location, history}) => {
+const CartBrandScreen = ({match, location, history}) => {
     const productId = match.params.id
 
     const qty = location.search ? Number(location.search.split('=')[1]):1
 
     const dispatch = useDispatch()
 
+    const userLogin = useSelector((state) => state.userLogin);
+    const {  userInfo } = userLogin;
+
 
     const cart = useSelector((state) => state.cart)
     const { cartItems} = cart
-   // const brandCartItems = cartItems.find(x => x.brandName === )
+    console.log(cartItems)
+    var temp =[]
+    const brandItems = cartItems.map((x) => {
+        if(x.brandName === match.params.brandname){
+            temp=[...temp,x]
+        }} )
+    const brandCartItems = temp
+
 
     useEffect(() => {
         if(productId){
             dispatch(addToCart(productId, qty))
         }
-    }, [dispatch, productId, qty])
+    }, [dispatch, productId, qty,match])
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id))
     }
 
     const checkoutHandler = () => {
-        history.push('/login?/redirect=shipping')
+        if(!userInfo){
+            history.push('/login')
+        }
+        else{
+            history.push(`/shipping/${match.params.brandname}`)
+        }
+        
     }
 
     return (<Col>
@@ -41,9 +57,9 @@ const CartScreen = ({match, location, history}) => {
             </Col>
         <Col md={8}>
             
-            {cartItems.length === 0 ? <Message>Your cart is empty <Link to='/'>Go Back</Link></Message> : (
+            {brandCartItems.length === 0 ? <Message>Your cart is empty <Link to='/'>Go Back</Link></Message> : (
                 <ListGroup variant = 'flush'>
-                    {cartItems.map(item => (
+                    {brandCartItems.map(item => (
                         <ListGroup.Item key={item.product}>
                             <Row>
                                 <Col md={2}>
@@ -75,11 +91,11 @@ const CartScreen = ({match, location, history}) => {
             <Card>
                 <ListGroup variant='flush'>
                     <ListGroup.Item>
-                        <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
-                        {cartItems.reduce((acc, item) => acc + item.qty*item.price, 0).toFixed(2)} VND
+                        <h2>Subtotal ({brandCartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
+                        {brandCartItems.reduce((acc, item) => acc + item.qty*item.price, 0).toFixed(2)} VND
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <Button type='button' className='btn-block' disable={cartItems.length === 0} onClick={checkoutHandler}>
+                        <Button type='button' className='btn-block' disable={brandCartItems.length === 0} onClick={checkoutHandler}>
                             Check out
                         </Button>
                     </ListGroup.Item>
@@ -91,4 +107,4 @@ const CartScreen = ({match, location, history}) => {
     )
 }
 
-export default CartScreen
+export default CartBrandScreen

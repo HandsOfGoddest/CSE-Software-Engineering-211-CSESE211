@@ -24,9 +24,11 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import ListBrand from "./components/ListBrand";
 import ListCategory from "./components/ListCategory";
+import SearchScreen from "./screens/SearchScreen"
 import ForgotPassScreen from "./screens/ForgotPassScreen";
 import ClerkScreen from "./screens/ClerkScreen";
 import OrderList from "./components/OrderList";
+import CartBrandScreen from "./screens/CartBrandScreen";
 
 const App = () => {
   return (
@@ -42,16 +44,16 @@ const App = () => {
           <Route path="/admin/product/:pathname/:catename" component={AdminProductScreen} />
           <Route path="/admin/cate/:name" component={AdminBrandScreen} />
           <Route path="/admin/brand" component={AdminScreen} />
-          <Route path="/order/:id" component={OrderScreen} />
-          <Route path="/search/:keyword" component={HomeScreen} />
+          <Route path="/order/:id/:brandname" component={OrderScreen} />
+          <Route path="/search/:keyword" component={SearchScreen} />
           <Route path='/' component={HomeScreen} exact />
           <Route path='/product/:id' component={ProductScreen} />
           <Route path='/brand/:pathName/list_product/' component={Hello} />
+          <Route path='/:brandname/cart' component={CartBrandScreen} />
           <Route path='/brand/:pathName/list_product_sort_by/:catePathName' component={AfterPickCategory} />
-          <Route path='/search/:keyword' component={HomeScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
+          <Route path='/placeorder/:brandname' component={PlaceOrderScreen} />
+          <Route path='/payment/:brandname' component={PaymentScreen} />
+          <Route path='/shipping/:brandname' component={ShippingScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
           <Route path='/profile' component={ProfileScreen} />

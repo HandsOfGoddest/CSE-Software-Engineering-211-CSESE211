@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { listBrands } from "../actions/brandActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import Brand from "../components/Brand";
+import BrandCart from "../components/BrandCart";
 import "./MyStyle.css";
 
 
 
 
 
-function ListBrand() {
+function ListBrandCart() {
   const dispatch = useDispatch();
   const brandList = useSelector((state) => state.brandList || {});
   const { loading, error, brands } = brandList;
@@ -29,7 +29,7 @@ function ListBrand() {
         <div id="food-list">
           {(brands || []).map((brand) => (
             <div key={brand._id}>
-              <Brand brand={brand} />
+              <BrandCart brand={brand} />
             </div>
           ))}
         </div>
@@ -39,4 +39,4 @@ function ListBrand() {
   );
 }
 
-export default ListBrand;
+export default ListBrandCart;

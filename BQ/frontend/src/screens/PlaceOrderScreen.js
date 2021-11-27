@@ -6,13 +6,21 @@ import CheckoutSteps from '../components/CheckoutSteps';
 import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
 
-const PlaceOrderScreen = ({history}) => {
+const PlaceOrderScreen = ({history,match}) => {
     const dispatch = useDispatch()
 
     const cart = useSelector(state => state.cart)
+    const { cartItems} = cart
+    console.log(cartItems)
+    var temp =[]
+    const brandItems = cartItems.map((x) => {
+        if(x.brandName === match.params.brandname){
+            temp=[...temp,x]
+        }} )
+    const brandCartItems = temp
 
     //Calculate prices
-    cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price*item.qty, 0)
+    cart.itemsPrice = brandCartItems.reduce((acc, item) => acc + item.price*item.qty, 0)
     cart.shippingPrice = cart.itemsPrice > 200000 ? 0 : 30000
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice
 
@@ -21,14 +29,14 @@ const PlaceOrderScreen = ({history}) => {
 
     useEffect(() => {
         if(success){
-            history.push(`/order/${order._id}`)
+            history.push(`/order/${order._id}/${match.params.brandname}`)
         }
         // eslint-disable-next-line
     },[history, success])
 
     const placeOrderHandler = () => {
         dispatch(createOrder({
-            orderItems: cart.cartItems,
+            orderItems: brandCartItems,
             shippingAddress: cart.shippingAddress,
             paymentMethod: cart.paymentMethod,
             itemsPrice: cart.itemsPrice,
@@ -65,9 +73,9 @@ const PlaceOrderScreen = ({history}) => {
 
                         <ListGroup.Item>
                             <h2>Order Items</h2>
-                            {cart.cartItems.length === 0 ? <Message>Your cart is empty</Message>:(
+                            {brandCartItems.length === 0 ? <Message>Your cart is empty</Message>:(
                                 <ListGroup variant='flush'>
-                                    {cart.cartItems.map((item, index) => (
+                                    {brandCartItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
                                             <Row>
                                                 <Col md={1}>
@@ -120,7 +128,7 @@ const PlaceOrderScreen = ({history}) => {
                                 <Button 
                                     type='button' 
                                     className='btn-block' 
-                                    disable={cart.cartItems === 0} 
+                                    disable={brandCartItems === 0} 
                                     onClick={placeOrderHandler}
                                     >Place Order</Button>
                             </ListGroup.Item>

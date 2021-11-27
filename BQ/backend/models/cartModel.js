@@ -19,6 +19,7 @@ const cartSchema = mongoose.Schema(
         price: { type: Number,  },
         countInStock:{ type: Number, },
         qty: { type: Number, },
+        brandName: {type: String},
       }
     ],
     // orderItems: [
