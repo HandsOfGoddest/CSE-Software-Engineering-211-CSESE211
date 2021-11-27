@@ -65,7 +65,7 @@ const AdminBrandScreen = ({ history, match }) => {
                         <button type="button" class="btn btn-success"><Link to={'/admin/brand'}>Back </Link></button>
                         </Col>
                         <Col md={8}>
-                            <h2>{`Catagorys of ${match.params.name}`}</h2>
+                            <h2>{`Categorys of ${match.params.name}`}</h2>
                         </Col>
                         <Col md={2}>
                             <button type="button" class="btn btn-success"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
