@@ -89,8 +89,8 @@ const OrderScreen = ({ match }) => {
                 {order.shippingAddress.postalCode},{" "}
                 {order.shippingAddress.country}
               </p>
-              {order.isDelivered?(
-                  <Message variant = 'success'>Delivered on {order.deliveredAt}</Message>
+              {order.status ==="Đã giao hàng"?(
+                  <Message variant = 'success'>Delivered {order.deliveredAt}</Message>
               ):(
                   <Message variant = 'danger'>Not Delivered</Message>
               )}

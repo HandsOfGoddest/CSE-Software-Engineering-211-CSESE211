@@ -49,10 +49,10 @@ const CartBrandScreen = ({match, location, history}) => {
     }
 
     return (<Col>
-    <Row>
+    <Row md={2} >
         <ListBrandCart/>
     </Row>
-    <Row>
+    <Row md={10}>
         <Col md={8}><h1>Shopping Cart</h1>
             </Col>
         <Col md={8}>

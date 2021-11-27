@@ -5,6 +5,7 @@ import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Link } from 'react-router-dom';
 import { createOrder } from '../actions/orderActions';
+import { removeFromCart } from '../actions/cartActions';
 
 const PlaceOrderScreen = ({history,match}) => {
     const dispatch = useDispatch()
@@ -32,9 +33,10 @@ const PlaceOrderScreen = ({history,match}) => {
             history.push(`/order/${order._id}/${match.params.brandname}`)
         }
         // eslint-disable-next-line
-    },[history, success])
+    },[history, success, order])
 
     const placeOrderHandler = () => {
+       
         dispatch(createOrder({
             orderItems: brandCartItems,
             shippingAddress: cart.shippingAddress,
@@ -42,7 +44,12 @@ const PlaceOrderScreen = ({history,match}) => {
             itemsPrice: cart.itemsPrice,
             shippingPrice: cart.shippingPrice,
             totalPrice: cart.totalPrice,
-        }))
+        })) 
+        console.log(brandCartItems)
+        brandCartItems.map((item) => {
+            console.log(item.product)
+            dispatch(removeFromCart(item.product))
+        })
     }
 
     return (
@@ -73,7 +80,7 @@ const PlaceOrderScreen = ({history,match}) => {
 
                         <ListGroup.Item>
                             <h2>Order Items</h2>
-                            {brandCartItems.length === 0 ? <Message>Your cart is empty</Message>:(
+                            {cartItems.length === 0 ? <Message>Your cart is empty</Message>:(
                                 <ListGroup variant='flush'>
                                     {brandCartItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
