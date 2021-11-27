@@ -4,8 +4,7 @@ import { resetNewPass } from '../actions/userActions'
 import { Link } from 'react-router-dom'
 import FormContainer from '../components/FormContainer';
 import Message from '../components/Message';
-import { Col, Form, FormControl, FormGroup, FormLabel, Row } from 'react-bootstrap';
-import Button from '@restart/ui/esm/Button';
+import { Col, Form, FormControl, FormGroup, FormLabel, Row, Button } from 'react-bootstrap';
 import Loader from '../components/Loader';
 function ForgotPassScreen() {
     const dispatch = useDispatch()
@@ -64,15 +63,18 @@ function ForgotPassScreen() {
                     onChange={(e) => setConfirmPassword(e.target.value)}>
                     </FormControl>
                 </FormGroup>
-
-                <Button type="submit">
-                    Xác nhận
-                </Button>
+                
+                <br></br>
+                <Row>
+                <Col md={6}>
                 <Link to ='/login'>
-                    <Button variant='primary'>
-                        Quay lại
-                    </Button>
+                    <Button type='button'> Quay lại </Button>
                 </Link>
+                </Col>
+                <Col md={6}>
+                <Button type="submit" variant="primary"> Xác nhận</Button>
+                </Col>
+                </Row>
             </Form>
         </FormContainer>
         // <div>
