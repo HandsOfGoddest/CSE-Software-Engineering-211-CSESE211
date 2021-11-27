@@ -11,6 +11,17 @@ const getBrand = asyncHandler(async(req, res) => {
     res.json(brands)
 })
 
+const getCateByBrandPathName = asyncHandler(async(req, res) => {
+    const brand = await Brand.findOne({pathName: req.params.brandPathName})
+    if (brand) {
+        const categories = await Category.find({brandName: brand.brandName})
+        res.json(categories)
+    }
+    else {
+        res.status(404)
+        throw new Error('Brand not found')
+    }
+})
 
 const getBrandByPathName = asyncHandler(async(req, res) => {
     const brand = await Brand.findOne({pathName: `${req.params.id}`})
@@ -160,5 +171,5 @@ const deleteCateByPathName = asyncHandler(async(req, res) => {
 export {
     getBrand, getBrandByPathName, addBrand, getProductListByPathname,
     getProductListByBrandAndCatePathName, addCategory, deleteBrandByPathName,
-    deleteCateByPathName
+    deleteCateByPathName, getCateByBrandPathName
 }

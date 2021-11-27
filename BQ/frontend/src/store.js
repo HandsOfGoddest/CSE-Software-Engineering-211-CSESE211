@@ -1,7 +1,9 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-import { addOneBrandReducer, addOneCategoryReducer, brandListReducers, deleteOneBrandReducer, deleteOneCategoryReducer, productsListOfBrandReducers, productsListOfCateReducers } from './reducers/brandReducers'
+import { addOneBrandReducer, addOneCategoryReducer, brandListReducers, cateListReducer,
+    deleteOneBrandReducer, deleteOneCategoryReducer, productsListOfBrandReducers,
+    productsListOfCateReducers } from './reducers/brandReducers'
 import {productListReducer, productDetailsReducer, productReviewCreateReducer, addOneProductReducer, deleteOneProductReducer, updateOneProductReducer} from './reducers/productReducers'
 import {userLoginReducer, userRegisterReducer,
 userDetailsReducer,
@@ -14,12 +16,15 @@ import {
         orderDetailsReducer,
         orderPayReducer,
         orderListMyReducer,
+        orderListReducer,
+        updateOrderStatusReducer,
     } from './reducers/orderReducers'
 
 const reducer = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
     brandList: brandListReducers,
+    cateList: cateListReducer,
     productListOfBrand: productsListOfBrandReducers,
     productReviewCreate: productReviewCreateReducer,
     userLogin: userLoginReducer,
@@ -40,7 +45,9 @@ const reducer = combineReducers({
     deleteOneBrand: deleteOneBrandReducer,
     deleteOneCategory: deleteOneCategoryReducer,
     deleteOneProduct: deleteOneProductReducer,
-    updateOneProduct: updateOneProductReducer
+    updateOneProduct: updateOneProductReducer,
+    orderList: orderListReducer,
+    updateOrderStatus: updateOrderStatusReducer
 })
 
 
