@@ -32,7 +32,7 @@ const PlaceOrderScreen = ({history,match}) => {
     useEffect(() => {
         if(success){
             dispatch({type: REMOVE_OR_CR})
-            history.push(`/order/${order._id}/${match.params.brandname}`)
+            history.push(`/order/${order._id}`)
             brandCartItems.map((item) => {
                 console.log(item.product)
                 dispatch(removeFromCart(item.product))

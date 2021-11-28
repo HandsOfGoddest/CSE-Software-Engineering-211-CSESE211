@@ -31,9 +31,6 @@ function Header() {
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({ history }) => <SearchBox history={history} />} />
       <div className="space"></div>
-      <Link to="/datban">
-        <p className="datban">Đặt bàn</p>
-      </Link>
       <div className="cart-info">
         <Link to="/cart">
           <img src="https://res.cloudinary.com/vitamim/image/upload/v1638074114/BQ/cart_mfmks6.png" alt="" className="cart" />
