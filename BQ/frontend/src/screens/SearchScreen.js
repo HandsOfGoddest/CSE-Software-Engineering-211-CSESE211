@@ -15,7 +15,7 @@ const HomeScreen = ({ match }) => {
   const productList = useSelector((state) => state.productList || {});
 
   const { loading, error, products } = productList;
-  
+
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
@@ -27,12 +27,14 @@ const HomeScreen = ({ match }) => {
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <div id="food-list">
+        <div className="food-overlay">
+                  <div id="food-list">
           {products.map((product) => (
             <div key={product._id}>
               <Product product={product} />
             </div>
           ))}
+        </div>
         </div>
       )}
     </>

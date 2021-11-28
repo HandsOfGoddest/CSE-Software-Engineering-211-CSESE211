@@ -20,13 +20,13 @@ function ListBrandCart() {
 
 
   return (
-    <>
+    <div className="brand-overlay">
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <div id="food-list">
+        <div id="brand-list">
           {(brands || []).map((brand) => (
             <div key={brand._id}>
               <BrandCart brand={brand} />
@@ -35,8 +35,7 @@ function ListBrandCart() {
         </div>
       )}
 
-    </>
+    </div>
   );
 }
-
 export default ListBrandCart;
