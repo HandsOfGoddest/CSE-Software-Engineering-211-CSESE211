@@ -12,7 +12,7 @@ const Advertisement = () => {
       <Carousel.Item interval={500}>
         <img
           className="qc"
-          src="images/qc2.png"
+          src="uploads\KFCAds.png"
           alt="Second slide"
         />
       </Carousel.Item>
