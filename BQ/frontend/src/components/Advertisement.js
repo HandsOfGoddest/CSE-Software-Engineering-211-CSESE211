@@ -7,14 +7,10 @@ const Advertisement = () => {
       <div className="best-sale-container">
     <Carousel>
       <Carousel.Item interval={1000}>
-        <img className="qc" src="images/qc1.png" alt="First slide" />
+        <img className="qc" src="https://res.cloudinary.com/vitamim/image/upload/v1638074060/BQ/qc2_yftrii.png" alt="First slide" />
       </Carousel.Item>
       <Carousel.Item interval={500}>
-        <img
-          className="qc"
-          src="images/qc2.png"
-          alt="Second slide"
-        />
+        <img className="qc" src="uploads/KFCAds.png" alt="Second slide" />
       </Carousel.Item>
       <Carousel.Item>
         <img className="qc" src="images/qc3.png" alt="Third slide" />

@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { addNewBrand, addNewCate } from "../actions/brandActions";
+import axios from "axios";
 
 const AddCateScreen = ({ location, history, match }) => {
   const [cateName, setCateName] = useState("");
   const [catePathName, setCatePathName] = useState("");
   const [image, setImage] = useState("");
+  const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch();
 
@@ -20,14 +23,32 @@ const AddCateScreen = ({ location, history, match }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const {  user } = userDetails;
  
+  const uploadFileHandle = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+    console.log(formData)
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.post('/api/upload', formData, config)
+        setImage(data)
+        setUploading(false)
+    } catch (error) {
+        setUploading(false)
+    }
+  }
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
-    if (userInfo) {
-
-    }
-    
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push('/login')
+    }    
   }, [dispatch, history, userInfo, redirect, user ]);
 
   
@@ -75,9 +96,14 @@ const AddCateScreen = ({ location, history, match }) => {
             type="text"
             placeholder="Enter image url"
             onChange={(e) => setImage(e.target.value)}
+            value={image}
           ></Form.Control>
+          <Form.Control type='file' id='image-file' label='Choose file' custom onChange={uploadFileHandle}></Form.Control>
+          {uploading && <Loader />}
         </Form.Group>
-
+        <br></br>
+        <Image src={image} alt="image" fluid rounded></Image>
+        <br></br>
         <Button type="submit" variant="primary">
           Confirm
         </Button>

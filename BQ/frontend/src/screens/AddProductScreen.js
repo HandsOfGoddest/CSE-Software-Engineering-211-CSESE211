@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { addNewProduct } from "../actions/productActions";
+import axios from "axios";
 
 
 const AddProductScreen = ({ location, history, match }) => {
@@ -14,6 +15,7 @@ const AddProductScreen = ({ location, history, match }) => {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState("");
   const [countInStock, setCountInStock] = useState("");
+  const [uploading, setUploading] = useState(false)
 
 
   const dispatch = useDispatch();
@@ -24,11 +26,30 @@ const AddProductScreen = ({ location, history, match }) => {
   const userDetails = useSelector((state) => state.userDetails);
   const {  user } = userDetails;
  
+  const uploadFileHandle = async (e) => {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+    console.log(formData)
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        const { data } = await axios.post('/api/upload', formData, config)
+        setImage(data)
+        setUploading(false)
+    } catch (error) {
+        setUploading(false)
+    }
+  }
 
   useEffect(() => {
-    if (userInfo) {
-
-    }
+    if (!userInfo || !userInfo.isAdmin) {
+      history.push('/login')
+    } 
     
   }, [dispatch, history, userInfo, user ]);
 
@@ -73,7 +94,10 @@ const AddProductScreen = ({ location, history, match }) => {
             type="text"
             placeholder="Enter image url"
             onChange={(e) => setImage(e.target.value)}
+            value={image}
           ></Form.Control>
+          <Form.Control type='file' id='image-file' label='Choose file' custom onChange={uploadFileHandle}></Form.Control>
+          {uploading && <Loader />}
         </Form.Group>
         <br></br>
         <Image src={image} alt={name} fluid rounded></Image>

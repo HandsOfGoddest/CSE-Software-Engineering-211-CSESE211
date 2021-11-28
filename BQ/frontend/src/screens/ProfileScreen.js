@@ -33,7 +33,7 @@ const ProfileScreen = ({ history }) => {
   const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
 
   const updateOrderStatus = useSelector((state) => state.updateOrderStatus);
-  const { success: successUpdateOrder } = updateOrderStatus
+  const {success: successUpdateOrder} = updateOrderStatus
 
   console.log(user)
   useEffect(() => {
@@ -43,7 +43,7 @@ const ProfileScreen = ({ history }) => {
       if (!user?.name) {
         dispatch(getUserDetails('profile'));
         dispatch(listMyOrders())
-
+        
       } else {
         setName(user.name);
         setEmail(user.email);
@@ -52,11 +52,11 @@ const ProfileScreen = ({ history }) => {
         setPhoneNumber(user.phoneNumber);
         setdateOfBirth(user.dateOfBirth);
       }
-      if (successUpdateOrder) {
+      if(successUpdateOrder){
         dispatch(listMyOrders())
       }
     }
-  }, [dispatch, history, userInfo, user, successUpdateOrder]);
+  }, [dispatch, history, userInfo, user,successUpdateOrder]);
 
   const submitHandler = (e) => {
     e.preventDefault();

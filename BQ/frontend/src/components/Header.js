@@ -26,7 +26,7 @@ function Header() {
   return (
     <div className="header">
       <Link to="/">
-        <img src="images/logo.png" alt="logo" className="logo" />
+        <img src="https://res.cloudinary.com/vitamim/image/upload/v1638074055/BQ/logo_kuroio.png" alt="logo" className="logo" />
       </Link>
       {/*<input type="text" className="search-bar" placeholder="Search" />*/}
       <Route render={({ history }) => <SearchBox history={history} />} />
@@ -36,7 +36,7 @@ function Header() {
       </Link>
       <div className="cart-info">
         <Link to="/cart">
-          <img src="images/cart.png" alt="" className="cart" />
+          <img src="https://res.cloudinary.com/vitamim/image/upload/v1638074114/BQ/cart_mfmks6.png" alt="" className="cart" />
         </Link>
       </div>
       {userInfo ? (

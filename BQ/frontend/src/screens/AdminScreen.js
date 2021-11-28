@@ -4,51 +4,51 @@ import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from 'react-router-bootstrap'
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { getUserDetails } from "../actions/userActions";
-import { listBrands, deleteBrand, addNewBrand } from "../actions/brandActions";
+import { getUserDetails} from "../actions/userActions";
+import { listBrands, deleteBrand, addNewBrand} from "../actions/brandActions";
 import { Link } from 'react-router-dom'
 
 const AdminScreen = ({ history }) => {
-
+  
     const dispatch = useDispatch();
-
+  
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
-
+  
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
 
     const deleteOneBrand = useSelector((state) => state.deleteOneBrand)
-    const { success: successDeleteBrand } = deleteOneBrand
+    const {success: successDeleteBrand} = deleteOneBrand
 
     const addOneBrand = useSelector((state) => state.addOneBrand)
-    const { success: successAddBrand } = addOneBrand
+    const {success: successAddBrand} = addOneBrand
 
     const brandList = useSelector((state) => state.brandList || {})
-    const { loading: loadingBrands, error: errorBrands, brands } = brandList
+    const { loading: loadingBrands, error: errorBrands, brands} = brandList
 
     const cateList = useSelector((state) => state.cateList || {})
-    const { loading: loadingCates, error: errorCates, categoryList } = cateList
+    const { loading: loadingCates, error: errorCates, categoryList} = cateList
 
-
+    
 
     useEffect(() => {
-        if (!userInfo) {
-            history.push("/login");
-        }
-        else {
-            if (!user?.name) {
-                dispatch(getUserDetails('profile'));
-            }
+      if (!userInfo) {
+        history.push("/login");
+      }
+      else {
+        if (!user?.name) {
+          dispatch(getUserDetails('profile'));
+        }  
+        dispatch(listBrands());
+
+        
+        if(successDeleteBrand){
             dispatch(listBrands());
-
-
-            if (successDeleteBrand) {
-                dispatch(listBrands());
-            }
         }
+    }
     }, [dispatch, history, userInfo, user, successDeleteBrand, successAddBrand]);
-
+  
 
     const removeBrandHandler = (pathName) => {
         console.log("delete brand")
