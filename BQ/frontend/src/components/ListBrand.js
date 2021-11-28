@@ -20,13 +20,13 @@ function ListBrand() {
 
 
   return (
-    <>
+    <div className="brand-overlay">
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (
-        <div id="food-list">
+        <div id="brand-list">
           {(brands || []).map((brand) => (
             <div key={brand._id}>
               <Brand brand={brand} />
@@ -35,7 +35,7 @@ function ListBrand() {
         </div>
       )}
 
-    </>
+    </div>
   );
 }
 

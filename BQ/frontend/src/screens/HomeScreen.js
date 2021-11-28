@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import ListBrand from "../components/ListBrand";
 import { listProducts } from "../actions/productActions";
+import Advertisement from "../components/Advertisement";
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword
@@ -15,15 +16,16 @@ const HomeScreen = ({ match }) => {
 
   const { loading, error, products } = productList;
 
-  
-  
+
+
   useEffect(() => {
     dispatch(listProducts(keyword));
   }, [dispatch, keyword]);
- 
+
 
   return (
     <>
+      <Advertisement />
       <ListBrand />
     </>
   );

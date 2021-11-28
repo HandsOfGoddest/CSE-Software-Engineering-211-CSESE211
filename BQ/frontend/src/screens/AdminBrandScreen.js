@@ -14,6 +14,7 @@ const AdminBrandScreen = ({ history, match }) => {
 
     const userDetails = useSelector((state) => state.userDetails);
     const { loading, error, user } = userDetails;
+
   
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -53,59 +54,64 @@ const AdminBrandScreen = ({ history, match }) => {
         console.log("delete cate")
         dispatch(deleteCategory(catePathName))
     }
-    
-    return(
-        loadingCates?<Loader/>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
-        <Row style = {{marginTop:"100px"}}>
-            <Row>
-            {loadingCates ? <Loader/> : errorCates ? <Message variant='danger'>{errorCates}</Message> : (
-                <Col>
-                    <Row>
-                        <Col md={2}>
-                        <button type="button" class="btn btn-success"><Link to={'/admin/brand'}>Back </Link></button>
+
+    return (
+        loadingCates ? <Loader /> : (!user?.isAdmin ? <h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1> : (
+            <Row style={{ marginTop: "100px" }}>
+                <Row>
+                    {loadingCates ? <Loader /> : errorCates ? <Message variant='danger'>{errorCates}</Message> : (
+                        <Col>
+                            <div className="admin-categ">
+                                <div className="admin-categ-header">
+                                   
+                                        <button type="button" className="add-brand-btn"><Link to={'/admin/brand'}>Back </Link></button>
+                                  
+                                  
+                                        <h2>{`Catagorys of ${match.params.name}`}</h2>
+                                   
+                                
+                                        <button type="button" className="add-brand-btn"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
+                                  
+                                </div>
+                            </div>
+                            <div className="admin-categ">
+                                <div className="admin-categ-overlay">
+                                    <Col md={10}>
+                                        <Table striped bordered hover responsive className='table-sm'>
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name Category</th>
+                                                    <th>
+                                                        Delete
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {categoryList && categoryList.map(cate => (
+                                                    <tr key={cate._id}>
+                                                        <td>{cate._id}</td>
+                                                        <td><Link to={`/admin/product/${match.params.name}/${cate.catePathName}`}>{cate.cateName}</Link></td>
+                                                        <td>
+                                                            <Button type='button' variant='light' onClick={() => removeCateHandler(cate.catePathName)}><i className='fas fa-trash'></i></Button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </Col>
+                                </div>
+                            </div>
                         </Col>
-                        <Col md={8}>
-                            <h2>{`Categorys of ${match.params.name}`}</h2>
-                        </Col>
-                        <Col md={2}>
-                            <button type="button" class="btn btn-success"><Link to={`/admin/add/category/${match.params.name}`}>Add Category + </Link></button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={10}>
-                            <Table striped bordered hover responsive className='table-sm'>
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>Name Category</th>
-                                <th>
-                                Delete
-                                </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {categoryList && categoryList.map(cate => (
-                                <tr key={cate._id}>
-                                    <td>{cate._id}</td>
-                                    <td><Link to={`/admin/product/${match.params.name}/${cate.catePathName}`}>{cate.cateName}</Link></td>
-                                    <td>
-                                    <Button type='button' variant='light' onClick={() => removeCateHandler(cate.catePathName)}><i className='fas fa-trash'></i></Button>
-                                    </td>
-                                </tr>
-                                ))}
-                            </tbody>
-                            </Table>
-                        </Col>
-                    </Row>
-                </Col>
-                
-            )}
+
+                    )}
+                </Row>
             </Row>
-        </Row>
         )
-    ))}
+        ))
+}
 
 
-    
-  
-  export default AdminBrandScreen;
+
+
+export default AdminBrandScreen;

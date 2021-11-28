@@ -23,14 +23,15 @@ function AfterPickCategory({ match }) {
     <>
       <Advertisement />
 
-      <div id="food-list">
+    <div className="title-">
+    <div id="food-title">
         {(categoryList || []).map((cate) => (
-          <div key={cate._id}>
             <Cate cate={cate} />
-          </div>
         ))}
       </div>
-      <div id="food-list">
+    </div>
+          <div className="food-overlay">
+          <div id="food-list">
         {productsOfCate &&
           productsOfCate.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -38,6 +39,7 @@ function AfterPickCategory({ match }) {
             </Col>
           ))}
       </div>
+          </div>
     </>
   );
 }

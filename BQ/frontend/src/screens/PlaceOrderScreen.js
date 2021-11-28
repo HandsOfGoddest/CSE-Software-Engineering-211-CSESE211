@@ -23,13 +23,15 @@ const PlaceOrderScreen = ({history,match}) => {
 
     //Calculate prices
     cart.itemsPrice = brandCartItems.reduce((acc, item) => acc + item.price*item.qty, 0)
-    cart.shippingPrice = cart.itemsPrice > 200000 ? 0 : 30000
+    cart.shippingPrice = cart.itemsPrice/10
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice
 
     const orderCreate = useSelector(state => state.orderCreate)
     const { order, success, error } = orderCreate
-
+    
     useEffect(() => {
+        console.log(success)
+        console.log(error)
         if(success){
             dispatch({type: REMOVE_OR_CR})
             history.push(`/order/${order._id}/${match.params.brandname}`)
@@ -39,7 +41,7 @@ const PlaceOrderScreen = ({history,match}) => {
             })
         }
         // eslint-disable-next-line
-    },[success])
+    },[success, error])
 
     const placeOrderHandler = () => {
        
@@ -55,12 +57,11 @@ const PlaceOrderScreen = ({history,match}) => {
 
     return (
         <>
-            <CheckoutSteps step1 step2 step3 step4 brandname={match.params.brandname}/>
             <Row>
                 <Col md={8}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
+                            <h2 style={{textAlign:"left"}}>Shipping</h2>
                             <p>
                                 <strong>Address: </strong>
                                 {cart.shippingAddress.address}, 
@@ -74,13 +75,13 @@ const PlaceOrderScreen = ({history,match}) => {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Payment Method</h2>
+                            <h2  style={{textAlign:"left"}}>Payment Method</h2>
                             <strong>Method: </strong>
                             {cart.paymentMethod}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Order Items</h2>
+                            <h2 style={{textAlign:"left"}}>Order Items</h2>
                             {cartItems.length === 0 ? <Message>Your cart is empty</Message>:(
                                 <ListGroup variant='flush'>
                                     {brandCartItems.map((item, index) => (
@@ -94,7 +95,7 @@ const PlaceOrderScreen = ({history,match}) => {
                                                         {item.name}
                                                     </Link>
                                                 </Col>
-                                                <Col md={4}>
+                                                <Col md={5}>
                                                     {item.qty} x {item.price} VND = {item.qty*item.price} VND
                                                 </Col>
                                             </Row>
@@ -105,11 +106,11 @@ const PlaceOrderScreen = ({history,match}) => {
                         </ListGroup.Item>
                     </ListGroup>
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                     <Card>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
-                                <h2>Order Summary</h2>
+                                <h2  style={{textAlign:"left"}}>Tổng hóa đơn</h2>
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
@@ -119,7 +120,7 @@ const PlaceOrderScreen = ({history,match}) => {
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping</Col>
+                                    <Col>Thuế GTGT</Col>
                                     <Col>{cart.shippingPrice} VND</Col>
                                 </Row>
                             </ListGroup.Item>

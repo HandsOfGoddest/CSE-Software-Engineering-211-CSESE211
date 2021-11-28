@@ -19,6 +19,7 @@ body {
 
 p {
     cursor: pointer;
+    margin-bottom: 0px;
 }
 
 img {
@@ -177,7 +178,7 @@ a {
 }
 
 .qc {
-    height: 100%;
+    height: 500px;
     width: 100%;
     object-fit: cover;
     background-size: cover;
@@ -380,23 +381,60 @@ a {
 .footer img:last-child {
     margin-right: 20px;
 }
-
+.title-{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+}
 .product-image {
     border-radius: 20px;
     width: 100%;
 }
-
-.product-image:hover {
-    box-shadow: 1px 1px 6px rgb(63, 63, 63);
-}
-
-#food-list {
-    width: 80%;
-    margin-left: 10%;
+#food-title {
+    width: 60%;
     height: max-content;
     background-color: #fff;
     border-radius: 20px;
     margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 20px 0px;
+}
+.categ{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+.categ-image {
+    border-radius: 20px;
+    width: 40%;
+
+}
+.categ-name{
+    font-size: 150%;
+    text-align: center;
+}
+.brand-image{
+    border-radius: 20px;
+    width: 25%;
+}
+.product-image:hover {
+    box-shadow: 1px 1px 6px rgb(63, 63, 63);
+}
+.food-overlay{
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+}
+#food-list {
+    width: 80%;
+    height: max-content;
+    background-color: #fff;
+    border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -408,9 +446,40 @@ a {
     display: flex;
     flex-direction: column;
 }
-
+.brand-overlay{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#brand-list{
+    width: 80% ;
+    margin-top: 50px;
+    padding: 50px 30px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+} 
+.brand-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.brand-image{
+    height: 250px;
+    width: 250px;
+    border-radius: 20px;
+}
+.brand-name{
+    font-size: 35px;
+    color: #fca23f;
+    cursor: pointer;
+}
 .product-name {
-    font-size: 22px;
+    font-size: 90%;
     color: #fca23f;
     margin-top: 20px !important;
     margin-bottom: 0px !important;
@@ -451,7 +520,108 @@ a {
     cursor: pointer;
     align-self: start !important;
 }
+.prof-overlay{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-left: 40px;
+}
+.prof-user{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.prof-user img{
+    width: 20%;
+}
+.prof-in4{
+    height: 100%;
+    width: 90%;
+    background-color: #ffffff;
+    padding: 20px 13px;
+    border-radius: 20px;
+}
+.bill-overlay{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.bill-list{
+    height: 100%;
+    width: 90%;
+    background-color: #ffffff;
+    padding: 20px 13px;
+    border-radius: 20px;
+}
 
+.add-brand{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.add-brand-overlay{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.add-brand-title{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
+.add-brand-btn{
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    background-color: rgba(251, 141, 23, 1) ;
+    border-radius: 10px;
+    border: 0px;
+    box-shadow: 1px 1px 0px 0px rgb(0, 0, 0);;
+}
+.add-brand-btn a{
+    color: #ffffff;
+    font-size: 20px;
+    padding: 5px 5px;
+    font-weight: 600;
+}
+h2{
+    text-align: center;
+    font-weight: 700;
+}
+.admin-categ{
+    display: flex;
+    justify-content: center;
+}
+.admin-categ-header{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.admin-categ-overlay{
+    width: 70%;
+    background-color: white;
+    padding: 20px 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clerk-overlay{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.clerk-list{
+    width: 90%;
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+}
 @media (max-width: 46.188em) {
     .logo {
         height: 50px;
@@ -481,7 +651,16 @@ a {
         margin-top: 157px;
         height: max-content;
     }
-
+    .brand-overlay{
+        background-color: #ffffff !important;
+    }
+    .brand-container{
+        width: 10%;
+        display: flex;
+    }
+    #brand-list{
+        width: 25px;
+    }
     .brands-logo {
         margin-top: -20px;
         margin-bottom: 30px;
@@ -556,8 +735,9 @@ a {
         width: 29.3%;
     }
 
+
     .product-name {
-        font-size: 18px;
+        font-size: 120%;
         margin-top: 15px !important;
         height: 45px !important;
     }

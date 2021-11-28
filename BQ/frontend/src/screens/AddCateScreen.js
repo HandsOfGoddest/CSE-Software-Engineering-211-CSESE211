@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Image } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Form, Button, Row, Col } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { addNewCate } from "../actions/brandActions";
+import { addNewBrand, addNewCate } from "../actions/brandActions";
 import axios from "axios";
 
 const AddCateScreen = ({ location, history, match }) => {

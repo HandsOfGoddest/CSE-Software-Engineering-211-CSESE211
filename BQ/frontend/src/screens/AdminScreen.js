@@ -55,57 +55,57 @@ const AdminScreen = ({ history }) => {
         dispatch(deleteBrand(pathName));
     }
 
-    
-    return(
-        loading?<></>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
-        <Row style = {{marginTop:"100px"}}>
-            <Row>
-            {loadingBrands ? <Loader/> : errorBrands ? <Message variant='danger'>{errorBrands}</Message> : (
-                <Col>
-                    <Row>
-                        <Col md={8}>
-                            <h2>Brands</h2>
+
+    return (
+        loading ? <></> : (!user?.isAdmin ? <h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1> : (
+            <Row style={{ marginTop: "100px" }}>
+                <Row>
+                    {loadingBrands ? <Loader /> : errorBrands ? <Message variant='danger'>{errorBrands}</Message> : (
+                        <Col>
+                            <div>
+                                <div className="add-brand">
+                                        <h2>Brands</h2>
+                                        <button type="button" className="add-brand-btn"><Link to={`/admin/add/brand`}>Add Brand +</Link></button>
+                                </div>
+                            </div>
+                            <div className="add-brand-overlay">
+                                <div className="add-brand-title">
+                                    <Col md={10}>
+                                        <Table striped bordered hover responsive className='table-sm'>
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name Brand</th>
+                                                    <th>
+
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {brands.map(brand => (
+                                                    <tr key={brand._id}>
+                                                        <td>{brand._id}</td>
+                                                        <td><Link to={`/admin/cate/${brand.pathName}`}>{brand.brandName}</Link></td>
+                                                        <td>
+                                                            <Button type='button' variant='light' onClick={() => removeBrandHandler(brand.pathName)}><i className='fas fa-trash'></i></Button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </Col>
+                                </div>
+                            </div>
                         </Col>
-                        <Col md={2}>
-                            <button type="button" className="btn btn-success"><Link to={`/admin/add/brand`}>Add Brand +</Link></button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={10}>
-                            <Table striped bordered hover responsive className='table-sm'>
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>Name Brand</th>
-                                <th>
-                                
-                                </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {brands.map(brand => (
-                                <tr key={brand._id}>
-                                    <td>{brand._id}</td>
-                                    <td><Link to={`/admin/cate/${brand.pathName}`}>{brand.brandName}</Link></td>
-                                    <td>
-                                    <Button type='button' variant='light' onClick={() => removeBrandHandler(brand.pathName)}><i className='fas fa-trash'></i></Button>
-                                    </td>
-                                </tr>
-                                ))}
-                            </tbody>
-                            </Table>
-                        </Col>
-                    </Row>
-                </Col>
-                
-            )}
+
+                    )}
+                </Row>
             </Row>
-        </Row>
         )
-    ))}
+        ))
+}
 
 
-    
-  
-  export default AdminScreen;
-  
+
+
+export default AdminScreen;

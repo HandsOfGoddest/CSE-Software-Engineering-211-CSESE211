@@ -77,7 +77,7 @@ const EditProductScreen = ({ history, match }) => {
         countInStock: countInStock,
       }
     ))
-    history.push(`/admin/product/${match.params.pathname}/${product.category}`)
+    history.push(`/admin/product/${match.params.pathname}/${match.params.catename}`)
   };
 
   return (

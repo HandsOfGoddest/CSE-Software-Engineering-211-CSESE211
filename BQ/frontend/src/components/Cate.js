@@ -5,14 +5,12 @@ import "./MyStyle.css"
 
 const Cate= ({ cate}) => {
   return (
-    <>
-      <Link to={`/brand/${cate.brandName}/list_product_sort_by/${cate.catePathName}`}>
-        <img className="product-image" src={cate.image} variant="top" />
-      </Link>
-      <div className="product-name">
+      <Link  className="categ" to={`/brand/${cate.brandName}/list_product_sort_by/${cate.catePathName}`}>
+        <img className="categ-image" src={cate.image} variant="top" />
+        <div className="categ-name">
             <strong>{cate.cateName}</strong>
           </div>
-       </>
+      </Link>
   );
 };
 

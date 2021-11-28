@@ -38,7 +38,7 @@ const App = () => {
         <Container style={{ marginTop: "70px" }}>
           <Route path="/clerk" component={ClerkScreen} />
           <Route path="/admin/add/product/:catename/:pathname" component={AddProductScreen} />
-          <Route path="/admin/edit/product/:id/:pathname"  component={EditProductScreen} />
+          <Route path="/admin/edit/product/:id/:pathname/:catename"  component={EditProductScreen} />
           <Route path="/admin/add/category/:pathname" component={AddCateScreen} />
           <Route path="/admin/add/brand" component={AddBrandScreen} />
           <Route path="/admin/product/:pathname/:catename" component={AdminProductScreen} />

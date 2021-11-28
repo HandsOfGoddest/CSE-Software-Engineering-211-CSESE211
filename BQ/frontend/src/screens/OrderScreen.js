@@ -132,7 +132,7 @@ const OrderScreen = ({ match }) => {
                           </Link>
                         </Col>
 
-                        <Col md={4}>
+                        <Col md={5}>
                           {item.qty} x{item.price} VND = {item.qty * item.price}{" "}
                           VND
                         </Col>
@@ -144,11 +144,11 @@ const OrderScreen = ({ match }) => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2>Tổng hóa đơn</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
@@ -158,7 +158,7 @@ const OrderScreen = ({ match }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col> Shipping </Col>
+                  <Col> Thuế GTGT </Col>
                   <Col>{order.shippingPrice} VND</Col>
                 </Row>
               </ListGroup.Item>
@@ -178,7 +178,7 @@ const OrderScreen = ({ match }) => {
                 </ListGroup.Item>
               )}
               {order.paymentMethod === "Trực tiếp" && (
-                <Message variant = 'success'><strong>PLEASE PAY FOR RECEPTIONIST</strong></Message>
+                <Message variant = 'success' ><div style={{width:"100%"}}><p style={{textAlign:"center"}}>PLEASE PAY FOR RECEPTIONIST</p></div></Message>
               )}
             </ListGroup>
             

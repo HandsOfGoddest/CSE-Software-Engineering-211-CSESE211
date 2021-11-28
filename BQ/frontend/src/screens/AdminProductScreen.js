@@ -54,66 +54,69 @@ const AdminScreen = ({ history, match }) => {
     }
 
 
-    
-    return(
-        loading?<></>:(!user?.isAdmin?<h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1>:(
-        <Row style = {{marginTop:"100px"}}>
-            <Row>
-            {loadingProducts ? <Loader/> : errorProducts ? <Message variant='danger'>{errorProducts}</Message> : (
-                <Col>
-                    <Row>
-                        <Col md={2}>
-                        <button type="button" class="btn btn-success"><Link to={`/admin/cate/${match.params.pathname}`}>Back </Link></button>
+
+    return (
+        loading ? <></> : (!user?.isAdmin ? <h1>BẠN KHÔNG CÓ QUYỀN TRUY CẬP VÀO TRANG NÀY !!! </h1> : (
+            <Row style={{ marginTop: "100px" }}>
+                <Row>
+                    {loadingProducts ? <Loader /> : errorProducts ? <Message variant='danger'>{errorProducts}</Message> : (
+                        <Col>
+                            <div className="admin-categ">
+                                <div className="admin-categ-header">
+                                   
+                                        <button type="button" className="add-brand-btn"><Link to={`/admin/cate/${match.params.pathname}`}>Back </Link></button>
+                                   
+                                    
+                                        <h2>{`Products of Category ${match.params.catename} of Brand ${match.params.pathname}`}</h2>
+                                  
+                                        <button type="button" className="add-brand-btn"><Link to={`/admin/add/product/${match.params.catename}/${match.params.pathname}`}>Add Product + </Link></button>
+                                 
+                                </div>
+                            </div>
+                            <div className="admin-categ">
+                                <div className="admin-categ-overlay">
+                                    <Col md={10}>
+                                        <Table striped bordered hover responsive className='table-sm'>
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name Product</th>
+                                                    <th>Price</th>
+                                                    <th>Count In Stock</th>
+                                                    <th>Edit</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {productsOfCate.map(product => (
+                                                    <tr key={product._id}>
+                                                        <td>{product._id}</td>
+                                                        <td>{product.name}</td>
+                                                        <td>{product.price}</td>
+                                                        <td>{product.countInStock}</td>
+                                                        <td>
+                                                            <Button type='button' variant='light' href={`/admin/edit/product/${product._id}/${match.params.pathname}/${match.params.catename}`}><i className='fas fa-edit'></i></Button>
+                                                        </td>
+                                                        <td>
+                                                            <Button type='button' variant='light' onClick={() => removeProductHandler(product._id)}><i className='fas fa-trash'></i></Button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </Table>
+                                    </Col>
+                                </div>
+                            </div>
                         </Col>
-                        <Col md={8}>
-                            <h2>{`Products of Category ${match.params.catename} of Brand ${match.params.pathname}`}</h2>
-                        </Col>
-                        <Col md={2}>
-                            <button type="button" className="btn btn-success"><Link to={`/admin/add/product/${match.params.catename}/${match.params.pathname}`}>Add Product + </Link></button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col md={10}>
-                            <Table striped bordered hover responsive className='table-sm'>
-                            <thead>
-                                <tr>
-                                <th>ID</th>
-                                <th>Name Product</th>
-                                <th>Price</th>
-                                <th>Count In Stock</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {productsOfCate.map(product => (
-                                <tr key={product._id}>
-                                    <td>{product._id}</td>
-                                    <td>{product.name}</td>
-                                    <td>{product.price}</td>
-                                    <td>{product.countInStock}</td>
-                                    <td>
-                                    <Button type='button' variant='light' href={`/admin/edit/product/${product._id}/${match.params.pathname}`}><i className='fas fa-edit'></i></Button>
-                                    </td>
-                                    <td>
-                                    <Button type='button' variant='light' onClick={() => removeProductHandler(product._id)}><i className='fas fa-trash'></i></Button>
-                                    </td>
-                                </tr>
-                                ))}
-                            </tbody>
-                            </Table>
-                        </Col>
-                    </Row>
-                </Col>
-                
-            )}
+
+                    )}
+                </Row>
             </Row>
-        </Row>
         )
-    ))}
+        ))
+}
 
 
-    
-  
-  export default AdminScreen;
-  
+
+
+export default AdminScreen;

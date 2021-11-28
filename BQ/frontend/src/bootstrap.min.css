@@ -648,7 +648,7 @@
      --bs-gutter-y: 0;
      display: -ms-flexbox;
      display: flex;
-     align-items: center;
+     align-items: flex-start;
      -ms-flex-wrap: wrap;
      flex-wrap: wrap;
      margin-top: calc(-1 * var(--bs-gutter-y));

@@ -61,7 +61,9 @@ const ClerkScreen = ({ history }) => {
       <Col md={12}>
         <h2>QUẢN LÝ ĐƠN HÀNG</h2>
         {loadingOrders ? <Loader/> : errorOrders ? <Message variant='danger'>{errorOrders}</Message> : (
-          <Table striped bordered hover responsive className='table-sm'>
+<div className="clerk-overlay">
+<div className="clerk-list">
+                      <Table striped bordered hover responsive className='table-sm'>
             <thead>
               <tr>
                 <th>ID</th>
@@ -100,6 +102,8 @@ const ClerkScreen = ({ history }) => {
               ))}
             </tbody>
           </Table>
+          </div>
+</div>
         )}
       </Col>
     </Row>

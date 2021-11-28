@@ -6,14 +6,14 @@ const Brand = ({ brand }) => {
 
   return (
     //
-    <>
+    <div className="brand-info">
       <Link to ={`brand/${brand.pathName}/list_product`}>
-        <img className="product-image" src={brand.image} variant="top" />
+        <img className="brand-image" src={brand.image} variant="top" />
       </Link>
-      <div className="product-name">
+      <div className="brand-name">
         <strong>{brand.brandName}</strong>
       </div>
-    </>
+    </div>
   );
 };
 
