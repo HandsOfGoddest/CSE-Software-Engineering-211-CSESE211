@@ -23,7 +23,7 @@ const PlaceOrderScreen = ({history,match}) => {
 
     //Calculate prices
     cart.itemsPrice = brandCartItems.reduce((acc, item) => acc + item.price*item.qty, 0)
-    cart.shippingPrice = cart.itemsPrice > 200000 ? 0 : 30000
+    cart.shippingPrice = cart.itemsPrice/10
     cart.totalPrice = cart.itemsPrice + cart.shippingPrice
 
     const orderCreate = useSelector(state => state.orderCreate)
