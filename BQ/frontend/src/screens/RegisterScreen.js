@@ -35,7 +35,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Mật khẩu không khớp");
     } else {
-      dispatch(register(name,userName, email,phoneNumber, gender, dateOfBirth, password));
+      dispatch(register(name,userName, email, password, phoneNumber, gender, dateOfBirth));
     }
   };
 
