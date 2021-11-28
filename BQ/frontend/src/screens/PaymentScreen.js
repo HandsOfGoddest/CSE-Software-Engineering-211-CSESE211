@@ -26,8 +26,10 @@ const PaymentScreen = ({ history,match }) => {
     }
 
     return (
+        <>
+        <CheckoutSteps step1 step2 step3 brandname={match.params.brandname}/>
     <FormContainer>
-      <CheckoutSteps step1 step2 step3/>
+      
         <h1>Payment Method</h1>
         <Form onSubmit={submitHandler}>
             <Form.Group>
@@ -64,7 +66,7 @@ const PaymentScreen = ({ history,match }) => {
         
         </Form>
     </FormContainer>
-    
+    </>
     )}
 
 export default PaymentScreen

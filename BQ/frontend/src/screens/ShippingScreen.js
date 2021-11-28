@@ -23,10 +23,12 @@ const ShippingScreen = ({ history,match }) => {
       dispatch(saveShippingAddress({ address, city, postalCode, country }))
       history.push(`/payment/${match.params.brandname}`)
     }
-
+    
     return (
+      <>
+      <CheckoutSteps step1 step2 brandname={match.params.brandname}/>
     <FormContainer>
-      <CheckoutSteps step1 step2/>
+      
         <h1>Shipping</h1>
         <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
@@ -67,7 +69,7 @@ const ShippingScreen = ({ history,match }) => {
         
         </Form>
     </FormContainer>
-    
+    </>
     )}
 
 export default ShippingScreen
