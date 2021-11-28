@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card  } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart, removeFromCart } from '../actions/cartActions'
+import { addToCart, removeFromCart, } from '../actions/cartActions'
+import ListBrandCart from '../components/ListBrandCart'
 
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
@@ -12,8 +13,10 @@ const CartScreen = ({match, location, history}) => {
 
     const dispatch = useDispatch()
 
+
     const cart = useSelector((state) => state.cart)
     const { cartItems} = cart
+   // const brandCartItems = cartItems.find(x => x.brandName === )
 
     useEffect(() => {
         if(productId){
@@ -29,9 +32,15 @@ const CartScreen = ({match, location, history}) => {
         history.push('/login?/redirect=shipping')
     }
 
-    return <Row>
+    return (<Col>
+    <Row>
+        <ListBrandCart/>
+    </Row>
+    <Row>
+        <Col md={8}><h1>Shopping Cart</h1>
+            </Col>
         <Col md={8}>
-            <h1>Shopping Cart</h1>
+            
             {cartItems.length === 0 ? <Message>Your cart is empty <Link to='/'>Go Back</Link></Message> : (
                 <ListGroup variant = 'flush'>
                     {cartItems.map(item => (
@@ -69,16 +78,12 @@ const CartScreen = ({match, location, history}) => {
                         <h2>Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items</h2>
                         {cartItems.reduce((acc, item) => acc + item.qty*item.price, 0).toFixed(2)} VND
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                        <Button type='button' className='btn-block' disable={cartItems.length === 0} onClick={checkoutHandler}>
-                            Check out
-                        </Button>
-                    </ListGroup.Item>
                 </ListGroup>
             </Card>
         </Col>
     </Row>
-    
+    </Col>
+    )
 }
 
 export default CartScreen

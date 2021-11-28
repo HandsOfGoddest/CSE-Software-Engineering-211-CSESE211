@@ -1,5 +1,8 @@
 import asyncHandler from "express-async-handler";
+import Brand from "../models/brandModel.js";
+import Category from "../models/categoryModel.js";
 import Product from "../models/productModel.js";
+import User from "../models/userModel.js";
 
 // @desc Fetch all products
 // @route GET/api/products
@@ -69,5 +72,65 @@ const createProductReview = asyncHandler(async (req, res) => {
   }
 });
 
+const createProduct = asyncHandler(async(req, res) => {
+  const { name, image, description, price, countInStock } = req.body
+  const brand = await Brand.findOne({pathName: req.params.brand})
+  const category = await Category.findOne({catePathName: req.params.cate})
+  const admin = await User.findOne({isAdmin: true})
+  if (brand && category && category.brandName === brand.pathName) {
+    const newProduct = await Product.create({
+      user: admin._id,
+      name,
+      image,
+      brandName: brand.brandName,
+      category: category.cateName,
+      description,
+      price,
+      countInStock
+    })
+    if (newProduct) {
+      await newProduct.save()
+      res.json(newProduct)
+    }
+    else {
+      res.json(404)
+      throw new Error("Invalid data")
+    }
+  }
+  else {
+    res.status(404)
+    throw new Error("Brand or category not found!")
+  }
+})
 
-export {getProducts, getProductById, createProductReview}
+const deleteProductByID = asyncHandler(async(req, res) => {
+  const product = await Product.findById(req.params.id)
+  if (product) {
+      await product.remove()
+      res.json({message: "Product removed"})
+  }
+  else {
+      res.status(404)
+      throw new Error('Product not found')
+  }
+})
+
+const updateProduct = asyncHandler(async(req, res) => {
+  const product = await Product.findById(req.params.id)
+  if (product) {
+    product.name = req.body.name || product.name
+    product.image = req.body.image || product.image
+    product.description = req.body.description || product.description
+    product.price = req.body.price || product.price
+    product.countInStock = req.body.countInStock || product.countInStock
+    product.brandName = req.body.brandName || product.brandName
+    const updProduct = await product.save()
+    res.json(updProduct)
+  }
+  else {
+    res.status(404)
+    throw new Error('Product not found')
+  }
+})
+
+export {getProducts, getProductById, createProductReview, createProduct, deleteProductByID, updateProduct }

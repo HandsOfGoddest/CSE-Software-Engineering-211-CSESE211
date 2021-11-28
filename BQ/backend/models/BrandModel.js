@@ -15,12 +15,7 @@ const brandSchema = mongoose.Schema({
         type: String,
         required: true,
         default: "https://st.quantrimang.com/photos/image/072015/22/avatar.jpg"
-    },
-    hasProducts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'Product'
-    }]
+    }
 },{
     timestamps: true
 })
