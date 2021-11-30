@@ -86,7 +86,7 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
-              
+              <Row style={{height:"40px"}}></Row>
               <Col md={12}>
                 <Card>
                   <ListGroup variant="fush">
