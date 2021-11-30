@@ -6,8 +6,7 @@ const users = [
     userName: "admin",
     email: "admin@gmail.com",
     phoneNumber: "0365480412",
-    gender: "male",
-    dateOfBirth: "2/10/2001",
+    gender: "None",
     password: bcrypt.hashSync("123456", 10),
     isAdmin: true,
   },
@@ -15,13 +14,8 @@ const users = [
     name: "Clerk User",
     userName: "clerk",
     email: "clerk@gmail.com",
-<<<<<<< HEAD
     phoneNumber: "0365480412",
-=======
-    phoneNumber: "0375480412",
->>>>>>> c560a0d18e06397e906de942e1e440601e4daa29
-    gender: "both",
-    dateOfBirth: "2/10/2001",
+    gender: "None",
     password: bcrypt.hashSync("123456", 10),
     isClerk:true,
   },
@@ -30,8 +24,7 @@ const users = [
     userName: "depgai",
     email: "na@gmail.com",
     phoneNumber: "036480412",
-    gender: "xxxx",
-    dateOfBirth: "2/9/2001",
+    gender: "Female",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -40,7 +33,6 @@ const users = [
     email: "luan@gmail.com",
     phoneNumber: "036512",
     gender: "male1",
-    dateOfBirth: "3/10/2001",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -48,8 +40,7 @@ const users = [
     name: "Cuong",
     email: "cuong@gmail.com",
     phoneNumber: "03652",
-    gender: "male4",
-    dateOfBirth: "2001",
+    gender: "Male",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -57,8 +48,7 @@ const users = [
     name: "Toan",
     email: "toan@gmail.com",
     phoneNumber: "03654804",
-    gender: "male7",
-    dateOfBirth: "10/20/2001",
+    gender: "Male",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -66,8 +56,7 @@ const users = [
     name: "Linh",
     email: "linh@gmail.com",
     phoneNumber: "036548041",
-    gender: "male9",
-    dateOfBirth: "10/20/2001",
+    gender: "Male",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -75,8 +64,7 @@ const users = [
     name: "Dat",
     email: "dat@gmail.com",
     phoneNumber: "036548412",
-    gender: "male6",
-    dateOfBirth: "1",
+    gender: "Male",
     password: bcrypt.hashSync("123456", 10),
   },
   {
@@ -84,14 +72,9 @@ const users = [
     name: "Hieu",
     email: "hieu@gmail.com",
     phoneNumber: "036540412",
-    gender: "mal4e",
-    dateOfBirth: "82001",
+    gender: "Male",
     password: bcrypt.hashSync("123456", 10),
   },
 ];
 
-<<<<<<< HEAD
 export default users;
-=======
-export default users;
->>>>>>> c560a0d18e06397e906de942e1e440601e4daa29

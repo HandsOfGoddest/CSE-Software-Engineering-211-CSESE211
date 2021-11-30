@@ -19,16 +19,14 @@ const userSchema = mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      required: true,
-      
+      required: true
     },
     gender: {
       type: String,
-      default: null
-      
+      default: 'None'
     },
     dateOfBirth: {
-      type: String,
+      type: Date,
       required: true,
       default: Date.now
     },

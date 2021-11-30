@@ -12,7 +12,7 @@ const RegisterScreen = ({ location, history }) => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("None");
   const [dateOfBirth, setdateOfBirth] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -88,21 +88,16 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setPhoneNumber(e.target.value)}
           ></Form.Control>
         </Form.Group>
-
-        <Form.Group controlId="gender">
-          <Form.Label>Gender</Form.Label>
-          <Form.Control
-            type="gender"
-            placeholder="Enter Gender"
-            value={gender}
-            onChange={(e) => setGender(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-
+        <label for="gender">Sex</label>
+        <select name="Gender" id="gender" onChange={(e) => setGender(e.target.value)}>
+          <option value="None" selected>None</option>
+          <option value="Female">Female</option>
+          <option value="Male">Male</option>
+        </select>
         <Form.Group controlId="dateOfBirth">
           <Form.Label>Date Of Birth </Form.Label>
           <Form.Control
-            type="dateOfBirth"
+            type="date"
             placeholder="Enter Date Of Birth"
             value={dateOfBirth}
             onChange={(e) => setdateOfBirth(e.target.value)}

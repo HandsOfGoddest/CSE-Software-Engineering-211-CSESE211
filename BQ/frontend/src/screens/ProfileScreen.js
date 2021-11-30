@@ -112,15 +112,12 @@ const ProfileScreen = ({ history }) => {
                 ></Form.Control>
               </Form.Group>
 
-              <Form.Group controlId="gender">
-                <Form.Label>Gender</Form.Label>
-                <Form.Control
-                  type="gender"
-                  placeholder="Gender"
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
+              <label for="gender">Sex</label>
+        <select name="Gender" id="gender" defaultValue={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="None" selected={gender=='None' ? true: false}>None</option>
+          <option value="Female" selected={gender=='Female' ? true: false}>Female</option>
+          <option value="Male" selected={gender=='Male' ? true: false}>Male</option>
+        </select>
 
               <Form.Group controlId="phoneNumber">
                 <Form.Label>Phone Number</Form.Label>
@@ -135,9 +132,9 @@ const ProfileScreen = ({ history }) => {
               <Form.Group controlId="dateOfBirth">
                 <Form.Label>Date Of Birth </Form.Label>
                 <Form.Control
-                  type="dateOfBirth"
+                  type="date"
                   placeholder="Date Of Birth"
-                  value={dateOfBirth}
+                  value={dateOfBirth.split('T')[0]}
                   onChange={(e) => setdateOfBirth(e.target.value)}
                 ></Form.Control>
               </Form.Group>
