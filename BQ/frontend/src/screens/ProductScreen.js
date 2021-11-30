@@ -54,7 +54,7 @@ const ProductScreen = ({ history, match }) => {
   }
   return (
     <>
-      <Link className="btn btn-dark my-3" to="/">
+      <Link style={{marginLeft:"50px"}} className="btn btn-dark my-3" to="/">
         Go Back
       </Link>
       {loading ? (
@@ -65,7 +65,7 @@ const ProductScreen = ({ history, match }) => {
         <>
           <Row>
             <Col md={8}>
-              <Image src={product.image} alt={product.name} fluid />
+              <Image src={product.image} alt={product.name} fluid style={{width:"100%"}}/>
             </Col>
             <Col md={4}>
               <Col md={12}>
@@ -86,7 +86,7 @@ const ProductScreen = ({ history, match }) => {
                   </ListGroup.Item>
                 </ListGroup>
               </Col>
-              <Row style={{height:"40px"}}></Row>
+              
               <Col md={12}>
                 <Card>
                   <ListGroup variant="fush">
@@ -143,8 +143,9 @@ const ProductScreen = ({ history, match }) => {
               </Col>
             </Col>
           </Row>
+          <Row style={{height:"60px"}}></Row>
           <Row>
-            <Col style={{marginLeft:"120px"}} md={5}>
+            <Col md={8}>
               <h2>Reviews</h2>
 
               {product.reviews.length === 0 && <Message>No reviews</Message>}
