@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { register } from "../actions/userActions";
+import "./HomeScreenStyle.css"
 
 const RegisterScreen = ({ location, history }) => {
   const [name, setName] = useState("");
@@ -35,7 +36,7 @@ const RegisterScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage("Mật khẩu không khớp");
     } else {
-      dispatch(register(name,userName, email, password, phoneNumber, gender, dateOfBirth));
+      dispatch(register(name, userName, email, password, phoneNumber, gender, dateOfBirth));
     }
   };
 
@@ -47,14 +48,14 @@ const RegisterScreen = ({ location, history }) => {
       {loading && <Loader />}
 
       <Form.Group controlId="userName">
-          <Form.Label>User Name</Form.Label>
-          <Form.Control
-            type="userName"
-            placeholder="Enter User Name"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        <Form.Label>User Name</Form.Label>
+        <Form.Control
+          type="userName"
+          placeholder="Enter User Name"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        ></Form.Control>
+      </Form.Group>
 
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name">
@@ -67,7 +68,7 @@ const RegisterScreen = ({ location, history }) => {
           ></Form.Control>
         </Form.Group>
 
-        
+
 
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
@@ -88,12 +89,23 @@ const RegisterScreen = ({ location, history }) => {
             onChange={(e) => setPhoneNumber(e.target.value)}
           ></Form.Control>
         </Form.Group>
-        <label for="gender">Sex</label>
-        <select name="Gender" id="gender" onChange={(e) => setGender(e.target.value)}>
-          <option value="None" selected>None</option>
-          <option value="Female">Female</option>
-          <option value="Male">Male</option>
-        </select>
+        {/* <Form.Group>
+          <label for="gender">Sex</label>
+          <select >
+            <option value="None" selected>None</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+          </select>
+        </Form.Group> */}
+        <label className="form-label" for="gender">Sex</label>
+        <div class="input-group mb-3">
+          <select class="form-select" name="Gender" id="gender" onChange={(e) => setGender(e.target.value)}>
+            <option selected>Sex...</option>
+            <option value="1">None</option>
+            <option value="2">Female</option>
+            <option value="3">Male</option>
+          </select>
+        </div>
         <Form.Group controlId="dateOfBirth">
           <Form.Label>Date Of Birth </Form.Label>
           <Form.Control

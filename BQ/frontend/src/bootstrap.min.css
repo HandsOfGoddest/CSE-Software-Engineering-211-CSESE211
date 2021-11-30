@@ -2873,9 +2873,9 @@
  .input-group>.form-control, .input-group>.form-select {
      position: relative;
      -ms-flex: 1 1 auto;
-     flex: 1 1 auto;
-     width: 1%;
-     min-width: 0
+    width: 300px ;
+
+     min-width: 0;
  }
  
  .input-group>.form-control:focus, .input-group>.form-select:focus {
