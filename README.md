@@ -30,7 +30,7 @@ FACULTY OF COMPUTER SCIENCE AND ENGINEERING
 ## Languages & Tools
 
 - Front-end: <img src="https://cdn1.iconfinder.com/data/icons/social-icon-1-1/512/social_style_1_html5-256.png" align="center" style="margin-left:10px;margin-bottom:5px" width=30px/> <img src="https://cdn1.iconfinder.com/data/icons/social-icon-1-1/512/social_style_1_css3-256.png" align="center" style="margin-left:10px;margin-bottom:5px" width=30px/> <img src="https://cdn2.iconfinder.com/data/icons/designer-skills/128/code-programming-javascript-software-develop-command-language-256.png" align="center" style="margin-left:10px;margin-bottom:5px" width=45px/> <img src="https://cdn1.iconfinder.com/data/icons/soleicons-fill-vol-1/64/reactjs_javascript_library_atom_atomic_react-256.png" align="center" style="margin-left:5px;margin-bottom:5px" width=30px/>
-- Back-end: <img src="https://icon-library.com/images/django-icon/django-icon-0.jpg" align="center" style="margin-left:10px;margin-bottom:5px" width=30px/> <img src="https://cdn4.iconfinder.com/data/icons/google-i-o-2016/512/google_firebase-256.png" align="center" style="margin-left:5px;margin-bottom:5px" width=30px/>
+- Back-end: img src="https://icon-library.com/images/node-js-icon/node-js-icon-8.jpg" align="center" style="margin-left:5px;margin-bottom:5px" width=30px/>
 - API
 - Version Control: <img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/github-256.png" align="center" style="margin-left:10px;margin-bottom:5px" width=30px/>
 - UML Diagram: <img src="https://blog.tda-corp.co.jp/wp-content/uploads/2020/05/DrawIO.png" align="center" style="margin-left:10px;margin-bottom:2px" width=70px/>
